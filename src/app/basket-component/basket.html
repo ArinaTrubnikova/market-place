@@ -1,0 +1,20 @@
+<div class="product-container">
+  @for(card of (cards$ | async); track card.id) {
+
+  <div class="product-card-container">
+    <h3 class="product-title">{{ card.title }}</h3>
+    <p class="product-description">{{ card.description }}</p>
+    <p class="product-cost">{{ card.cost }}</p>
+
+    <div class="btn-wrapper">
+      <button
+        class="minus"
+        (click)="reduceAmountProduct(card)"
+        [disabled]="getCount(card.id) === 0">-</button>
+      <p class="count">{{ getCount(card.id) }}</p>
+      <button class="plus" (click)="addProduct(card)">+</button>
+    </div>
+  </div>
+  <button class="delete" (click)="deleteCard(card.id)">Удаляяяяй</button>
+  }
+</div>

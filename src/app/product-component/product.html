@@ -1,0 +1,25 @@
+<h1>Список наших самых лучших товаров</h1>
+
+<show-modal
+  [isVisible]="isModalVisible"
+  (isModalClosed)="hideModal()"
+  [selectedCard]="selectedCard"
+  (isProductSelected)="isProductAdded"
+></show-modal>
+
+<div class="product-container">
+  @for(product of products; track product.id) {
+
+  <div class="product-card-container">
+    <h3 class="product-title" (click)="showModal(product)">{{ product.title }}</h3>
+    <p class="product-description">{{ product.description }}</p>
+    <p class="product-cost">{{ product.cost }}</p>
+    @if(!getCount(product.id)){
+    <button class="add" (click)="addProduct(product)">Добавить в корзину</button>
+    } @else {
+    <button class="sum" (click)="addProduct(product)">{{ getCount(product.id) }} +</button>
+    }
+  </div>
+
+  }
+</div>

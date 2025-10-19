@@ -1,0 +1,20 @@
+@if (isVisible) {
+<div class="modal-overlay">
+  <div class="modal-product-container">
+    @if(selectedCard) {
+       <button class="close-modal" (click)="hideModal()">X</button>
+    <div class="modal-product-card-container">
+      <h3 class="modal-product-title">{{ selectedCard.title }}</h3>
+      <p class="modal-product-description">{{ selectedCard.description }}</p>
+      <p class="modal-product-fullDescription">{{ selectedCard.fullDescription }}</p>
+      <p class="modal-product-cost">{{ selectedCard.cost }}</p>
+      @if(!getCount(selectedCard.id)){
+    <button class="add" (click)="addProduct(selectedCard)">Добавить в корзину</button>
+    } @else {
+    <button class="sum" (click)="addProduct(selectedCard)">{{ getCount(selectedCard.id) }} +</button>
+    }
+    </div>
+    }
+  </div>
+</div>
+}

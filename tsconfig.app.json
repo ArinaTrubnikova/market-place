@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/interface/interface.model.ts", "src/app/interface/interface.model.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

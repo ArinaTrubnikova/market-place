@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { StorageService } from "../services/storage.service";
-import { GetProductService } from "../services/get-product.service";
-import { AmountCard } from "../interface/interface.model";
+import { StorageService } from "../../services/storage.service";
+import { GetProductService } from "../../services/get-product.service";
+import { AmountCard } from "../../interface/interface.model";
 import { Observable } from "rxjs/internal/Observable";
 import { AsyncPipe } from "@angular/common";
 

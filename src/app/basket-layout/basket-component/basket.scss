@@ -1,13 +1,14 @@
 .product-container {
     display: grid;
-   grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     justify-content: center;
     align-items: center;
 }
 
 .product-card-container {
-    width: auto;
+    width: 350px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,10 +16,11 @@
     border: solid 1px #79038191;
     border-radius: 5px;
     gap: 8px;
-     background-color: #ffa5f9b4;
+    background-color: #ffa5f9b4;
 }
 
-h3, p {
+h3,
+p {
     margin: 0
 }
 
@@ -37,17 +39,17 @@ p {
     flex-direction: row;
     gap: 5px;
     margin-bottom: 5px;
-    background-color:#5d0157;
-    
+    background-color: #5d0157;
+
 
 }
 
 .count {
-color: white;
+    color: white;
 }
 
 button {
-    background-color:#5d0157;
+    background-color: #5d0157;
     border: none;
     color: white;
 }

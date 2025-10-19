@@ -3,7 +3,7 @@ import { RouterOutlet } from "@angular/router";
 import { GetProductService } from "../services/get-product.service";
 import { Card, AmountCard } from "../interface/interface.model";
 import { StorageService } from "../services/storage.service";
-import { ShowModal } from "../showModal-component/show-modal";
+import { ShowModal } from "./show-modal-component/show-modal";
 
 @Component({
     selector: 'product-component',

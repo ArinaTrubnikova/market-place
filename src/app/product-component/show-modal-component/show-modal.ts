@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, type SimpleChanges } from "@angular/core";
-import { GetProductService } from "../services/get-product.service";
-import { StorageService } from "../services/storage.service";
-import { AmountCard, Card } from "../interface/interface.model";
+import { GetProductService } from "../../services/get-product.service";
+import { StorageService } from "../../services/storage.service";
+import { AmountCard, Card } from "../../interface/interface.model";
 import { Observable } from "rxjs/internal/Observable";
 import { AsyncPipe } from "@angular/common";
 import { map } from "rxjs";

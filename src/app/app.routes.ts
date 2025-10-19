@@ -1,8 +1,27 @@
 import { Routes } from '@angular/router';
-import { BasketComponent } from './basket-component/basket';
+import { BasketComponent } from './basket-layout/basket-component/basket';
 import { ProductComponent } from './product-component/product';
+import { BasketLayout } from './basket-layout/basket-layout';
 
 export const routes: Routes = [
-    { path: 'basket', component: BasketComponent },
-    { path: 'products', component: ProductComponent}
+    {
+        path: 'basket',
+        component: BasketLayout,
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./basket-layout/basket-component/basket').then(m => m.BasketComponent)
+            },
+            {
+                path: 'buy',
+                loadComponent: () => import('./basket-layout/payment-component/payment-component').then(m => m.PaymentComponent)
+            }
+        ]
+    },
+    {
+        path: 'products',
+        loadComponent: () => import('./product-component/product').then(m => m.ProductComponent)
+    },
+    { path: '', redirectTo: '/products', pathMatch: 'full' },
+    { path: '**', redirectTo: '/products' }
 ];

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output } from "@angular/core";
 import { RouterOutlet, RouterLink } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
 import { GetProductService } from "../../services/get-product.service";
@@ -46,7 +46,7 @@ export class BasketComponent {
 
   }
   
-  hasItemsInCart(): boolean {
+  get hasItemsInCart(): boolean {
     return this.storageService.productValue.length > 0;
   }
 }

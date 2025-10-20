@@ -14,21 +14,16 @@ export class ShowModal {
     @Input() isVisible: boolean = false;
     @Input() selectedCard!: Card;
     @Input() productCount!: number;
-    isModalClosed = output<void>();
+    isVisibleChange = output<void>();
     isProductSelected = output<Card>();
     productCountChange = output<number>();
 
     hideModal() {
-        this.isVisible = false;
-        this.isModalClosed.emit();
+        this.isVisibleChange.emit();
     }
 
     addProduct(product: Card): void {
         this.isProductSelected.emit(product);
-    }
-
-    getCount(): number {
-        return this.productCount;
     }
 }
 

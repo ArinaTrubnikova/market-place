@@ -10,9 +10,8 @@
       <p class="modal-product__cost">
         {{ selectedCard.cost | currency : 'RUB' : 'symbol-narrow' }}
       </p>
-
       <button class="modal_product__sum-btn" (click)="addProduct(selectedCard)">
-        {{ !getCount() ? 'Добавить в корзину' : getCount() + ' +' }}
+        {{ !productCount ? 'Добавить в корзину' : productCount + ' +' }}
       </button>
     </div>
     }

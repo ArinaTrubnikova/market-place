@@ -74,14 +74,22 @@
         background-color: #330330;
     }
 
-    &__description {
-        font-size: 20px;
-        padding: 5px;
-        width: 350px;
-        color: #ff64f5;
-        margin: 0;
-        text-align: start;
-        background-color: #ab06a0;
+    &__btn {
+        grid-column: 1 / -1;
+        justify-self: center;
+        background-color: #5d0157;
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+
+        &:hover {
+            background-color: #990087;
+        }
     }
+    
 
 }

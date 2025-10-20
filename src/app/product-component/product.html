@@ -1,8 +1,7 @@
 <h1>Список наших самых лучших товаров</h1>
 
 <show-modal
-  [isVisible]="isModalVisible"
-  (isModalClosed)="hideModal()"
+  [(isVisible)]="isModalVisible"
   [selectedCard]="selectedCard"
   (isProductSelected)="addProduct($event)"
   (productCountChange)="getCount($event)"

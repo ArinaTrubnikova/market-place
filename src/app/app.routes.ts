@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { BasketComponent } from './basket-layout/basket/basket';
-import { ProductComponent } from './product-component/product';
 import { BasketLayout } from './basket-layout/basket-layout';
 
 export const routes: Routes = [
@@ -14,7 +12,7 @@ export const routes: Routes = [
             },
             {
                 path: 'buy',
-                loadComponent: () => import('./basket-layout/payment/payment-component').then(m => m.PaymentComponent)
+                loadComponent: () => import('./basket-layout/payment/payment').then(m => m.PaymentComponent)
             }
         ]
     },

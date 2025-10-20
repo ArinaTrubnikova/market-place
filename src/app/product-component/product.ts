@@ -3,7 +3,7 @@ import { RouterOutlet } from "@angular/router";
 import { GetProductService } from "../services/get-product.service";
 import { Card, AmountCard } from "../interface/product-card.model";
 import { StorageService } from "../services/storage.service";
-import { ShowModal } from "./show-modal-component/show-modal";
+import { ShowModal } from "./show-modal/show-modal";
 import { CurrencyPipe } from "@angular/common";
 
 @Component({
@@ -25,7 +25,7 @@ export class ProductComponent {
     ngOnInit() {
         this.getProduct();
     }
-
+    
     showModal(product: Card) {
         this.selectedCard = product
         this.isModalVisible = true;
@@ -42,13 +42,9 @@ export class ProductComponent {
     }
 
     getProduct() {
-        this.getProductService.getProduct().subscribe(
-            {
-                next: (data) => {
-                    this.products = data;
-                }
-            }
-        )
+        this.getProductService.getProduct().subscribe((data: Card[]) => {
+            this.products = data;
+        })
     }
 
     addProduct(product: Card): void {

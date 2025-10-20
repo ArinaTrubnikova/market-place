@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AmountCard, Card } from "../interface/interface.model";
+import { AmountCard, Card } from "../interface/product-card.model";
 import { BehaviorSubject, count } from "rxjs";
 
 @Injectable({

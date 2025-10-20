@@ -1,13 +1,14 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { GetProductService } from "../services/get-product.service";
-import { Card, AmountCard } from "../interface/interface.model";
+import { Card, AmountCard } from "../interface/product-card.model";
 import { StorageService } from "../services/storage.service";
 import { ShowModal } from "./show-modal-component/show-modal";
+import { CurrencyPipe } from "@angular/common";
 
 @Component({
     selector: 'product-component',
-    imports: [RouterOutlet, ShowModal],
+    imports: [RouterOutlet, ShowModal, CurrencyPipe],
     templateUrl: './product.html',
     styleUrl: './product.scss',
     providers: [GetProductService]

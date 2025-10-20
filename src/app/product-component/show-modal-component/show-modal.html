@@ -7,7 +7,9 @@
       <h3 class="modal-product__title">{{ selectedCard.title }}</h3>
       <p class="modal-product__description">{{ selectedCard.description }}</p>
       <p class="modal-product__full-description">{{ selectedCard.fullDescription }}</p>
-      <p class="modal-product__cost">{{ selectedCard.cost }}</p>
+      <p class="modal-product__cost">
+        {{ selectedCard.cost | currency : 'RUB' : 'symbol-narrow' }}
+      </p>
 
       <button class="modal_product__sum-btn" (click)="addProduct(selectedCard)">
         {{ !getCount() ? 'Добавить в корзину' : getCount() + ' +' }}

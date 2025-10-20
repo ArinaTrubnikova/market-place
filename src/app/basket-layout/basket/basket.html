@@ -1,20 +1,26 @@
-<div class="product-container">
+<div class="basket">
   @for(card of (cards$ | async); track card.id) {
 
-  <div class="product-card-container">
-    <h3 class="product-title">{{ card.title }}</h3>
-    <p class="product-description">{{ card.description }}</p>
-    <p class="product-cost">{{ card.cost }}</p>
+  <div class="basket-card__container">
+    <h3 class="basket-card__title">{{ card.title }}</h3>
+    <p class="basket-card__description">{{ card.description }}</p>
+    <p class="basket-card__cost">{{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
 
-    <div class="btn-wrapper">
+    <div class="basket-card__btn-wrapper">
       <button
-        class="minus"
+        class="basket-card__minus-btn"
         (click)="reduceAmountProduct(card)"
-        [disabled]="getCount(card.id) === 0">-</button>
-      <p class="count">{{ getCount(card.id) }}</p>
-      <button class="plus" (click)="addProduct(card)">+</button>
+        [disabled]="getCount(card.id) === 0"
+      >
+        -
+      </button>
+      <p class="basket-card__count">{{ getCount(card.id) }}</p>
+      <button class="basket-card__plus-btn" (click)="addProduct(card)">+</button>
     </div>
-    <button class="delete" (click)="deleteCard(card.id)">Удаляяяяй</button>
+    <button class="basket-card__delete-btn" (click)="deleteCard(card.id)">Удаляяяяй</button>
   </div>
   }
 </div>
+@if (hasItemsInCart()) {
+<button class="basket__payment-btn" routerLink="/basket/buy">Оплатить</button>
+}

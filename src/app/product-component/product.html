@@ -15,7 +15,7 @@
   <div class="product-card__container">
     <h3 class="product-card__title" (click)="showModal(product)">{{ product.title }}</h3>
     <p class="product-card__description">{{ product.description }}</p>
-    <p class="product-card__cost">{{ product.cost }}</p>
+    <p class="product-card__cost">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
     <button class="product-card__sum-btn" (click)="addProduct(product)">
       {{ !getCount(product.id) ? 'Добавить в корзину' : getCount(product.id) + ' +' }}
     </button>

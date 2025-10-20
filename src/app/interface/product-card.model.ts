@@ -1,7 +1,7 @@
 export interface Card {
     id: number,
     title: string,
-    description: string,
+    description?: string,
     cost: number,
     fullDescription?: string;
 }

@@ -1,0 +1,67 @@
+.payment {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    &-card__container {
+        width: 350px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: solid 1px #79038191;
+        border-radius: 5px;
+        gap: 8px;
+        background-color: #ffa5f9b4;
+        padding: 15px;
+    }
+
+    &-card__title {
+        font-size: 30px;
+        color: #330330;
+        margin: 0;
+        text-align: center;
+    }
+
+    &-card__total-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 5px;
+        font-size: 20px;
+        background-color: #330330;
+         border: solid 1px #79038191;
+        border-radius: 5px;
+    }
+
+    &-card__description,
+    &-card__cost {
+        font-size: 20px;
+        color: #5d0157;
+        margin: 0;
+        text-align: center;
+    }
+
+       &-card__total-count {
+    color: #ff00ee;
+        margin: 0;
+        padding: 0 10px;
+        font-size: 18px;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    &-card__total-price {
+         color: #ff00ee;
+        margin: 0;
+        padding: 0 10px;
+        font-size: 18px;
+        min-width: 20px;
+        text-align: center;
+    }
+
+}

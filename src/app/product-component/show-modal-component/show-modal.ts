@@ -1,9 +1,10 @@
 import { Component, Input, output } from "@angular/core";
-import { AmountCard, Card } from "../../interface/interface.model";
+import { Card } from "../../interface/product-card.model";
+import { CurrencyPipe } from "@angular/common";
 
 @Component({
     selector: 'show-modal',
-    imports: [],
+    imports: [CurrencyPipe],
     templateUrl: './show-modal.html',
     styleUrl: './show-modal.scss',
 })

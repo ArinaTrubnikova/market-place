@@ -1,15 +1,15 @@
 import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import { RouterOutlet, RouterLink } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
 import { GetProductService } from "../../services/get-product.service";
-import { AmountCard } from "../../interface/interface.model";
+import { AmountCard } from "../../interface/product-card.model";
 import { Observable } from "rxjs/internal/Observable";
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, CurrencyPipe } from "@angular/common";
 
 
 @Component({
   selector: 'basket-component',
-  imports: [RouterOutlet, AsyncPipe],
+  imports: [RouterOutlet, AsyncPipe, RouterLink, CurrencyPipe],
   providers: [GetProductService],
   templateUrl: './basket.html',
   styleUrl: './basket.scss'
@@ -28,8 +28,7 @@ export class BasketComponent {
     return product ? product.count : 0;
   }
 
-  constructor(private storageService: StorageService,
-    private getProductService: GetProductService) { }
+  constructor(private storageService: StorageService) { }
 
 
   addProduct(product: AmountCard): void {
@@ -45,5 +44,9 @@ export class BasketComponent {
   deleteCard(id: number) {
     this.storageService.deleteProduct(id)
 
+  }
+  
+  hasItemsInCart(): boolean {
+    return this.storageService.productValue.length > 0;
   }
 }

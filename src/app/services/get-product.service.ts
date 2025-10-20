@@ -3,17 +3,17 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AmountCard, Card } from '../interface/interface.model';
 
-@Injectable ()
+@Injectable()
 
 export class GetProductService {
-    private apiUrl = 'data/products.json'; 
+    private apiUrl = 'data/products.json';
 
-    constructor (private http: HttpClient) {
+    constructor(private http: HttpClient) {
 
     }
 
     getProduct() {
-        return this.http.get<Card[]>(this.apiUrl)    
+        return this.http.get<Card[]>(this.apiUrl)
     }
 
 }

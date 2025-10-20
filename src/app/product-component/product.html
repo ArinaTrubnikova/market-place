@@ -4,21 +4,21 @@
   [isVisible]="isModalVisible"
   (isModalClosed)="hideModal()"
   [selectedCard]="selectedCard"
-  (isProductSelected)="isProductAdded"
+  (isProductSelected)="addProduct($event)"
+  (productCountChange)="getCount($event)"
+  [productCount]="selectedCard ? getCount(selectedCard.id) : 0"
 ></show-modal>
 
-<div class="product-container">
+<div class="product-card">
   @for(product of products; track product.id) {
 
-  <div class="product-card-container">
-    <h3 class="product-title" (click)="showModal(product)">{{ product.title }}</h3>
-    <p class="product-description">{{ product.description }}</p>
-    <p class="product-cost">{{ product.cost }}</p>
-    @if(!getCount(product.id)){
-    <button class="add" (click)="addProduct(product)">Добавить в корзину</button>
-    } @else {
-    <button class="sum" (click)="addProduct(product)">{{ getCount(product.id) }} +</button>
-    }
+  <div class="product-card__container">
+    <h3 class="product-card__title" (click)="showModal(product)">{{ product.title }}</h3>
+    <p class="product-card__description">{{ product.description }}</p>
+    <p class="product-card__cost">{{ product.cost }}</p>
+    <button class="product-card__sum-btn" (click)="addProduct(product)">
+      {{ !getCount(product.id) ? 'Добавить в корзину' : getCount(product.id) + ' +' }}
+    </button>
   </div>
 
   }

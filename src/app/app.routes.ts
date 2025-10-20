@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { BasketComponent } from './basket-layout/basket-component/basket';
+import { BasketComponent } from './basket-layout/basket/basket';
 import { ProductComponent } from './product-component/product';
 import { BasketLayout } from './basket-layout/basket-layout';
 
@@ -10,11 +10,11 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                loadComponent: () => import('./basket-layout/basket-component/basket').then(m => m.BasketComponent)
+                loadComponent: () => import('./basket-layout/basket/basket').then(m => m.BasketComponent)
             },
             {
                 path: 'buy',
-                loadComponent: () => import('./basket-layout/payment-component/payment-component').then(m => m.PaymentComponent)
+                loadComponent: () => import('./basket-layout/payment/payment-component').then(m => m.PaymentComponent)
             }
         ]
     },

@@ -16,7 +16,14 @@ import { ShowModal } from "./show-modal-component/show-modal";
 export class ProductComponent {
     selectedCard!: Card;
     isModalVisible: boolean = false;
-    isProductAdded: boolean = false;
+    products: Card[] = [];
+
+    constructor(private getProductService: GetProductService,
+        private storageService: StorageService) { }
+
+    ngOnInit() {
+        this.getProduct();
+    }
 
     showModal(product: Card) {
         this.selectedCard = product
@@ -27,18 +34,10 @@ export class ProductComponent {
         this.isModalVisible = false
     }
 
-    products: Card[] = [];
 
     getCount(cardId: number): number {
         const product = this.storageService.productValue.find((product: AmountCard) => product.id === cardId);
         return product ? product.count : 0;
-    }
-
-    constructor(private getProductService: GetProductService,
-        private storageService: StorageService) { }
-
-    ngOnInit() {
-        this.getProduct();
     }
 
     getProduct() {

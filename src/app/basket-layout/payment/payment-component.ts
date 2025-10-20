@@ -16,7 +16,7 @@ export class PaymentComponent {
 
     toPaymentCards$!: Observable<Card[]>;
     totalPrice!: number;
-
+ 
     constructor(private storageService: StorageService) { }
 
     ngOnInit() {
@@ -32,7 +32,10 @@ export class PaymentComponent {
         return product ? product.count : 0;
     }
 
-    getTotalPrice(cardForPayment: Card) {
+    getPriceForProduct(cardForPayment: Card): number {
+
+        console.log(this.totalPrice);
+
         const product = this.storageService.productValue.find((product: AmountCard) => product.id === cardForPayment.id);
 
         if (product) {
@@ -40,11 +43,19 @@ export class PaymentComponent {
             const amount = product.count
             return this.totalPrice = price * amount
         } else {
-            return 'Товар не найден'
+            return 0
         }
 
     }
 
+    getTotalPrice() {
+        this.totalPrice = this.storageService.productValue.reduce((total, product) => {
+            return total + (product.cost * product.count);
+        }, 0);
+
+        return this.totalPrice
+
+    }
 
 }
 

@@ -1,4 +1,4 @@
-<div>Сумма твоего заказа ебейшая</div>
+<div class="payment__description">Заполните персональные данные и выберите способ оплаты</div>
 <div class="payment">
   @for(card of (toPaymentCards$ | async); track card.id) {
 
@@ -10,9 +10,10 @@
     <div class="payment-card__total-wrapper">
       <p class="payment-card__total-count">Количество: {{ getCount(card.id) }}</p>
       <p class="payment-card__total-price">
-        К оплате: {{ getTotalPrice(card) | currency : 'RUB' : 'symbol-narrow' }}
+        К оплате: {{ getPriceForProduct(card) | currency : 'RUB' : 'symbol-narrow' }}
       </p>
     </div>
   </div>
   }
 </div>
+<div class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</div>

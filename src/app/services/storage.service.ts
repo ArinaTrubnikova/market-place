@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AmountCard, Card } from "../interface/product-card.model";
-import { BehaviorSubject, count } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -9,12 +9,11 @@ import { BehaviorSubject, count } from "rxjs";
 
 export class StorageService {
 
-
     private _productsBasket$ = new BehaviorSubject<AmountCard[]>([]);
     public products$ = this._productsBasket$.asObservable();
 
-
     addProduct(addedProduct: Card): void {
+
         if (this.productValue.find((card: AmountCard) => card.id === addedProduct.id)) {
             const products = this.productValue.map((card: AmountCard) => {
                 if (card.id === addedProduct.id) {
@@ -33,13 +32,13 @@ export class StorageService {
     reduceAmountProduct(reducedProduct: Card): void {
 
         const existingProduct = this.productValue.find((card: AmountCard) => card.id === reducedProduct.id)
+
         if (existingProduct!.count > 1) {
             const products = this.productValue.map((card: AmountCard) =>
                 card.id === reducedProduct.id ? { ...card, count: card.count -= 1 } : card
             )
             this._productsBasket$.next(products);
         }
-
 
         else {
             this.deleteProduct(reducedProduct.id);
@@ -52,6 +51,7 @@ export class StorageService {
     }
 
     deleteProduct(id: number) {
+
         if (this.productValue.find((card: AmountCard) => card.id === id)) {
             const deletedCard = this.productValue.filter((card: AmountCard) => card.id !== id)
 
@@ -60,7 +60,6 @@ export class StorageService {
 
             return this.productValue
         }
-
 
     }
 

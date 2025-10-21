@@ -40,6 +40,21 @@
     </mat-checkbox>
   </div>
 
+  <mat-form-field>
+    <mat-label>Дата рождения</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="birthDate"/>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    @if (hasError('birthDate', 'required')) {
+    <mat-error>Поле обязательно для заполнения</mat-error>
+    } @if (hasError('birthDate', 'futureDate') && !hasError('birthDate', 'required')) {
+    <mat-error>Дата не может быть в будущем</mat-error>
+    }
+  </mat-form-field>
+
   <div formGroupName="contacts">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Электронная почта</mat-label>

@@ -18,13 +18,9 @@ export class ShowModal {
     isProductSelected = output<Card>();
     productCountChange = output<number>();
 
-    hideModal() {
-        this.isVisibleChange.emit();
-    }
+    hideModal = () => this.isVisibleChange.emit();
 
-    addProduct(product: Card): void {
-        this.isProductSelected.emit(product);
-    }
+    addProduct = (product: Card): void => this.isProductSelected.emit(product);
 }
 
 

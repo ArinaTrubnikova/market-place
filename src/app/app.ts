@@ -1,7 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
-import { ProductComponent } from './product-component/product';
-import { BasketComponent } from './basket-layout/basket/basket';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +8,7 @@ import { BasketComponent } from './basket-layout/basket/basket';
   styleUrl: './app.scss'
 })
 export class App {
+
   protected readonly title = signal('markeplace');
 
   constructor(public router: Router) { }

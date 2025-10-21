@@ -1,4 +1,4 @@
-import { Component, Output } from "@angular/core";
+import { Component } from "@angular/core";
 import { RouterOutlet, RouterLink } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
 import { GetProductService } from "../../services/get-product.service";
@@ -25,22 +25,12 @@ export class BasketComponent {
 
   constructor(private storageService: StorageService) { }
 
+  addProduct = (product: AmountCard): void => this.storageService.addProduct(product);
 
-  addProduct(product: AmountCard): void {
+  reduceAmountProduct = (product: AmountCard): void => this.storageService.reduceAmountProduct(product);
 
-    this.storageService.addProduct(product);
-  }
+  deleteCard = (id: number) => this.storageService.deleteProduct(id);
 
-  reduceAmountProduct(product: AmountCard): void {
-
-    this.storageService.reduceAmountProduct(product);
-  }
-
-  deleteCard(id: number) {
-    this.storageService.deleteProduct(id)
-
-  }
-  
   get hasItemsInCart(): boolean {
     return this.storageService.productValue.length > 0;
   }

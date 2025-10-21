@@ -1,8 +1,8 @@
-import { Component, output } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
-import { MatCheckbox, MatCheckboxModule } from "@angular/material/checkbox";
+import { Component } from "@angular/core";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective } from "@angular/forms";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatFormField, MatInputModule } from "@angular/material/input";
+import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 
@@ -18,28 +18,14 @@ import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 export class PaymentDetailsComponent {
 
   paymentDetailsForm!: FormGroup;
-  isPaymentFormValidChange = output<boolean>();
+  paymentOnline = { sysName: 'online', description: 'Онлайн' };
+  paymentByCard = { sysName: 'byCard', description: 'Картой при получении' };
+  paid = { sysName: 'paid', description: 'Уже оплачено' }
 
-  constructor(private fb: FormBuilder) {
-    this.paymentDetailsForm = this.createForm();
+  constructor(private formGroupDirective: FormGroupDirective) { }
 
-    this.paymentDetailsForm.statusChanges.subscribe(() => {
-      this.isPaymentFormValidChange.emit(this.paymentDetailsForm.valid);
-    });
-  }
-
-  createForm(): FormGroup {
-    return this.fb.group({
-      wayToPay: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required, Validators.minLength(16)]],
-      leaveDoor: [false],
-      address: this.fb.group({
-        city: ['', [Validators.required, Validators.maxLength(100)]],
-        street: ['', [Validators.required, Validators.maxLength(100)]],
-        house: ['', [Validators.required]],
-        flat: ['', [Validators.required]]
-      })
-    });
+  ngOnInit() {
+    this.paymentDetailsForm = this.formGroupDirective.form
   }
 
   hasError(controlName: string, errorType: string): boolean {

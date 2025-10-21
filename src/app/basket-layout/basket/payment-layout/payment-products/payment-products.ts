@@ -16,7 +16,6 @@ export class PaymentProductsComponent {
 
     toPaymentCards$!: Observable<AmountCard[]>;
 
- 
     constructor(private storageService: StorageService) { }
 
     ngOnInit() {
@@ -24,7 +23,7 @@ export class PaymentProductsComponent {
     }
 
     getTotalPrice() {
-       return this.storageService.productValue.reduce((total, product) => {
+        return this.storageService.productValue.reduce((total, product) => {
             return total + (product.cost * product.count);
         }, 0);
     }

@@ -1,46 +1,38 @@
-import { Component, inject, output } from "@angular/core";
+import { Component } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormControl } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, type ValidatorFn, type FormControl, type ValidationErrors, type AbstractControl } from "@angular/forms";
 import { MatCheckbox, MatCheckboxChange } from "@angular/material/checkbox";
 import { MatFormField, MatInputModule } from "@angular/material/input";
-import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from "ngx-mask";
+import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
+import { MatNativeDateModule, provideNativeDateAdapter } from "@angular/material/core";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { DateValidator } from "../../../../common/date-validator";
 
 @Component({
     selector: 'personal-data',
-    imports: [MatInputModule, MatFormField, MatCheckbox, ReactiveFormsModule, CommonModule, NgxMaskDirective],
+    imports: [MatInputModule,
+        MatFormField,
+        MatCheckbox,
+        ReactiveFormsModule,
+        CommonModule,
+        NgxMaskDirective,
+        MatNativeDateModule,
+        MatDatepickerModule
+    ],
     standalone: true,
     templateUrl: './personal-data.html',
-    providers: [provideNgxMask()],
+    providers: [provideNgxMask(), provideNativeDateAdapter()],
     styleUrl: './personal-data.scss'
 })
 
-export class PersonalDataComponent {
+export class PersonalDataComponent{
 
-    isFormValidChange = output<boolean>();
-    private fb = inject(FormBuilder)
     personalDataForm!: FormGroup;
 
-    constructor() {
+    constructor(private formGroupDirective: FormGroupDirective) { }
 
-        this.personalDataForm = this.createForm();
-
-        this.personalDataForm.statusChanges.subscribe(() => {
-            this.isFormValidChange.emit(this.personalDataForm.valid);
-        });
-
-    }
-
-    createForm(): FormGroup {
-        return this.fb.group({
-            lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[а-яёА-ЯЁ\s\-]+$/)]],
-            firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[а-яёА-ЯЁ\s\-]+$/)]],
-            noMiddleName: [false],
-            middleName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[а-яёА-ЯЁ\s\-]+$/)]],
-            contacts: this.fb.group({
-                email: ['', [Validators.required, Validators.email]],
-                phone: ['', [Validators.required]]
-            })
-        });
+    ngOnInit() {
+        this.personalDataForm = this.formGroupDirective.form
     }
 
     hasError(controlName: string, errorType: string): boolean {
@@ -54,17 +46,15 @@ export class PersonalDataComponent {
     }
 
     checkBoxChange(event: MatCheckboxChange) {
+
         const isCheked = event.checked
         const middleNameControl = this.personalDataForm.get('middleName')
 
         if (isCheked) {
             middleNameControl?.disable();
-            middleNameControl?.clearValidators();
-            middleNameControl?.setValue('');
+            middleNameControl?.reset();
         } else {
             middleNameControl?.enable();
-            middleNameControl?.setValidators([Validators.required, Validators.minLength(3), Validators.pattern(/^[а-яёА-ЯЁ\s\-]+$/)]);
         }
-        middleNameControl?.updateValueAndValidity();
     }
 }

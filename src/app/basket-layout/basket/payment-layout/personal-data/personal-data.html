@@ -1,0 +1,68 @@
+<form class="personal-data-form" [formGroup]="personalDataForm">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Фамилия</mat-label>
+    <input matInput formControlName="lastName" placeholder="Введите фамилию" />
+    @if (hasError('lastName', 'required')) {
+    <mat-error>Поле обязательно для заполнения</mat-error>
+    } @if (hasError('lastName', 'pattern')) {
+    <mat-error>Недопустимые символы</mat-error>
+    } @if (hasError('lastName', 'minlength')) {
+    <mat-error>Минимальное количество символов: 3</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Имя</mat-label>
+    <input matInput formControlName="firstName" placeholder="Введите имя" />
+    @if (hasError('firstName', 'required')) {
+    <mat-error>Поле обязательно для заполнения</mat-error>
+    } @if (hasError('firstName', 'pattern')) {
+    <mat-error>Недопустимые символы</mat-error>
+    } @if (hasError('firstName', 'minlength')) {
+    <mat-error>Минимальное количество символов: 3</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Отчество</mat-label>
+    <input matInput formControlName="middleName" placeholder="Введите отчество" />
+    @if (hasError('middleName', 'required')) {
+    <mat-error>Поле обязательно для заполнения</mat-error>
+    } @if (hasError('middleName', 'pattern')) {
+    <mat-error>Недопустимые символы</mat-error>
+    } @if (hasError('middleName', 'minlength')) {
+    <mat-error>Минимальное количество символов: 3</mat-error>
+    }
+  </mat-form-field>
+  <div class="checkbox-section">
+    <mat-checkbox formControlName="noMiddleName" (change)="checkBoxChange($event)">
+      Отчество отсутствует
+    </mat-checkbox>
+  </div>
+
+  <div formGroupName="contacts">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Электронная почта</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="example@mail.com" />
+      @if (hasError('contacts.email', 'required')) {
+      <mat-error>Поле обязательно для заполнения</mat-error>
+      } @if (hasError('contacts.email', 'email')) {
+      <mat-error>Недопустимые символы</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Телефон</mat-label>
+      <input
+        matInput
+        formControlName="phone"
+        type="tel"
+        placeholder="+7 (999) 999-99-99"
+        [mask]="'(000) 000-00-00'"
+        [prefix]="'+7'"
+      />
+      @if (hasError('contacts.phone', 'required')) {
+      <mat-error>Поле обязательно для заполнения</mat-error>
+      }
+    </mat-form-field>
+  </div>
+</form>

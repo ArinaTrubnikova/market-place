@@ -7,8 +7,8 @@
     padding: 20px 0px;
 
     &-card__container {
-        width: 350px;
-        height: 250px;
+        width: auto;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -21,7 +21,7 @@
     }
 
     &-card__title {
-        font-size: 30px;
+        font-size: 18px;
         color: #330330;
         margin: 0;
         text-align: center;
@@ -30,9 +30,9 @@
     &-card__total-wrapper {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 8px;
         padding: 5px;
-        font-size: 20px;
+        font-size: 18px;
         background-color: #330330;
         border: solid 1px #79038191;
         border-radius: 5px;
@@ -40,7 +40,7 @@
 
     &-card__description,
     &-card__cost {
-        font-size: 20px;
+        font-size: 18px;
         color: #5d0157;
         margin: 0;
         text-align: center;
@@ -65,10 +65,11 @@
     }
 
     &__total-amount {
-        font-size: 20px;
+        font-size: 15px;
         padding: 5px;
-        width: 350px;
+        width: 150px;
         color: #ff15ef;
+        border-radius: 4px;
         margin: 0;
         text-align: start;
         background-color: #330330;

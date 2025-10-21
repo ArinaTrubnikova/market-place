@@ -9,6 +9,6 @@ import { RouterOutlet, RouterLink} from "@angular/router";
     styleUrl: './basket-layout.scss'
 })
 
-export class BasketLayout {
+export class BasketLayoutComponent {
 
 }

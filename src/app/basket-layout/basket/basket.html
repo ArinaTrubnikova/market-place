@@ -9,12 +9,8 @@
     <div class="basket-card__btn-wrapper">
       <button
         class="basket-card__minus-btn"
-        (click)="reduceAmountProduct(card)"
-        [disabled]="getCount(card.id) === 0"
-      >
-        -
-      </button>
-      <p class="basket-card__count">{{ getCount(card.id) }}</p>
+        (click)="reduceAmountProduct(card)">-</button>
+      <p class="basket-card__count">{{ card.count}}</p>
       <button class="basket-card__plus-btn" (click)="addProduct(card)">+</button>
     </div>
     <button class="basket-card__delete-btn" (click)="deleteCard(card.id)">Удаляяяяй</button>

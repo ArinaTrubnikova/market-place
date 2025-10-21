@@ -23,11 +23,6 @@ export class BasketComponent {
     this.cards$ = this.storageService.products$;
   }
 
-  getCount(cardId: number): number {
-    const product = this.storageService.productValue.find((product: AmountCard) => product.id === cardId);
-    return product ? product.count : 0;
-  }
-
   constructor(private storageService: StorageService) { }
 
 

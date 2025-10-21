@@ -1,0 +1,26 @@
+<payment-products></payment-products>
+
+<mat-stepper [linear]="isLinear" #stepper>
+  <mat-step label="Персональные данные" [completed]="isPersonalDataValid" [editable]="true">
+    <personal-data (isFormValidChange)="onPersonalDataValidityChange($event)"></personal-data>
+    <div>
+      <button matButton="tonal" matStepperNext [disabled]="!isPersonalDataValid">Далее</button>
+    </div>
+  </mat-step>
+
+  <mat-step
+    label="Данные для оплаты"
+    [completed]="isPaymentDataValid"
+    [editable]="isPersonalDataValid"
+  >
+    <payment-details
+      (isPaymentFormValidChange)="onPaymentDataValidityChange($event)"
+    ></payment-details>
+    <div>
+      <button matButton="tonal" matStepperPrevious>Назад</button>
+      <button matButton="tonal" matStepperPrevious [disabled]="!isPaymentDataValid">
+        Подтвердить
+      </button>
+    </div>
+  </mat-step>
+</mat-stepper>

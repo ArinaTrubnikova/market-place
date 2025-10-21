@@ -1,18 +1,18 @@
 import { Component } from "@angular/core";
-import { map, Observable } from 'rxjs';
-import { Card, AmountCard } from "../../interface/product-card.model";
-import { StorageService } from "../../services/storage.service";
+import { Observable } from 'rxjs';
+import { AmountCard } from "../../../../interface/product-card.model";
+import { StorageService } from "../../../../services/storage.service";
 import { AsyncPipe, CurrencyPipe } from "@angular/common";
 
 @Component({
-    selector: 'payment-component',
+    selector: 'payment-products',
     imports: [AsyncPipe, CurrencyPipe],
     standalone: true,
-    templateUrl: './payment.html',
-    styleUrl: './payment.scss'
+    templateUrl: './payment-products.html',
+    styleUrl: './payment-products.scss'
 })
 
-export class PaymentComponent {
+export class PaymentProductsComponent {
 
     toPaymentCards$!: Observable<AmountCard[]>;
 

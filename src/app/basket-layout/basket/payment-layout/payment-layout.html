@@ -1,7 +1,7 @@
 <payment-products></payment-products>
 
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step label="Персональные данные">
+<mat-stepper [linear]="isLinear" #stepper >
+  <mat-step label="Персональные данные" [stepControl]="personalDataForm">
     <form [formGroup]="personalDataForm">
       <personal-data></personal-data>
     </form>
@@ -10,7 +10,9 @@
     </div>
   </mat-step>
 
-  <mat-step label="Данные для оплаты">
+  <mat-step label="Данные для оплаты"
+  [stepControl]="paymentDetailsForm"
+  [editable]="isSecondStepEditable()">
     <form [formGroup]="paymentDetailsForm">
       <payment-details></payment-details>
     </form>

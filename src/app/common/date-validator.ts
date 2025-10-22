@@ -3,7 +3,7 @@ import type { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/fo
 export class DateValidator {
     static dateValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
-            const controlValue = control.value;
+            let controlValue = control.value;
             console.log('Date validator called with:', controlValue);
             if (!controlValue) {
                 return null;
@@ -12,14 +12,29 @@ export class DateValidator {
             const inputDate = new Date(controlValue);
             today.setHours(0, 0, 0, 0);
             inputDate.setHours(0, 0, 0, 0);
+            const minAgeDate = new Date();
+            const maxAgeDate = new Date();
+            minAgeDate.setFullYear(today.getFullYear() - 18);
+            maxAgeDate.setFullYear(today.getFullYear() - 75);
 
             if (inputDate > today) {
                 return {
                     futureDate: {
-                        value: controlValue,
-                        message: 'Дата не может быть в будущем'
+                        value: controlValue
                     }
                 };
+            } else if (minAgeDate < inputDate) {
+                return {
+                    minAge: {
+                        value: controlValue
+                    }
+                }
+            } else if (maxAgeDate > inputDate) {
+                return {
+                    maxAge: {
+                        value: controlValue
+                    }
+                }
             }
             return null
         }

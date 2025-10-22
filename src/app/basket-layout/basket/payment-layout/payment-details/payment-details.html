@@ -1,7 +1,7 @@
 <form class="payment-details-form" [formGroup]="paymentDetailsForm">
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Способ оплаты</mat-label>
-    <mat-select formControlName="wayToPay">
+    <mat-select formControlName="wayToPay" (selectionChange)="wayToPayChange($event)">
       <mat-option [value]="paymentOnline.sysName"> {{ paymentOnline.description }}</mat-option>
       <mat-option [value]="paymentByCard.sysName"> {{ paymentByCard.description }}</mat-option>
       <mat-option [value]="paid.sysName"> {{ paid.description }}</mat-option>

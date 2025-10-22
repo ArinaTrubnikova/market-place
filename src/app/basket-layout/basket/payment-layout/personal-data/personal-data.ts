@@ -1,12 +1,14 @@
 import { Component } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormGroupDirective, type ValidatorFn, type FormControl, type ValidationErrors, type AbstractControl } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective } from "@angular/forms";
 import { MatCheckbox, MatCheckboxChange } from "@angular/material/checkbox";
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
-import { MatNativeDateModule, provideNativeDateAdapter } from "@angular/material/core";
+import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { DateValidator } from "../../../../common/date-validator";
+import { map, tap, Observable } from "rxjs";
+import { FIOFormatDirective } from "../../../../common/fio-format";
+
 
 @Component({
     selector: 'personal-data',
@@ -17,15 +19,16 @@ import { DateValidator } from "../../../../common/date-validator";
         CommonModule,
         NgxMaskDirective,
         MatNativeDateModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        FIOFormatDirective
     ],
     standalone: true,
     templateUrl: './personal-data.html',
-    providers: [provideNgxMask(), provideNativeDateAdapter()],
+    providers: [provideNgxMask()],
     styleUrl: './personal-data.scss'
 })
 
-export class PersonalDataComponent{
+export class PersonalDataComponent {
 
     personalDataForm!: FormGroup;
 

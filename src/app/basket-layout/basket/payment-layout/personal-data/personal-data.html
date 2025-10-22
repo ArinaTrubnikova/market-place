@@ -1,7 +1,7 @@
 <form class="personal-data-form" [formGroup]="personalDataForm">
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Фамилия</mat-label>
-    <input matInput formControlName="lastName" placeholder="Введите фамилию" />
+    <input matInput formControlName="lastName" placeholder="Введите фамилию" fioFormat/>
     @if (hasError('lastName', 'required')) {
     <mat-error>Поле обязательно для заполнения</mat-error>
     } @if (hasError('lastName', 'pattern')) {
@@ -13,7 +13,7 @@
 
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Имя</mat-label>
-    <input matInput formControlName="firstName" placeholder="Введите имя" />
+    <input matInput formControlName="firstName" placeholder="Введите имя" fioFormat/>
     @if (hasError('firstName', 'required')) {
     <mat-error>Поле обязательно для заполнения</mat-error>
     } @if (hasError('firstName', 'pattern')) {
@@ -25,7 +25,7 @@
 
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Отчество</mat-label>
-    <input matInput formControlName="middleName" placeholder="Введите отчество" />
+    <input matInput formControlName="middleName" placeholder="Введите отчество" fioFormat/>
     @if (hasError('middleName', 'required')) {
     <mat-error>Поле обязательно для заполнения</mat-error>
     } @if (hasError('middleName', 'pattern')) {
@@ -52,6 +52,12 @@
     <mat-error>Поле обязательно для заполнения</mat-error>
     } @if (hasError('birthDate', 'futureDate') && !hasError('birthDate', 'required')) {
     <mat-error>Дата не может быть в будущем</mat-error>
+    }
+    @if (hasError('birthDate', 'minAge')) {
+    <mat-error> Минимальный возраст: 18 лет</mat-error>
+    }
+    @if (hasError('birthDate', 'maxAge')) {
+    <mat-error> Максимальный возраст: 75 лет</mat-error>
     }
   </mat-form-field>
 

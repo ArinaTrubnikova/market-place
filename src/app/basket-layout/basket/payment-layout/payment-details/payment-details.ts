@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
-import { FormGroup, ReactiveFormsModule, FormGroupDirective } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, Validators } from "@angular/forms";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
+import { MatSelectModule, type MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 
 @Component({
@@ -30,12 +30,28 @@ export class PaymentDetailsComponent {
 
   hasError(controlName: string, errorType: string): boolean {
 
-    const control = this.paymentDetailsForm.get(controlName)
+    const control = this.paymentDetailsForm.get(controlName);
 
     if (!control?.errors || !(control.dirty || control.touched)) {
       return false;
     }
+
     return control.hasError(errorType);
+  }
+
+  wayToPayChange(event: MatSelectChange) {
+
+    const isChanged = event.value
+    const cardControl = this.paymentDetailsForm.get('cardNumber')
+
+    if (isChanged !== 'online') {
+      cardControl?.disable();
+      cardControl?.reset();
+      cardControl?.clearValidators()
+    } else {
+      cardControl?.enable();
+      cardControl?.setValidators([Validators.required, Validators.minLength(16)])
+    }
   }
 
 }

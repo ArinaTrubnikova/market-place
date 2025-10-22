@@ -1,0 +1,40 @@
+import { Directive } from "@angular/core";
+import { NgControl } from "@angular/forms";
+import { map, Subscription, tap } from "rxjs";
+
+@Directive({
+    selector: '[fioFormat]',
+    standalone: true,
+})
+
+export class FIOFormatDirective {
+
+    private subscription: Subscription = new Subscription();
+
+    constructor(private ngControl: NgControl) { }
+
+    ngOnInit() {
+        this.toUpper()
+    }
+
+    toUpper(): void {
+
+        if (this.ngControl.control) {
+            this.ngControl.control.valueChanges.pipe(
+                map((value: string) => {
+                    if (value && value.length > 0) {
+                        return value[0].toUpperCase() + value.slice(1)
+                    }
+                    return value;
+                }),
+                tap(transformedValue => {
+                    this.ngControl.control!.setValue(transformedValue, { emitEvent: false })
+                })
+            ).subscribe()
+        }
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+}

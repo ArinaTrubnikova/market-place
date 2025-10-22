@@ -31,6 +31,10 @@ export class PaymentLayoutComponent {
 
     constructor(private fb: FormBuilder) { }
 
+    isSecondStepEditable(): boolean {
+        return this.personalDataForm.valid
+    }
+
     ngOnInit() {
         this.personalDataForm = this.createPersonalDataForm();
         this.paymentDetailsForm = this.createPaymentDetailsForm();

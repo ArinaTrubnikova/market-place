@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { RouterOutlet, RouterLink } from "@angular/router";
+import { RouterLink } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
 import { GetProductService } from "../../services/get-product.service";
 import { AmountCard } from "../../interface/product-card.model";
@@ -9,7 +9,7 @@ import { AsyncPipe, CurrencyPipe } from "@angular/common";
 
 @Component({
   selector: 'basket-component',
-  imports: [RouterOutlet, AsyncPipe, RouterLink, CurrencyPipe],
+  imports: [AsyncPipe, RouterLink, CurrencyPipe],
   providers: [GetProductService],
   templateUrl: './basket.html',
   styleUrl: './basket.scss'

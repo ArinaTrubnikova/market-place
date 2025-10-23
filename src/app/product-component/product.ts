@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
 import { GetProductService } from "../services/get-product.service";
 import { Card, AmountCard } from "../interface/product-card.model";
 import { StorageService } from "../services/storage.service";
@@ -9,7 +8,7 @@ import { Subscription } from "rxjs";
 
 @Component({
     selector: 'product-component',
-    imports: [RouterOutlet, ShowModal, CurrencyPipe],
+    imports: [ShowModal, CurrencyPipe],
     templateUrl: './product.html',
     styleUrl: './product.scss',
     providers: [GetProductService]

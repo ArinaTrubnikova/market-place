@@ -4,7 +4,6 @@ export class DateValidator {
     static dateValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
             let controlValue = control.value;
-            console.log('Date validator called with:', controlValue);
             if (!controlValue) {
                 return null;
             }

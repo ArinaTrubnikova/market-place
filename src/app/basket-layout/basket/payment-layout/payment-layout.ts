@@ -6,6 +6,9 @@ import { PersonalDataComponent } from "./personal-data/personal-data";
 import { PaymentDetailsComponent } from "./payment-details/payment-details";
 import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DateValidator } from "../../../common/date-validator";
+import { SentDataService } from "../../../services/sent-data";
+import { StorageService } from "../../../services/storage.service";
+import { BuyProduct } from "../../../interface/buy-product.model";
 
 @Component({
     selector: 'payment-layout',
@@ -17,6 +20,7 @@ import { DateValidator } from "../../../common/date-validator";
         PaymentProductsComponent,
         PersonalDataComponent,
         PaymentDetailsComponent],
+    providers: [SentDataService],
     templateUrl: './payment-layout.html',
     styleUrl: './payment-layout.scss'
 })
@@ -29,7 +33,7 @@ export class PaymentLayoutComponent {
     cirillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
     minLength = 3
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private sentDataService: SentDataService, private storageService: StorageService) { }
 
     isSecondStepEditable(): boolean {
         return this.personalDataForm.valid
@@ -66,5 +70,38 @@ export class PaymentLayoutComponent {
                 flat: ['', [Validators.required]]
             })
         });
+    }
+
+    onSubmit() {
+
+        if (this.personalDataForm.valid && this.paymentDetailsForm.valid) {
+
+            let phone = this.personalDataForm.get('contacts.phone')?.value;
+
+            if (phone.length <= 10) {
+                phone = '7' + this.personalDataForm.get('contacts.phone')?.value
+            }
+
+            const productArray = this.storageService.productValue.map(product => ({
+                id: product.id,
+                count: product.count
+            })
+            )
+
+            const unionData: BuyProduct = {
+                personalData: {
+                    ...this.personalDataForm.value,
+                    contacts: {
+                        ...this.personalDataForm.value.contacts,
+                        phone: phone
+                    },
+                },
+                paymentData: this.paymentDetailsForm.value,
+                productData: productArray
+            };
+            this.sentDataService.sentData(unionData);
+
+            console.log(unionData);
+        }
     }
 }

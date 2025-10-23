@@ -1,88 +1,111 @@
 <form class="personal-data-form" [formGroup]="personalDataForm">
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Фамилия</mat-label>
-    <input matInput formControlName="lastName" placeholder="Введите фамилию" fioFormat/>
-    @if (hasError('lastName', 'required')) {
-    <mat-error>Поле обязательно для заполнения</mat-error>
-    } @if (hasError('lastName', 'pattern')) {
-    <mat-error>Недопустимые символы</mat-error>
-    } @if (hasError('lastName', 'minlength')) {
-    <mat-error>Минимальное количество символов: 3</mat-error>
-    }
-  </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Имя</mat-label>
-    <input matInput formControlName="firstName" placeholder="Введите имя" fioFormat/>
-    @if (hasError('firstName', 'required')) {
-    <mat-error>Поле обязательно для заполнения</mat-error>
-    } @if (hasError('firstName', 'pattern')) {
-    <mat-error>Недопустимые символы</mat-error>
-    } @if (hasError('firstName', 'minlength')) {
-    <mat-error>Минимальное количество символов: 3</mat-error>
-    }
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Отчество</mat-label>
-    <input matInput formControlName="middleName" placeholder="Введите отчество" fioFormat/>
-    @if (hasError('middleName', 'required')) {
-    <mat-error>Поле обязательно для заполнения</mat-error>
-    } @if (hasError('middleName', 'pattern')) {
-    <mat-error>Недопустимые символы</mat-error>
-    } @if (hasError('middleName', 'minlength')) {
-    <mat-error>Минимальное количество символов: 3</mat-error>
-    }
-  </mat-form-field>
-  <div class="checkbox-section">
-    <mat-checkbox formControlName="noMiddleName" (change)="checkBoxChange($event)">
-      Отчество отсутствует
-    </mat-checkbox>
+  <div class="personal-data-form__fio">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Фамилия</mat-label>
+      <div class="input-wrapper">
+        <input matInput formControlName="lastName" placeholder="Введите фамилию" fioFormat />
+        @if (personalDataForm.get('lastName')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('lastName')">close</mat-icon>
+        }
+      </div>
+      @if (hasError('lastName', 'required')) {
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } @if (hasError('lastName', 'pattern')) {
+      <mat-error class="errors">Недопустимые символы</mat-error>
+      } @if (hasError('lastName', 'minlength')) {
+      <mat-error class="errors">Минимальное количество символов: 3</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Имя</mat-label>
+      <div class="input-wrapper">
+        <input matInput formControlName="firstName" placeholder="Введите имя" fioFormat />
+        @if (personalDataForm.get('firstName')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('firstName')">close</mat-icon>
+        }
+      </div>
+      @if (hasError('firstName', 'required')) {
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } @if (hasError('firstName', 'pattern')) {
+      <mat-error class="errors">Недопустимые символы</mat-error>
+      } @if (hasError('firstName', 'minlength')) {
+      <mat-error class="errors">Минимальное количество символов: 3</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Отчество</mat-label>
+      <div class="input-wrapper">
+        <input matInput formControlName="middleName" placeholder="Введите отчество" fioFormat />
+        @if (personalDataForm.get('middleName')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('middleName')">close</mat-icon>
+        }
+      </div>
+      @if (hasError('middleName', 'required')) {
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } @if (hasError('middleName', 'pattern')) {
+      <mat-error class="errors">Недопустимые символы</mat-error>
+      } @if (hasError('middleName', 'minlength')) {
+      <mat-error class="errors">Минимальное количество символов: 3</mat-error>
+      }
+    </mat-form-field>
+    <div class="checkbox-section">
+      <mat-checkbox formControlName="noMiddleName" (change)="checkBoxChange($event)">
+        Отчество отсутствует
+      </mat-checkbox>
+    </div>
   </div>
 
-  <mat-form-field>
-    <mat-label>Дата рождения</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      formControlName="birthDate"/>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    @if (hasError('birthDate', 'required')) {
-    <mat-error>Поле обязательно для заполнения</mat-error>
-    } @if (hasError('birthDate', 'futureDate') && !hasError('birthDate', 'required')) {
-    <mat-error>Дата не может быть в будущем</mat-error>
-    }
-    @if (hasError('birthDate', 'minAge')) {
-    <mat-error> Минимальный возраст: 18 лет</mat-error>
-    }
-    @if (hasError('birthDate', 'maxAge')) {
-    <mat-error> Максимальный возраст: 75 лет</mat-error>
-    }
-  </mat-form-field>
+  <div class="personal-data-form__birth-date">
+    <mat-form-field>
+      <mat-label>Дата рождения</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (hasError('birthDate', 'required')) {
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } @if (hasError('birthDate', 'futureDate') && !hasError('birthDate', 'required')) {
+      <mat-error class="errors">Дата не может быть в будущем</mat-error>
+      } @if (hasError('birthDate', 'minAge')) {
+      <mat-error class="errors"> Минимальный возраст: 18 лет</mat-error>
+      } @if (hasError('birthDate', 'maxAge')) {
+      <mat-error class="errors"> Максимальный возраст: 75 лет</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
-  <div formGroupName="contacts">
+  <div formGroupName="contacts" class="personal-data-form__contacts">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Электронная почта</mat-label>
-      <input matInput formControlName="email" type="email" placeholder="example@mail.com" />
+      <div class="input-wrapper">
+        <input matInput formControlName="email" type="email" placeholder="example@mail.com" />
+        @if (personalDataForm.get('contacts.email')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('contacts.email')">close</mat-icon>
+        }
+      </div>
       @if (hasError('contacts.email', 'required')) {
-      <mat-error>Поле обязательно для заполнения</mat-error>
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       } @if (hasError('contacts.email', 'email')) {
-      <mat-error>Недопустимые символы</mat-error>
+      <mat-error class="errors">Недопустимые символы</mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Телефон</mat-label>
-      <input
-        matInput
-        formControlName="phone"
-        type="tel"
-        placeholder="+7 (999) 999-99-99"
-        [mask]="'(000) 000-00-00'"
-        [prefix]="'+7'"
-      />
+      <div class="input-wrapper">
+        <input
+          matInput
+          formControlName="phone"
+          type="tel"
+          placeholder="+7 (999) 999-99-99"
+          [mask]="'(000) 000-00-00'"
+          [prefix]="'+7'"
+        />
+        @if (personalDataForm.get('contacts.phone')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('contacts.phone')">close</mat-icon>
+        }
+      </div>
       @if (hasError('contacts.phone', 'required')) {
-      <mat-error>Поле обязательно для заполнения</mat-error>
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
   </div>

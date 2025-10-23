@@ -1,63 +1,90 @@
 <form class="payment-details-form" [formGroup]="paymentDetailsForm">
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Способ оплаты</mat-label>
-    <mat-select formControlName="wayToPay" (selectionChange)="wayToPayChange($event)">
-      <mat-option [value]="paymentOnline.sysName"> {{ paymentOnline.description }}</mat-option>
-      <mat-option [value]="paymentByCard.sysName"> {{ paymentByCard.description }}</mat-option>
-      <mat-option [value]="paid.sysName"> {{ paid.description }}</mat-option>
-    </mat-select>
-    @if (hasError('wayToPay', 'required')) {
-    <mat-error>Поле обязательно для заполнения</mat-error>
+  <div class="payment-details-form__way-to-pay-wrapper">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Способ оплаты</mat-label>
+      <mat-select formControlName="wayToPay" (selectionChange)="wayToPayChange($event)">
+        <mat-option [value]="paymentOnline.sysName"> {{ paymentOnline.description }}</mat-option>
+        <mat-option [value]="paymentByCard.sysName"> {{ paymentByCard.description }}</mat-option>
+        <mat-option [value]="paid.sysName"> {{ paid.description }}</mat-option>
+      </mat-select>
+      @if (hasError('wayToPay', 'required')) {
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      }
+    </mat-form-field>
+    @if(paymentDetailsForm.get('wayToPay')?.value === paymentOnline.sysName){
+    <mat-form-field>
+      <mat-label>Номер карты</mat-label>
+      <div class="input-wrapper">
+        <input
+          matInput
+          formControlName="cardNumber"
+          placeholder="XXXX-XXXX-XXXX-XXXX"
+          mask="0000-0000-0000-0000"
+        />
+        @if (paymentDetailsForm.get('cardNumber')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('cardNumber')">close</mat-icon>
+        }
+      </div>
+      @if (hasError('cardNumber', 'required')) {
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } @if (hasError('cardNumber', 'minlength')) {
+      <mat-error class="errors"> Минимальное количество символов: 16</mat-error>
+      }</mat-form-field
+    >
     }
-  </mat-form-field>
-  @if(paymentDetailsForm.get('wayToPay')?.value === paymentOnline.sysName){
-  <mat-form-field>
-    <mat-label>Номер карты</mat-label>
-    <input
-      matInput
-      formControlName="cardNumber"
-      placeholder="XXXX-XXXX-XXXX-XXXX"
-      mask="0000-0000-0000-0000"
-    />
-    @if (hasError('cardNumber', 'required')) {
-    <mat-error>Поле обязательно для заполнения</mat-error>
-    } @if (hasError('cardNumber', 'minlength')) {
-    <mat-error> Минимальное количество символов: 16</mat-error>
-    }</mat-form-field
-  >
-  }
+  </div>
 
-  <div formGroupName="address">
+  <div formGroupName="address" class="payment-details-form__address">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Город</mat-label>
-      <input matInput formControlName="city" />
+      <div class="input-wrapper">
+        <input matInput formControlName="city" />
+        @if (paymentDetailsForm.get('address.city')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('address.city')">close</mat-icon>
+        }
+      </div>
       @if (hasError('address.city', 'required')) {
-      <mat-error>Поле обязательно для заполнения</mat-error>
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }@if (hasError('address.city', 'maxlength')) {
-      <mat-error> Максимальное количество символов: 100</mat-error>
+      <mat-error class="errors"> Максимальное количество символов: 100</mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Улица</mat-label>
-      <input matInput formControlName="street" />
+      <div class="input-wrapper">
+        <input matInput formControlName="street" />
+        @if (paymentDetailsForm.get('address.street')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('address.street')">close</mat-icon>
+        }
+      </div>
       @if (hasError('address.street', 'required')) {
-      <mat-error>Поле обязательно для заполнения</mat-error>
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }@if (hasError('address.street', 'maxlength')) {
-      <mat-error> Максимальное количество символов: 100</mat-error>
+      <mat-error class="errors"> Максимальное количество символов: 100</mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Дом</mat-label>
-      <input matInput formControlName="house" />
+      <div class="input-wrapper">
+        <input matInput formControlName="house" />
+        @if (paymentDetailsForm.get('address.house')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('address.house')">close</mat-icon>
+        }
+      </div>
       @if (hasError('address.house', 'required')) {
-      <mat-error>Поле обязательно для заполнения</mat-error>
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Квартира</mat-label>
-      <input matInput formControlName="flat" />
+      <div class="input-wrapper">
+        <input matInput formControlName="flat" />
+        @if (paymentDetailsForm.get('address.flat')?.value) {
+        <mat-icon class="flush-value" (click)="flushInputValue('address.flat')">close</mat-icon>
+        }
+      </div>
       @if (hasError('address.house', 'required')) {
-      <mat-error>Поле обязательно для заполнения</mat-error>
+      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
   </div>

@@ -3,7 +3,7 @@ export interface Card {
     title: string,
     description?: string,
     cost: number,
-    fullDescription?: string;
+    fullDescription?: string,
 }
 
 export class AmountCard {
@@ -21,7 +21,7 @@ export class AmountCard {
             description: data.description,
             fullDescription: data.fullDescription,
             cost: data.cost,
-            count: 1
+            count: 1,
         } as AmountCard
     }
 }

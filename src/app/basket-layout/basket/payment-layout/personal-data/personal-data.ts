@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormGroupDirective } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, FormsModule, type FormControl } from "@angular/forms";
 import { MatCheckbox, MatCheckboxChange } from "@angular/material/checkbox";
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { map, tap, Observable } from "rxjs";
 import { FIOFormatDirective } from "../../../../common/fio-format";
-
+import { flushValue } from "../../../../common/flush";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
     selector: 'personal-data',
@@ -20,7 +20,9 @@ import { FIOFormatDirective } from "../../../../common/fio-format";
         NgxMaskDirective,
         MatNativeDateModule,
         MatDatepickerModule,
-        FIOFormatDirective
+        FIOFormatDirective,
+        FormsModule,
+        MatIconModule
     ],
     standalone: true,
     templateUrl: './personal-data.html',
@@ -31,6 +33,10 @@ import { FIOFormatDirective } from "../../../../common/fio-format";
 export class PersonalDataComponent {
 
     personalDataForm!: FormGroup;
+    
+    flushInputValue(fieldName: string) {
+        flushValue(this.personalDataForm, fieldName)
+    }
 
     constructor(private formGroupDirective: FormGroupDirective) { }
 

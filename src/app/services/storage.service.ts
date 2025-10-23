@@ -4,8 +4,7 @@ import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
-}
-)
+})
 
 export class StorageService {
 

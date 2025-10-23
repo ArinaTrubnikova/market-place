@@ -1,0 +1,34 @@
+.payment-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 18px;
+
+    &__way-to-pay-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px
+    }
+
+    &__address {
+        display: flex;
+        flex-direction: row;
+        gap: 10px
+    }
+    
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.flush-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6e6e6e32;
+    border-radius: 5px;
+    padding: 2px
+}

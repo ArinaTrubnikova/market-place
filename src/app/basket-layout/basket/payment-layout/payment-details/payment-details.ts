@@ -1,15 +1,23 @@
 import { Component } from "@angular/core";
-import { FormGroup, ReactiveFormsModule, FormGroupDirective, Validators } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, Validators, type FormControl } from "@angular/forms";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule, type MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
+import { flushValue } from "../../../../common/flush";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'payment-details',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSelectModule, ReactiveFormsModule, NgxMaskDirective],
+  imports: [MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+  MatIconModule],
   providers: [provideNgxMask()],
   templateUrl: './payment-details.html',
   styleUrl: './payment-details.scss'
@@ -20,12 +28,16 @@ export class PaymentDetailsComponent {
   paymentDetailsForm!: FormGroup;
   paymentOnline = { sysName: 'online', description: 'Онлайн' };
   paymentByCard = { sysName: 'byCard', description: 'Картой при получении' };
-  paid = { sysName: 'paid', description: 'Уже оплачено' }
+  paid = { sysName: 'paid', description: 'Уже оплачено' };
 
   constructor(private formGroupDirective: FormGroupDirective) { }
 
   ngOnInit() {
     this.paymentDetailsForm = this.formGroupDirective.form
+  }
+
+  flushInputValue(controlName: string) {
+    flushValue(this.paymentDetailsForm, controlName)
   }
 
   hasError(controlName: string, errorType: string): boolean {
@@ -41,16 +53,16 @@ export class PaymentDetailsComponent {
 
   wayToPayChange(event: MatSelectChange) {
 
-    const isChanged = event.value
-    const cardControl = this.paymentDetailsForm.get('cardNumber')
+    const isChanged = event.value;
+    const cardControl = this.paymentDetailsForm.get('cardNumber');
 
     if (isChanged !== 'online') {
       cardControl?.disable();
       cardControl?.reset();
-      cardControl?.clearValidators()
+      cardControl?.clearValidators();
     } else {
       cardControl?.enable();
-      cardControl?.setValidators([Validators.required, Validators.minLength(16)])
+      cardControl?.setValidators([Validators.required, Validators.minLength(16)]);
     }
   }
 

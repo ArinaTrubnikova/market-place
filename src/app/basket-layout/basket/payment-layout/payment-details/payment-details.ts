@@ -34,15 +34,11 @@ export class PaymentDetailsComponent {
     { sysName: 'byCard', description: 'Картой при получении' },
     { sysName: 'paid', description: 'Уже оплачено' },
   ];
- 
+
   constructor(private formGroupDirective: FormGroupDirective) { }
 
   ngOnInit() {
     this.paymentDetailsForm = this.formGroupDirective.form
-  }
-
-  flushInputValue(controlName: string) {
-    flushValue(this.paymentDetailsForm, controlName)
   }
 
   hasError(controlName: string, errorType: string): boolean {
@@ -69,5 +65,9 @@ export class PaymentDetailsComponent {
       cardControl?.enable();
       cardControl?.setValidators([Validators.required, Validators.minLength(16)]);
     }
+  }
+
+  flushInputValue(controlName: string) {
+    flushValue(this.paymentDetailsForm, controlName)
   }
 }

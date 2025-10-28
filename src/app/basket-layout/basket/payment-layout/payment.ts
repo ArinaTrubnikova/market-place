@@ -1,4 +1,4 @@
-import { Component, inject, type OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { PersonalDataComponent } from "./personal-data/personal-data";
@@ -11,6 +11,9 @@ import { BuyProduct } from "../../../interface/buy-product.model";
 import { Observable } from "rxjs";
 import { AmountCard } from "../../../interface/product-card.model";
 import { AsyncPipe, CurrencyPipe } from "@angular/common";
+import { DateAdapter } from "@angular/material/core";
+import { RussianDateAdapter } from "../../../common/date-adapter";
+
 
 @Component({
     selector: 'payment-layout',
@@ -21,7 +24,9 @@ import { AsyncPipe, CurrencyPipe } from "@angular/common";
         MatStepperModule,
         PersonalDataComponent,
         PaymentDetailsComponent, AsyncPipe, CurrencyPipe],
-    providers: [SentDataService],
+    providers: [SentDataService,
+        {provide: DateAdapter, useClass: RussianDateAdapter}
+    ],
     templateUrl: './payment.html',
     styleUrl: './payment.scss'
 })

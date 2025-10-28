@@ -7,9 +7,6 @@ import { MatSelectModule, MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { flushValue } from "../../../../common/flush";
 import { MatIconModule } from "@angular/material/icon";
-import { Observable } from "rxjs";
-import { AmountCard } from "../../../../interface/product-card.model";
-import { StorageService } from "../../../../services/storage.service";
 
 @Component({
   selector: 'payment-details',
@@ -34,6 +31,7 @@ export class PaymentDetailsComponent {
     { sysName: 'byCard', description: 'Картой при получении' },
     { sysName: 'paid', description: 'Уже оплачено' },
   ];
+  flushValue = flushValue;
 
   constructor(private formGroupDirective: FormGroupDirective) { }
 
@@ -65,9 +63,5 @@ export class PaymentDetailsComponent {
       cardControl?.enable();
       cardControl?.setValidators([Validators.required, Validators.minLength(16)]);
     }
-  }
-
-  flushInputValue(controlName: string) {
-    flushValue(this.paymentDetailsForm, controlName)
   }
 }

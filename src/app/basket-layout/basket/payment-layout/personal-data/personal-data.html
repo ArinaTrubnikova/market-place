@@ -6,7 +6,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="lastName" placeholder="Введите фамилию" fioFormat />
         @if (personalDataForm.get('lastName')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('lastName')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'lastName')">close</mat-icon>
         }
       </div>
       @if (hasError('lastName', 'required')) {
@@ -22,7 +22,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="firstName" placeholder="Введите имя" fioFormat />
         @if (personalDataForm.get('firstName')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('firstName')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'firstName')">close</mat-icon>
         }
       </div>
       @if (hasError('firstName', 'required')) {
@@ -38,7 +38,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="middleName" placeholder="Введите отчество" fioFormat />
         @if (personalDataForm.get('middleName')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('middleName')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'middleName')">close</mat-icon>
         }
       </div>
       @if (hasError('middleName', 'required')) {
@@ -80,7 +80,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="email" type="email" placeholder="example@mail.com" />
         @if (personalDataForm.get('contacts.email')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('contacts.email')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'contacts.email')">close</mat-icon>
         }
       </div>
       @if (hasError('contacts.email', 'required')) {
@@ -101,7 +101,7 @@
           [prefix]="'+7'"
         />
         @if (personalDataForm.get('contacts.phone')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('contacts.phone')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'contacts.phone')">close</mat-icon>
         }
       </div>
       @if (hasError('contacts.phone', 'required')) {

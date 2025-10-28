@@ -13,7 +13,7 @@ import { MatIconModule } from "@angular/material/icon";
 @Component({
     selector: 'personal-data',
     imports: [MatInputModule,
-        MatFormField,
+    MatFormField,
         MatCheckbox,
         ReactiveFormsModule,
         CommonModule,
@@ -33,11 +33,8 @@ import { MatIconModule } from "@angular/material/icon";
 export class PersonalDataComponent {
 
     personalDataForm!: FormGroup;
+    flushValue = flushValue;
     
-    flushInputValue(fieldName: string) {
-        flushValue(this.personalDataForm, fieldName)
-    }
-
     constructor(private formGroupDirective: FormGroupDirective) { }
 
     ngOnInit() {

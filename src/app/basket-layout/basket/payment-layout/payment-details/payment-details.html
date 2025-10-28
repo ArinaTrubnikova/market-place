@@ -22,7 +22,7 @@
           mask="0000-0000-0000-0000"
         />
         @if (paymentDetailsForm.get('cardNumber')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('cardNumber')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'cardNumber')">close</mat-icon>
         }
       </div>
       @if (hasError('cardNumber', 'required')) {
@@ -40,7 +40,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="city" />
         @if (paymentDetailsForm.get('address.city')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('address.city')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'address.city')">close</mat-icon>
         }
       </div>
       @if (hasError('address.city', 'required')) {
@@ -54,7 +54,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="street" />
         @if (paymentDetailsForm.get('address.street')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('address.street')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'address.street')">close</mat-icon>
         }
       </div>
       @if (hasError('address.street', 'required')) {
@@ -68,7 +68,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="house" />
         @if (paymentDetailsForm.get('address.house')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('address.house')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'address.house')">close</mat-icon>
         }
       </div>
       @if (hasError('address.house', 'required')) {
@@ -80,7 +80,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="flat" />
         @if (paymentDetailsForm.get('address.flat')?.value) {
-        <mat-icon class="flush-value" (click)="flushInputValue('address.flat')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'address.flat')">close</mat-icon>
         }
       </div>
       @if (hasError('address.house', 'required')) {

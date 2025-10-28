@@ -15,7 +15,6 @@ export class SentDataService {
     sentData(products: BuyProduct) {
         this.requestBuyProducts = of(products);
         console.log(this.requestBuyProducts);
-
     }
 
     getHistoryBuyProducts(): Observable<BuyProduct> {

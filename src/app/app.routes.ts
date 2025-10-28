@@ -12,7 +12,7 @@ export const routes: Routes = [
             },
             {
                 path: 'buy',
-                loadComponent: () => import('./basket-layout/basket/payment-layout/payment-layout').then(m => m.PaymentLayoutComponent)
+                loadComponent: () => import('./basket-layout/basket/payment-layout/payment').then(m => m.PaymentLayoutComponent),
             }
         ]
     },
@@ -21,5 +21,5 @@ export const routes: Routes = [
         loadComponent: () => import('./product-component/product').then(m => m.ProductComponent)
     },
     { path: '', redirectTo: '/products', pathMatch: 'full' },
-    { path: '**', redirectTo: '/products' }
+    { path: '**', redirectTo: '/products' },
 ];

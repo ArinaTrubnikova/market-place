@@ -29,7 +29,7 @@ export class ProductComponent {
     }
 
     showModal(product: Card) {
-        this.selectedCard = product
+        this.selectedCard = product;
         this.isModalVisible = true;
     }
 
@@ -49,6 +49,6 @@ export class ProductComponent {
     addProduct = (product: Card): void => this.storageService.addProduct(product);
 
     ngOnDestroy() {
-        this.productSubscription?.unsubscribe()
+        this.productSubscription?.unsubscribe();
     }
 }

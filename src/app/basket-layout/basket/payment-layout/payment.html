@@ -1,0 +1,49 @@
+<div class="payment-product">
+  <div class="payment">
+  @for(card of (toPaymentCards$ | async); track card.id) {
+
+  <div class="payment-card__container">
+    <h3 class="payment-card__title">{{ card.title }}</h3>
+    <p class="payment-card__cost">Цена: {{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+
+    <div class="payment-card__total-wrapper">
+      <p class="payment-card__total-count">Количество: {{ card.count }}</p>
+      <p class="payment-card__total-price">
+        К оплате: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
+      </p>
+    </div>
+  </div>
+  }
+</div>
+<div class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</div>
+</div>
+
+<mat-stepper [linear]="true" #stepper>
+  <mat-step label="Персональные данные" [stepControl]="personalDataForm">
+    <form [formGroup]="personalDataForm">
+      <personal-data></personal-data>
+    </form>
+    <button matButton="tonal" matStepperNext [disabled]="!personalDataForm.valid">Далее</button>
+  </mat-step>
+
+  <mat-step
+    label="Данные для оплаты"
+    [stepControl]="paymentDetailsForm"
+    [editable]="personalDataForm.valid"
+  >
+    <form [formGroup]="paymentDetailsForm">
+      <payment-details></payment-details>
+    </form>
+    <div>
+      <button matButton="tonal" matStepperPrevious>Назад</button>
+      <button
+        matButton="tonal"
+        matStepperPrevious
+        [disabled]="!paymentDetailsForm.valid"
+        (click)="onSubmit()"
+      >
+        Подтвердить
+      </button>
+    </div>
+  </mat-step>
+</mat-stepper>

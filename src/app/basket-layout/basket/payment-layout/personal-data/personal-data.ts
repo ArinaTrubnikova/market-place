@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormGroupDirective, FormsModule, type FormControl } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, FormsModule } from "@angular/forms";
 import { MatCheckbox, MatCheckboxChange } from "@angular/material/checkbox";
 import { MatFormField, MatInputModule } from "@angular/material/input";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
 import { GetProductService } from "../../services/get-product.service";
@@ -17,21 +17,17 @@ import { AsyncPipe, CurrencyPipe } from "@angular/common";
 
 export class BasketComponent {
 
-  cards$!: Observable<AmountCard[]>;
+  private storageService = inject(StorageService);
 
-  ngOnInit() {
-    this.cards$ = this.storageService.products$;
+  cards$: Observable<AmountCard[]> = this.storageService.products$;
+
+  get hasItemsInCart(): boolean {
+    return this.storageService.productValue.length > 0;
   }
-
-  constructor(private storageService: StorageService) { }
 
   addProduct = (product: AmountCard): void => this.storageService.addProduct(product);
 
   reduceAmountProduct = (product: AmountCard): void => this.storageService.reduceAmountProduct(product);
 
   deleteCard = (id: number) => this.storageService.deleteProduct(id);
-
-  get hasItemsInCart(): boolean {
-    return this.storageService.productValue.length > 0;
-  }
 }

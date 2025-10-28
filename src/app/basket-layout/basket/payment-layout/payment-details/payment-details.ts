@@ -1,12 +1,15 @@
-import { Component } from "@angular/core";
-import { FormGroup, ReactiveFormsModule, FormGroupDirective, Validators, type FormControl } from "@angular/forms";
+import { Component, inject } from "@angular/core";
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, Validators } from "@angular/forms";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule, type MatSelectChange } from "@angular/material/select";
+import { MatSelectModule, MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { flushValue } from "../../../../common/flush";
 import { MatIconModule } from "@angular/material/icon";
+import { Observable } from "rxjs";
+import { AmountCard } from "../../../../interface/product-card.model";
+import { StorageService } from "../../../../services/storage.service";
 
 @Component({
   selector: 'payment-details',
@@ -17,7 +20,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatSelectModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-  MatIconModule],
+    MatIconModule],
   providers: [provideNgxMask()],
   templateUrl: './payment-details.html',
   styleUrl: './payment-details.scss'
@@ -26,10 +29,12 @@ import { MatIconModule } from "@angular/material/icon";
 export class PaymentDetailsComponent {
 
   paymentDetailsForm!: FormGroup;
-  paymentOnline = { sysName: 'online', description: 'Онлайн' };
-  paymentByCard = { sysName: 'byCard', description: 'Картой при получении' };
-  paid = { sysName: 'paid', description: 'Уже оплачено' };
-
+  paymentCases: any[] = [
+    { sysName: 'online', description: 'Онлайн' },
+    { sysName: 'byCard', description: 'Картой при получении' },
+    { sysName: 'paid', description: 'Уже оплачено' },
+  ];
+ 
   constructor(private formGroupDirective: FormGroupDirective) { }
 
   ngOnInit() {
@@ -65,5 +70,4 @@ export class PaymentDetailsComponent {
       cardControl?.setValidators([Validators.required, Validators.minLength(16)]);
     }
   }
-
 }

@@ -3,15 +3,15 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Способ оплаты</mat-label>
       <mat-select formControlName="wayToPay" (selectionChange)="wayToPayChange($event)">
-        <mat-option [value]="paymentOnline.sysName"> {{ paymentOnline.description }}</mat-option>
-        <mat-option [value]="paymentByCard.sysName"> {{ paymentByCard.description }}</mat-option>
-        <mat-option [value]="paid.sysName"> {{ paid.description }}</mat-option>
+        @for (case of paymentCases; track $index) {
+        <mat-option [value]="case.sysName"> {{ case.description }}</mat-option>
+        }
       </mat-select>
       @if (hasError('wayToPay', 'required')) {
       <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
-    @if(paymentDetailsForm.get('wayToPay')?.value === paymentOnline.sysName){
+    @if(paymentDetailsForm.get('wayToPay')?.value === paymentCases[0].sysName){
     <mat-form-field>
       <mat-label>Номер карты</mat-label>
       <div class="input-wrapper">
@@ -89,7 +89,7 @@
     </mat-form-field>
   </div>
 
-  @if(paymentDetailsForm.get('wayToPay')?.value !== paymentByCard.sysName) {
+  @if(paymentDetailsForm.get('wayToPay')?.value !== paymentCases[0].sysName) {
   <div class="checkbox-section">
     <mat-checkbox formControlName="leaveDoor"> Оставить у двери </mat-checkbox>
   </div>

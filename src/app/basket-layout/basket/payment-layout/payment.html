@@ -9,7 +9,7 @@
     <div class="payment-card__total-wrapper">
       <p class="payment-card__total-count">Количество: {{ card.count }}</p>
       <p class="payment-card__total-price">
-        К оплате: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
+        Стоимость: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
       </p>
     </div>
   </div>

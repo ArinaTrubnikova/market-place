@@ -2,11 +2,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    justify-content: center;
-    align-items: center;
 
     &__container {
-        width: 350px;
+        width: 100%;
+        max-width: 350px;
         height: 250px;
         display: flex;
         flex-direction: column;
@@ -25,7 +24,12 @@
         cursor: pointer;
     }
 
-    &__description,
+    &__description {
+         font-size: 18px;
+        color: #5d0157;
+        margin: 0;
+    }
+
     &__cost {
         font-size: 17px;
         color: #5d0157;

@@ -25,9 +25,9 @@ export class BasketComponent {
     return this.storageService.productValue.length > 0;
   }
 
-  addProduct = (product: AmountCard): void => this.storageService.addProduct(product);
+  addProduct(product: AmountCard): void { this.storageService.addProduct(product); }
 
-  reduceAmountProduct = (product: AmountCard): void => this.storageService.reduceAmountProduct(product);
+  reduceAmountProduct(product: AmountCard): void { this.storageService.reduceAmountProduct(product); }
 
-  deleteCard = (id: number) => this.storageService.deleteProduct(id);
+  deleteCard(id: number) { this.storageService.deleteProduct(id); }
 }

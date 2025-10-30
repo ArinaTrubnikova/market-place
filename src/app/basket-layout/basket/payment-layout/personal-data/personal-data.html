@@ -59,7 +59,7 @@
   <div class="personal-data-form__birth-date">
     <mat-form-field>
       <mat-label>Дата рождения</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+      <input matInput [matDatepicker]="picker" formControlName="birthDate" maxlength="10" (input)="dateFormat($event)"/>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       @if (hasError('birthDate', 'required')) {
@@ -80,7 +80,7 @@
       <div class="input-wrapper">
         <input matInput formControlName="email" type="email" placeholder="example@mail.com" />
         @if (personalDataForm.get('contacts.email')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'contacts.email')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'email', 'contacts')">close</mat-icon>
         }
       </div>
       @if (hasError('contacts.email', 'required')) {
@@ -101,7 +101,7 @@
           [prefix]="'+7'"
         />
         @if (personalDataForm.get('contacts.phone')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'contacts.phone')">close</mat-icon>
+        <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'phone','contacts')">close</mat-icon>
         }
       </div>
       @if (hasError('contacts.phone', 'required')) {

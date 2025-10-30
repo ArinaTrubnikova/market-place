@@ -5,7 +5,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule, MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
-import { flushValue } from "../../../../common/flush";
+import { flushValue } from "../../../../common/flush-value";
 import { MatIconModule } from "@angular/material/icon";
 
 @Component({

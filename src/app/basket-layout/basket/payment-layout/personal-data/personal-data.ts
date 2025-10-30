@@ -7,8 +7,9 @@ import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { FIOFormatDirective } from "../../../../common/fio-format";
-import { flushValue } from "../../../../common/flush";
+import { flushValue } from "../../../../common/flush-value";
 import { MatIconModule } from "@angular/material/icon";
+import { autoFormatDate } from "../../../../common/date-format";
 
 @Component({
     selector: 'personal-data',
@@ -34,6 +35,7 @@ export class PersonalDataComponent {
 
     personalDataForm!: FormGroup;
     flushValue = flushValue;
+    dateFormat = autoFormatDate;
     
     constructor(private formGroupDirective: FormGroupDirective) { }
 

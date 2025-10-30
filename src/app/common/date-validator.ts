@@ -9,9 +9,9 @@ export function dateValidator(): ValidatorFn {
         if (!inputDate) {
             return null;
         }
+        inputDate.setHours(0, 0, 0, 0);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        inputDate.setHours(0, 0, 0, 0);
         const minAgeDate = new Date();
         minAgeDate.setFullYear(today.getFullYear() - 18);
         const maxAgeDate = new Date();

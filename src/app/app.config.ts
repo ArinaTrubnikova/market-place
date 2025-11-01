@@ -2,6 +2,7 @@ import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners, provi
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { DataService } from './services/sent-data.service';
 
 
 export const appConfig: ApplicationConfig = {

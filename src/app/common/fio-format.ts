@@ -1,4 +1,4 @@
-import { Directive } from "@angular/core";
+import { Directive, OnDestroy, OnInit } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import { map, Subscription, tap } from "rxjs";
 
@@ -7,7 +7,7 @@ import { map, Subscription, tap } from "rxjs";
     standalone: true,
 })
 
-export class FIOFormatDirective {
+export class FIOFormatDirective implements OnInit, OnDestroy  {
 
     private subscription: Subscription = new Subscription();
 
@@ -20,7 +20,7 @@ export class FIOFormatDirective {
     toUpper(): void {
 
         if (this.ngControl.control) {
-            this.ngControl.control.valueChanges.pipe(
+          this.subscription.add(this.ngControl.control.valueChanges.pipe(
                 map((value: string) => {
                     if (value && value.length > 0) {
                         return value[0].toUpperCase() + value.slice(1)
@@ -30,7 +30,7 @@ export class FIOFormatDirective {
                 tap(transformedValue => {
                     this.ngControl.control!.setValue(transformedValue, { emitEvent: false })
                 })
-            ).subscribe()
+            ).subscribe())
         }
     }
 

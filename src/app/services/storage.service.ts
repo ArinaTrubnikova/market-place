@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AmountCard, Card } from "../interface/product-card.model";
+import { AmountCard, Card } from "../product-component/interfaces/product-card.model";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
@@ -25,7 +25,6 @@ export class StorageService {
         } else {
             this._productsBasket$.next([...this.productValue, new AmountCard(addedProduct)]);
         }
-
     }
 
     reduceAmountProduct(reducedProduct: Card): void {
@@ -47,6 +46,10 @@ export class StorageService {
 
     get productValue(): AmountCard[] {
         return this._productsBasket$.getValue();
+    }
+
+    clearBasket() {
+        this._productsBasket$.next([]);
     }
 
     deleteProduct(id: number) {

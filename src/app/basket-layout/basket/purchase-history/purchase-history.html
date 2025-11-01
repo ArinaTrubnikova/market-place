@@ -1,0 +1,13 @@
+<div class="purchase-history-container">
+  @if (purchaseHistoryCard$ | async; as purchaseData){ 
+    @for(card of purchaseData.productData; track card.id) 
+    {
+      <div class="purchase-history-container__card">
+        <p class="purchase-history-container__card-id">{{ card.id }}</p>
+        <p class="purchase-history-container__card-count">{{ card.count }}</p>
+      </div>
+    } 
+  } @else {
+    <p>История покупок пуста</p>
+  }
+</div>

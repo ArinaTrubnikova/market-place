@@ -9,22 +9,22 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { FIOFormatDirective } from "../../../../common/fio-format";
 import { flushValue } from "../../../../common/flush-value";
 import { MatIconModule } from "@angular/material/icon";
-import { autoFormatDate } from "../../../../common/date-format";
+import { AutoFormatDateDirective } from "../../../../common/date-format";
+import { autoFormatDate } from "../../../../common/date-format-function";
 
 @Component({
     selector: 'personal-data',
     imports: [MatInputModule,
     MatFormField,
-        MatCheckbox,
-        ReactiveFormsModule,
-        CommonModule,
-        NgxMaskDirective,
-        MatNativeDateModule,
-        MatDatepickerModule,
-        FIOFormatDirective,
-        FormsModule,
-        MatIconModule
-    ],
+    MatCheckbox,
+    ReactiveFormsModule,
+    CommonModule,
+    NgxMaskDirective,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    FIOFormatDirective,
+    FormsModule,
+    MatIconModule, AutoFormatDateDirective],
     standalone: true,
     templateUrl: './personal-data.html',
     providers: [provideNgxMask()],

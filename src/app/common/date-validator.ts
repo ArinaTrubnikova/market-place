@@ -4,9 +4,9 @@ export function dateValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
 
         const inputDate = control.value;
-        console.log('Validating:', inputDate, 'Type:', typeof inputDate);
+        // console.log('Validating:', inputDate, 'Type:', typeof inputDate);
 
-        if (!inputDate) {
+        if (!inputDate) {            
             return null;
         }
         inputDate.setHours(0, 0, 0, 0);

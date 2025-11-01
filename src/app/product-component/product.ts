@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { GetProductService } from "../services/get-product.service";
-import { Card, AmountCard } from "../interface/product-card.model";
+import { GetProductService } from "./services/get-product.service";
+import { Card, AmountCard } from "./interfaces/product-card.model";
 import { StorageService } from "../services/storage.service";
 import { ShowModal } from "./show-modal/show-modal";
 import { CurrencyPipe } from "@angular/common";
@@ -46,7 +46,9 @@ export class ProductComponent {
         })
     }
 
-    addProduct = (product: Card): void => this.storageService.addProduct(product);
+    addProduct (product: Card): void {
+        this.storageService.addProduct(product);        
+    }
 
     ngOnDestroy() {
         this.productSubscription?.unsubscribe();

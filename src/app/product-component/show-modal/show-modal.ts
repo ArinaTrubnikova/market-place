@@ -1,5 +1,5 @@
 import { Component, Input, output } from "@angular/core";
-import { Card } from "../../interface/product-card.model";
+import { Card } from "../interfaces/product-card.model";
 import { CurrencyPipe } from "@angular/common";
 
 @Component({

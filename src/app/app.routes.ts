@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { BasketLayoutComponent } from './basket-layout/basket-layout';
+import { DataService } from './services/sent-data.service';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,10 @@ export const routes: Routes = [
             {
                 path: 'buy',
                 loadComponent: () => import('./basket-layout/basket/payment-layout/payment').then(m => m.PaymentLayoutComponent),
+            },
+            {
+                path: 'history',
+                loadComponent: () => import('./basket-layout/basket/purchase-history/purchase-history').then(m => m.PurchaseHistoryComponent)
             }
         ]
     },

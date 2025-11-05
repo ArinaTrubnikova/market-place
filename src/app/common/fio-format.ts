@@ -3,11 +3,11 @@ import { NgControl } from "@angular/forms";
 import { map, Subscription, tap } from "rxjs";
 
 @Directive({
-    selector: '[fioFormat]',
+    selector: '[upperCaseFormat]',
     standalone: true,
 })
 
-export class FIOFormatDirective implements OnInit, OnDestroy  {
+export class UpperCaseFormatDirective implements OnInit, OnDestroy  {
 
     private subscription: Subscription = new Subscription();
 

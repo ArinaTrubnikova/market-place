@@ -1,13 +1,27 @@
-<div class="purchase-history-container">
-  @if (purchaseHistoryCard$ | async; as purchaseData){ 
-    @for(card of purchaseData.productData; track card.id) 
-    {
-      <div class="purchase-history-container__card">
-        <p class="purchase-history-container__card-id">{{ card.id }}</p>
-        <p class="purchase-history-container__card-count">{{ card.count }}</p>
-      </div>
-    } 
-  } @else {
-    <p>История покупок пуста</p>
+<div class="purchase-history">
+  @for(buy of purchaseHistoryCard$ | async; track buy; let index = $index) {
+  <p>Покупка {{ index + 1 }}</p>
+  <p class="purchase-history-container__fio">
+    ФИО: {{ buy.personalData?.lastName }} {{ buy.personalData?.firstName }}
+    {{ buy.personalData?.middleName }}
+  </p>
+  <p class="purchase-history-container__address">
+    Адрес: город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }}, дом
+    {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
+  </p>
+  @for(product of buy.productData; track product.id) {
+  <div class="purchase-history-container">
+    <h3 class="purchase-history-container__title">{{ product.title }}</h3>
+    <p class="purchase-history-container__description">{{ product.description }}</p>
+    <p class="purchase-history-container__cost">
+      {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
+    </p>
+  </div>
+  } @empty {
+  <p>История покупок пуста</p>
+  }
+  <p class="purchase-history-container__total-amount">
+   Общая стоимость покупки: {{ totalPrice }}
+  </p>
   }
 </div>

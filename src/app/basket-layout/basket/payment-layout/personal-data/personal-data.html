@@ -4,7 +4,7 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Фамилия</mat-label>
       <div class="input-wrapper">
-        <input matInput formControlName="lastName" placeholder="Введите фамилию" fioFormat />
+        <input matInput formControlName="lastName" placeholder="Введите фамилию" upperCaseFormat />
         @if (personalDataForm.get('lastName')?.value) {
         <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'lastName')">close</mat-icon>
         }
@@ -20,7 +20,7 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Имя</mat-label>
       <div class="input-wrapper">
-        <input matInput formControlName="firstName" placeholder="Введите имя" fioFormat />
+        <input matInput formControlName="firstName" placeholder="Введите имя" upperCaseFormat />
         @if (personalDataForm.get('firstName')?.value) {
         <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'firstName')">close</mat-icon>
         }
@@ -36,7 +36,7 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Отчество</mat-label>
       <div class="input-wrapper">
-        <input matInput formControlName="middleName" placeholder="Введите отчество" fioFormat />
+        <input matInput formControlName="middleName" placeholder="Введите отчество" upperCaseFormat />
         @if (personalDataForm.get('middleName')?.value) {
         <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'middleName')">close</mat-icon>
         }

@@ -7,6 +7,7 @@ import { MatSelectModule, MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { flushValue } from "../../../../common/flush-value";
 import { MatIconModule } from "@angular/material/icon";
+import { UpperCaseFormatDirective } from "../../../../common/fio-format";
 
 @Component({
   selector: 'payment-details',
@@ -17,7 +18,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatSelectModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-    MatIconModule],
+    MatIconModule,
+    UpperCaseFormatDirective],
   providers: [provideNgxMask()],
   templateUrl: './payment-details.html',
   styleUrl: './payment-details.scss'

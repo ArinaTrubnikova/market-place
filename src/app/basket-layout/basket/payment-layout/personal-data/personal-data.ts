@@ -6,7 +6,7 @@ import { MatFormField, MatInputModule } from "@angular/material/input";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { FIOFormatDirective } from "../../../../common/fio-format";
+import { UpperCaseFormatDirective } from "../../../../common/fio-format";
 import { flushValue } from "../../../../common/flush-value";
 import { MatIconModule } from "@angular/material/icon";
 import { AutoFormatDateDirective } from "../../../../common/date-format";
@@ -22,7 +22,7 @@ import { autoFormatDate } from "../../../../common/date-format-function";
     NgxMaskDirective,
     MatNativeDateModule,
     MatDatepickerModule,
-    FIOFormatDirective,
+    UpperCaseFormatDirective,
     FormsModule,
     MatIconModule, AutoFormatDateDirective],
     standalone: true,

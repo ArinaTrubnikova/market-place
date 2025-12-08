@@ -1,26 +1,26 @@
 header {
-    width: 100%;
-    padding-right: 20px;
-    padding-top: 20px;
-    margin: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: end;
+  width: 100%;
+  padding-right: 20px;
+  padding-top: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: end;
 }
 
 nav {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
-    gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
 }
 
 a {
-    text-decoration: none;
-    color: rgb(50, 0, 51);
-    font-weight: 600;
-    font-size: 20px;
+  text-decoration: none;
+  color: rgb(50, 0, 51);
+  font-weight: 600;
+  font-size: 20px;
 }

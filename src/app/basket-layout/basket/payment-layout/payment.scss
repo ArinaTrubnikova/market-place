@@ -46,98 +46,91 @@
 }
 
 .payment {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+
+  &-card__container {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0px;
+    border-radius: 5px;
+    gap: 8px;
+    padding: 15px;
+  }
 
-    &-card__container {
-        width: auto;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border: solid 1px #79038191;
-        border-radius: 5px;
-        gap: 8px;
-        background-color: #ffa5f9b4;
-        padding: 15px;
+  &-card__title {
+    font-size: 18px;
+    color: #330330;
+    margin: 0;
+    text-align: center;
+  }
+
+  &-card__total-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 5px;
+    font-size: 18px;
+  }
+
+  &-card__description,
+  &-card__cost {
+    font-size: 18px;
+    color: #5d0157;
+    margin: 0;
+    text-align: center;
+  }
+
+  &-card__total-count {
+    color: #ff00ee;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 18px;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  &-card__total-price {
+    color: #ff00ee;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 18px;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  &__total-amount {
+    font-size: 15px;
+    padding: 5px;
+    width: 150px;
+    color: #ff15ef;
+    border-radius: 4px;
+    margin: 0;
+    text-align: start;
+    background-color: #330330;
+  }
+
+  &__btn {
+    grid-column: 1 / -1;
+    justify-self: center;
+    background-color: #5d0157;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #990087;
     }
-
-    &-card__title {
-        font-size: 18px;
-        color: #330330;
-        margin: 0;
-        text-align: center;
-    }
-
-    &-card__total-wrapper {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        padding: 5px;
-        font-size: 18px;
-        background-color: #330330;
-        border: solid 1px #79038191;
-        border-radius: 5px;
-    }
-
-    &-card__description,
-    &-card__cost {
-        font-size: 18px;
-        color: #5d0157;
-        margin: 0;
-        text-align: center;
-    }
-
-    &-card__total-count {
-        color: #ff00ee;
-        margin: 0;
-        padding: 0 10px;
-        font-size: 18px;
-        min-width: 20px;
-        text-align: center;
-    }
-
-    &-card__total-price {
-        color: #ff00ee;
-        margin: 0;
-        padding: 0 10px;
-        font-size: 18px;
-        min-width: 20px;
-        text-align: center;
-    }
-
-    &__total-amount {
-        font-size: 15px;
-        padding: 5px;
-        width: 150px;
-        color: #ff15ef;
-        border-radius: 4px;
-        margin: 0;
-        text-align: start;
-        background-color: #330330;
-    }
-
-    &__btn {
-        grid-column: 1 / -1;
-        justify-self: center;
-        background-color: #5d0157;
-        border: none;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 20px;
-
-        &:hover {
-            background-color: #990087;
-        }
-    }
-
-
+  }
 }

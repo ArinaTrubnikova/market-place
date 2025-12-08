@@ -1,21 +1,29 @@
 <div class="payment-product">
   <div class="payment">
-  @for(card of (toPaymentCards$ | async); track card.id) {
+    @for(card of (toPaymentCards$ | async); track card.id) {
 
-  <div class="payment-card__container">
-    <h3 class="payment-card__title">{{ card.title }}</h3>
-    <p class="payment-card__cost">Цена: {{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+    <mat-card class="payment-card__container">
+      <mat-card-header><mat-card-title class="payment-card__title">{{ card.title }}</mat-card-title></mat-card-header>
 
-    <div class="payment-card__total-wrapper">
-      <p class="payment-card__total-count">Количество: {{ card.count }}</p>
-      <p class="payment-card__total-price">
-        Стоимость: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
-      </p>
-    </div>
+      <mat-card-content>
+        <p class="payment-card__cost">Цена: {{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+        <div class="payment-card__total-wrapper">
+          <mat-chip-set>
+            <mat-chip>
+              Количество: {{ card.count }}
+            </mat-chip>
+            <mat-chip>
+              Стоимость: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
+            </mat-chip>
+          </mat-chip-set>
+
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+    }
   </div>
-  }
-</div>
-<div class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</div>
+  <div class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</div>
 </div>
 
 <mat-stepper [linear]="true" #stepper>
@@ -26,24 +34,15 @@
     <button matButton="tonal" matStepperNext [disabled]="!personalDataForm.valid">Далее</button>
   </mat-step>
 
-  <mat-step
-    label="Данные для оплаты"
-    [stepControl]="paymentDetailsForm"
-    [editable]="personalDataForm.valid"
-  >
+  <mat-step label="Данные для оплаты" [stepControl]="paymentDetailsForm" [editable]="personalDataForm.valid">
     <form [formGroup]="paymentDetailsForm">
       <payment-details></payment-details>
     </form>
     <div>
       <button matButton="tonal" matStepperPrevious>Назад</button>
-      <button
-        matButton="tonal"
-        [disabled]="!paymentDetailsForm.valid"
-        (click)="onSubmit()"
-      >
+      <button matButton="tonal" [disabled]="!paymentDetailsForm.valid" (click)="onSubmit()">
         Подтвердить
       </button>
     </div>
   </mat-step>
 </mat-stepper>
-

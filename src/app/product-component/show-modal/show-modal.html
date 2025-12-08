@@ -1,20 +1,25 @@
 @if (isVisible) {
 <div class="modal-product">
-  <div class="modal-product__container">
-    @if(selectedCard) {
-    <button class="modal-product__close-btn" (click)="hideModal()">X</button>
-    <div class="modal-product__card-container">
-      <h3 class="modal-product__title">{{ selectedCard.title }}</h3>
+
+  @if(selectedCard) {
+
+  <mat-card class="modal-product__card-container">
+    <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">X</button>
+    <mat-card-header><mat-card-title class="modal-product__title">{{ selectedCard.title
+        }}</mat-card-title></mat-card-header>
+
+    <mat-card-content>
       <p class="modal-product__description">{{ selectedCard.description }}</p>
       <p class="modal-product__full-description">{{ selectedCard.fullDescription }}</p>
       <p class="modal-product__cost">
         {{ selectedCard.cost | currency : 'RUB' : 'symbol-narrow' }}
       </p>
-      <button class="modal_product__sum-btn" (click)="addProduct(selectedCard)">
-        {{ !productCount ? 'Добавить в корзину' : productCount + ' +' }}
-      </button>
-    </div>
-    }
-  </div>
+    </mat-card-content>
+    <button matButton="elevated" class="modal_product__sum-btn" (click)="addProduct(selectedCard)">
+      {{ !productCount ? 'Добавить в корзину' : productCount + ' +' }}
+    </button>
+  </mat-card>
+  }
+
 </div>
 }

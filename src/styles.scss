@@ -6,25 +6,31 @@
 @use '@angular/material' as mat;
 
 html {
-  @include mat.theme((color: (primary: mat.$magenta-palette,
-        tertiary: mat.$violet-palette,
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$red-palette,
+        tertiary: mat.$green-palette,
       ),
       typography: Roboto,
       density: 0,
-    ));
+    )
+  );
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0px;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  // background-image: url('../public/liniya-neon.jpg');
+  // background-repeat: no-repeat;
+  // background-size: cover;
 }
-
 
 app-root {
   width: 100%;

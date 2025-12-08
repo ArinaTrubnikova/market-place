@@ -1,56 +1,60 @@
-import { Component } from "@angular/core";
-import { GetProductService } from "./services/get-product.service";
-import { Card, AmountCard } from "./interfaces/product-card.model";
-import { StorageService } from "../services/storage.service";
-import { ShowModal } from "./show-modal/show-modal";
-import { CurrencyPipe } from "@angular/common";
-import { Subscription } from "rxjs";
+import { Component } from '@angular/core';
+import { GetProductService } from './services/get-product.service';
+import { Card, AmountCard } from './interfaces/product-card.model';
+import { StorageService } from '../services/storage.service';
+import { ShowModal } from './show-modal/show-modal';
+import { CurrencyPipe } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    selector: 'product-component',
-    imports: [ShowModal, CurrencyPipe],
-    templateUrl: './product.html',
-    styleUrl: './product.scss',
-    providers: [GetProductService]
+  selector: 'product-component',
+  imports: [ShowModal, CurrencyPipe, MatCardModule, MatButtonModule],
+  templateUrl: './product.html',
+  styleUrl: './product.scss',
+  providers: [GetProductService],
 })
-
 export class ProductComponent {
+  selectedCard!: Card;
+  isModalVisible: boolean = false;
+  products: Card[] = [];
+  private productSubscription?: Subscription;
 
-    selectedCard!: Card;
-    isModalVisible: boolean = false;
-    products: Card[] = [];
-    private productSubscription?: Subscription;
+  constructor(
+    private getProductService: GetProductService,
+    private storageService: StorageService
+  ) {}
 
-    constructor(private getProductService: GetProductService,
-        private storageService: StorageService) { }
+  ngOnInit() {
+    this.getProduct();
+  }
 
-    ngOnInit() {
-        this.getProduct();
-    }
+  showModal(product: Card) {
+    this.selectedCard = product;
+    this.isModalVisible = true;
+  }
 
-    showModal(product: Card) {
-        this.selectedCard = product;
-        this.isModalVisible = true;
-    }
+  hideModal = () => (this.isModalVisible = false);
 
-    hideModal = () => this.isModalVisible = false;
+  getCount(cardId: number): number {
+    const product = this.storageService.productValue.find(
+      (product: AmountCard) => product.id === cardId
+    );
+    return product ? product.count : 0;
+  }
 
-    getCount(cardId: number): number {
-        const product = this.storageService.productValue.find((product: AmountCard) => product.id === cardId);
-        return product ? product.count : 0;
-    }
+  getProduct() {
+    this.productSubscription = this.getProductService.getProduct().subscribe((data: Card[]) => {
+      this.products = data;
+    });
+  }
 
-    getProduct() {
-        this.productSubscription = this.getProductService.getProduct().subscribe((data: Card[]) => {
-            this.products = data;
-        })
-    }
+  addProduct(product: Card): void {
+    this.storageService.addProduct(product);
+  }
 
-    addProduct (product: Card): void {
-        this.storageService.addProduct(product);        
-    }
-
-    ngOnDestroy() {
-        this.productSubscription?.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.productSubscription?.unsubscribe();
+  }
 }

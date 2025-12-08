@@ -1,20 +1,22 @@
 <div class="basket">
   @for(card of (cards$ | async); track card.id) {
 
-  <div class="basket-card__container">
-    <h3 class="basket-card__title">{{ card.title }}</h3>
-    <p class="basket-card__description">{{ card.description }}</p>
-    <p class="basket-card__cost">{{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+  <mat-card class="basket-card__container">
+    <mat-card-header><mat-card-title class="basket-card__title">{{ card.title }}</mat-card-title></mat-card-header>
+    <mat-card-content>
+      <p class="basket-card__description">{{ card.description }}</p>
+      <p class="basket-card__cost">{{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+    </mat-card-content>
 
     <div class="basket-card__btn-wrapper">
-      <button class="basket-card__minus-btn" (click)="reduceAmountProduct(card)">-</button>
+      <button matButton="elevated" class="basket-card__minus-btn" (click)="reduceAmountProduct(card)">-</button>
       <p class="basket-card__count">{{ card.count }}</p>
-      <button class="basket-card__plus-btn" (click)="addProduct(card)">+</button>
+      <button matButton="elevated" class="basket-card__plus-btn" (click)="addProduct(card)">+</button>
     </div>
-    <button class="basket-card__delete-btn" (click)="deleteCard(card.id)">Удалить</button>
-  </div>
+    <button matButton="elevated" class="basket-card__delete-btn" (click)="deleteCard(card.id)">Удалить</button>
+  </mat-card>
   }
 </div>
 @if (hasItemsInCart) {
-<button class="basket__payment-btn" routerLink="/basket/buy">Купить</button>
+<button matButton="elevated" class="basket__payment-btn" routerLink="/basket/buy">Купить</button>
 }

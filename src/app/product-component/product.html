@@ -1,24 +1,25 @@
 <h1>Список наших самых лучших товаров</h1>
 
-<show-modal
-  [(isVisible)]="isModalVisible"
-  [selectedCard]="selectedCard"
-  (isProductSelected)="addProduct($event)"
-  (productCountChange)="getCount($event)"
-  [productCount]="selectedCard ? getCount(selectedCard.id) : 0"
-></show-modal>
+<show-modal [(isVisible)]="isModalVisible" [selectedCard]="selectedCard" (isProductSelected)="addProduct($event)"
+  (productCountChange)="getCount($event)" [productCount]="selectedCard ? getCount(selectedCard.id) : 0"></show-modal>
 
 <div class="product-card">
   @for(product of products; track product.id) {
 
-  <div class="product-card__container">
-    <h3 class="product-card__title" (click)="showModal(product)">{{ product.title }}</h3>
-    <p class="product-card__description">{{ product.description }}</p>
-    <p class="product-card__cost">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
-    <button class="product-card__sum-btn" (click)="addProduct(product)">
+  <mat-card class="product-card__container" appearance="outlined">
+    <mat-card-header><mat-card-title class="product-card__title" (click)="showModal(product)">{{
+        product.title
+        }}</mat-card-title></mat-card-header>
+    <img mat-card-image src="png-transparent.svg" alt="sale" class="product-card__image">
+    <mat-card-content>
+      <p class="product-card__description">{{ product.description }}</p>
+      <p class="product-card__cost">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+    </mat-card-content>
+
+    <button matButton="elevated" class="product-card__sum-btn" (click)="addProduct(product)">
       {{ !getCount(product.id) ? 'Добавить в корзину' : getCount(product.id) + ' +' }}
     </button>
-  </div>
+  </mat-card>
 
   }
 </div>

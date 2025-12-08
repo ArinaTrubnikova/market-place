@@ -1,61 +1,57 @@
 .product-card {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 
-    &__container {
-        width: 100%;
-        max-width: 350px;
-        height: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border: solid 1px #79038191;
-        border-radius: 5px;
-        gap: 14px;
-        background-color: #ffa5f9b4;
-    }
+  &__container {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // border: solid 1px #79038191;
+    border-radius: 5px;
+    gap: 14px;
+    // background-color: #ffa5f9b4;
+  }
 
-    &__title {
-        font-size: 30px;
-        color: #330330;
-        margin: 0;
-        cursor: pointer;
-    }
+  &__title {
+    font-size: 30px;
+    // color: #330330;
+    margin: 0;
+    cursor: pointer;
+  }
 
-    &__description {
-         font-size: 18px;
-        color: #5d0157;
-        margin: 0;
-    }
+  &__description {
+    font-size: 18px;
+    // color: #5d0157;
+    margin: 0;
+  }
 
-    &__cost {
-        font-size: 17px;
-        color: #5d0157;
-        margin: 0;
-    }
+  &__cost {
+    font-size: 17px;
+    // color: #5d0157;
+    margin: 0;
+  }
 
-    &__sum-btn {
-        height: 40px;
-        width: 140px;
-        margin-bottom: 8px;
-        color: #ff84f7;
-        background-color: #5d0157;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+  &__sum-btn {
+    height: 40px;
+    width: 140px;
+    margin-bottom: 8px;
+    border: none;
+    cursor: pointer;
+  }
 
-        &:hover {
-            background-color: lighten(#5d0157, 10%);
-            color: lighten(#ff84f7, 10%);
-        }
-    }
+  &__image {
+    height: 80px;
+    width: 80px;
+  }
 }
 
 h1 {
-    text-align: center;
-    color: #330330;
-    margin-bottom: 30px;
+  text-align: center;
+  color: #330330;
+  margin-bottom: 30px;
 }

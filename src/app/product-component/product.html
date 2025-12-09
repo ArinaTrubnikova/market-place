@@ -1,4 +1,4 @@
-<h1>Список наших самых лучших товаров</h1>
+<h1 class="bold">Список наших самых лучших товаров</h1>
 
 <show-modal [(isVisible)]="isModalVisible" [selectedCard]="selectedCard" (isProductSelected)="addProduct($event)"
   (productCountChange)="getCount($event)" [productCount]="selectedCard ? getCount(selectedCard.id) : 0"></show-modal>
@@ -12,8 +12,10 @@
         }}</mat-card-title></mat-card-header>
     <img mat-card-image src="png-transparent.svg" alt="sale" class="product-card__image">
     <mat-card-content>
-      <p class="product-card__description">{{ product.description }}</p>
-      <p class="product-card__cost">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+      <div class="card-content">
+        <p class="product-card__description">{{ product.description }}</p>
+        <p class="product-card__cost">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+      </div>
     </mat-card-content>
 
     <button matButton="elevated" class="product-card__sum-btn" (click)="addProduct(product)">

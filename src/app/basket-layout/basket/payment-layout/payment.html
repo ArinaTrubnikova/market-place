@@ -6,7 +6,8 @@
       <mat-card-header><mat-card-title class="payment-card__title">{{ card.title }}</mat-card-title></mat-card-header>
 
       <mat-card-content>
-        <p class="payment-card__cost">Цена: {{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+        <mat-card-header><mat-card-title class="payment-card__cost">Цена: {{ card.cost | currency : 'RUB' :
+            'symbol-narrow' }}</mat-card-title></mat-card-header>
         <div class="payment-card__total-wrapper">
           <mat-chip-set>
             <mat-chip>
@@ -23,7 +24,8 @@
     </mat-card>
     }
   </div>
-  <div class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</div>
+  <mat-chip-set><mat-chip class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</mat-chip></mat-chip-set>
+
 </div>
 
 <mat-stepper [linear]="true" #stepper>

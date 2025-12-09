@@ -15,11 +15,11 @@
 ::ng-deep .mat-step-header {
   padding: 16px 12px;
   margin: 0 0px;
-  color: #5d0157;
+  // color: #5d0157;
 }
 
 ::ng-deep .mat-step-header .mat-step-icon-selected {
-  background-color: #a900a9;
+  // background-color: #a900a9;
   color: white;
 }
 
@@ -67,7 +67,6 @@
 
   &-card__title {
     font-size: 18px;
-    color: #330330;
     margin: 0;
     text-align: center;
   }
@@ -83,7 +82,6 @@
   &-card__description,
   &-card__cost {
     font-size: 18px;
-    color: #5d0157;
     margin: 0;
     text-align: center;
   }
@@ -109,7 +107,7 @@
   &__total-amount {
     font-size: 15px;
     padding: 5px;
-    width: 150px;
+    width: auto;
     color: #ff15ef;
     border-radius: 4px;
     margin: 0;

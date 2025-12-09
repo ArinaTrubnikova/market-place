@@ -11,28 +11,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // border: solid 1px #79038191;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(163, 88, 88, 0.3);
     border-radius: 5px;
     gap: 14px;
-    // background-color: #ffa5f9b4;
+    background-color: rgb(255, 230, 230);
   }
 
   &__title {
     font-size: 30px;
-    // color: #330330;
+    opacity: 0.7;
     margin: 0;
     cursor: pointer;
   }
 
   &__description {
     font-size: 18px;
-    // color: #5d0157;
+    text-align: center;
     margin: 0;
   }
 
   &__cost {
     font-size: 17px;
-    // color: #5d0157;
+    text-align: start;
     margin: 0;
   }
 
@@ -40,6 +41,7 @@
     height: 40px;
     width: 140px;
     margin-bottom: 8px;
+    padding: 2px;
     border: none;
     cursor: pointer;
   }
@@ -52,6 +54,11 @@
 
 h1 {
   text-align: center;
-  color: #330330;
+  color: #3d0303be;
   margin-bottom: 30px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
 }

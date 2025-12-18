@@ -28,23 +28,25 @@
 
 </div>
 
-<mat-stepper [linear]="true" #stepper>
-  <mat-step label="Персональные данные" [stepControl]="personalDataForm">
-    <form [formGroup]="personalDataForm">
-      <personal-data></personal-data>
-    </form>
-    <button matButton="tonal" matStepperNext [disabled]="!personalDataForm.valid">Далее</button>
-  </mat-step>
-
-  <mat-step label="Данные для оплаты" [stepControl]="paymentDetailsForm" [editable]="personalDataForm.valid">
-    <form [formGroup]="paymentDetailsForm">
-      <payment-details></payment-details>
-    </form>
-    <div>
-      <button matButton="tonal" matStepperPrevious>Назад</button>
-      <button matButton="tonal" [disabled]="!paymentDetailsForm.valid" (click)="onSubmit()">
-        Подтвердить
-      </button>
-    </div>
-  </mat-step>
-</mat-stepper>
+<div class="form-wrapper">
+  <mat-stepper [linear]="true" #stepper>
+    <mat-step label="Персональные данные" [stepControl]="personalDataForm">
+      <form [formGroup]="personalDataForm">
+        <personal-data></personal-data>
+      </form>
+      <button matButton="tonal" matStepperNext [disabled]="!personalDataForm.valid">Далее</button>
+    </mat-step>
+  
+    <mat-step label="Данные для оплаты" [stepControl]="paymentDetailsForm" [editable]="personalDataForm.valid">
+      <form [formGroup]="paymentDetailsForm">
+        <payment-details></payment-details>
+      </form>
+      <div>
+        <button matButton="tonal" matStepperPrevious>Назад</button>
+        <button matButton="tonal" [disabled]="!paymentDetailsForm.valid" (click)="onSubmit()">
+          Подтвердить
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

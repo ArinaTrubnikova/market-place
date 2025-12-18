@@ -4,6 +4,7 @@ export interface Card {
     description?: string,
     cost: number,
     fullDescription?: string,
+    image?: string
 }
 
 export class AmountCard {

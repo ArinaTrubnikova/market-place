@@ -7,18 +7,18 @@
   @for(product of products; track product.id) {
 
   <mat-card class="product-card__container" appearance="outlined">
-    <mat-card-header><mat-card-title class="product-card__title" (click)="showModal(product)">{{
+    <mat-card-header class="kedeberdi"><mat-card-title class="product-card__title" (click)="showModal(product)">{{
         product.title
         }}</mat-card-title></mat-card-header>
-    <img mat-card-image src="png-transparent.svg" alt="sale" class="product-card__image">
+    <img mat-card-image [src]="product.image" class="product-card__image">
     <mat-card-content>
       <div class="card-content">
-        <p class="product-card__description">{{ product.description }}</p>
-        <p class="product-card__cost">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+        <p class="product-card__description kedeberdi">{{ product.description }}</p>
+        <p class="product-card__cost kedeberdi">{{ product.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
       </div>
     </mat-card-content>
 
-    <button matButton="elevated" class="product-card__sum-btn" (click)="addProduct(product)">
+    <button matButton="elevated" class="product-card__sum-btn kedeberdi" (click)="addProduct(product)">
       {{ !getCount(product.id) ? 'Добавить в корзину' : getCount(product.id) + ' +' }}
     </button>
   </mat-card>

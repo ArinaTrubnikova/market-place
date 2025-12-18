@@ -1,22 +1,41 @@
+@if(!hasItemsInCart) {
+<h1 class="basket-header">Ваша корзина пуста</h1>
+} @else {
 <div class="basket">
   @for(card of (cards$ | async); track card.id) {
 
   <mat-card class="basket-card__container">
-    <mat-card-header><mat-card-title class="basket-card__title">{{ card.title }}</mat-card-title></mat-card-header>
+    <mat-card-header
+      ><mat-card-title class="basket-card__title">{{ card.title }}</mat-card-title></mat-card-header
+    >
     <mat-card-content>
-      <p class="basket-card__description">{{ card.description }}</p>
-      <p class="basket-card__cost">{{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+      <div class="card-content">
+        <p class="basket-card__description">{{ card.description }}</p>
+        <p class="basket-card__cost">{{ card.cost | currency : 'RUB' : 'symbol-narrow' }}</p>
+      </div>
     </mat-card-content>
 
     <div class="basket-card__btn-wrapper">
-      <button matButton="elevated" class="basket-card__minus-btn" (click)="reduceAmountProduct(card)">-</button>
-      <p class="basket-card__count">{{ card.count }}</p>
-      <button matButton="elevated" class="basket-card__plus-btn" (click)="addProduct(card)">+</button>
+      <div class="basket-card__btn-action-wrapper">
+        <button
+          matButton="elevated"
+          class="basket-card__minus-btn"
+          (click)="reduceAmountProduct(card)"
+        >
+          -
+        </button>
+        <p class="basket-card__count">{{ card.count }}</p>
+        <button matButton="elevated" class="basket-card__plus-btn" (click)="addProduct(card)">
+          +
+        </button>
+      </div>
+
+      <button matButton="elevated" class="basket-card__delete-btn" (click)="deleteCard(card.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
-    <button matButton="elevated" class="basket-card__delete-btn" (click)="deleteCard(card.id)"><mat-icon>delete</mat-icon></button>
   </mat-card>
   }
 </div>
-@if (hasItemsInCart) {
 <button matButton="elevated" class="basket__payment-btn" routerLink="/basket/buy">Купить</button>
 }

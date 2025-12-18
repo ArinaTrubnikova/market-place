@@ -23,6 +23,7 @@ body {
   margin: 0;
   padding: 0px;
   font-family: Kedebideri-Regular, sans-serif;
+  background-color: rgb(255, 246, 246);
   // background-image: url('../public/liniya-neon.jpg');
   // background-repeat: no-repeat;
   // background-size: cover;
@@ -37,6 +38,12 @@ app-root {
   margin-bottom: 20px;
 }
 
+
+basket-layout {
+  width: 100%;
+}
+
+
 * {
   box-sizing: border-box;
 }
@@ -46,4 +53,11 @@ app-root {
 .mat-mdc-button,
 .mdc-button__label {
   font-family: Kedebideri-Regular, sans-serif;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #3d0303be;
+  margin-bottom: 30px;
 }

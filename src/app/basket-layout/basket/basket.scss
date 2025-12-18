@@ -1,11 +1,8 @@
 .basket {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
-  width: 100%;
 
   &-card__container {
     width: 100%;
@@ -85,6 +82,13 @@
     margin-top: 20px;
     margin-left: 20px;
   }
+
+  &-card__title-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 10px;
+  }
 }
 
 
@@ -103,4 +107,11 @@
 .mat-icon {
   margin: 0;
   padding: 0;
+}
+
+.products__image {
+  height: 150px;
+    width: 150px;
+    border-radius: 50% !important;
+    box-shadow: 5px 5px 15px 0 rgba(102, 0, 0, 0.3);
 }

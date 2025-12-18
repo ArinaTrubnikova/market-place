@@ -5,9 +5,14 @@
   @for(card of (cards$ | async); track card.id) {
 
   <mat-card class="basket-card__container">
-    <mat-card-header
-      ><mat-card-title class="basket-card__title">{{ card.title }}</mat-card-title></mat-card-header
-    >
+
+     <div class="basket-card__title-wrapper">
+       <img mat-card-image [src]="card.image" class="products__image" />
+           <mat-card-header>
+        <mat-card-title class="basket-card__title">{{ card.title }}</mat-card-title>
+           </mat-card-header>
+     </div>
+
     <mat-card-content>
       <div class="card-content">
         <p class="basket-card__description">{{ card.description }}</p>

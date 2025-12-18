@@ -14,6 +14,7 @@ export class AmountCard {
     fullDescription!: string;
     cost!: number;
     count!: number;
+    image!: string;
 
     constructor(data: Partial<Card>) {
         return {
@@ -23,6 +24,7 @@ export class AmountCard {
             fullDescription: data.fullDescription,
             cost: data.cost,
             count: 1,
+            image: data.image
         } as AmountCard
     }
 }

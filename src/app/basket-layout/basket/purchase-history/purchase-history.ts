@@ -36,7 +36,7 @@ export class PurchaseHistoryComponent {
           (total, buy) =>
             total +
             buy.productData.reduce((sum, product) => {
-              const card = productsCard.find((card) => card.id === product.id);
+              const card = cardsProduct.get(product.id);
               return sum + product.count * (card?.cost || 0);
             }, 0),
           0
@@ -58,18 +58,18 @@ export class PurchaseHistoryComponent {
       })
     );
     console.log(this.purchaseHistoryCard$);
+
+    this.getTotalPrice();
   }
 
   getTotalPrice() {
-    const productsBuy = this.purchaseHistoryCard$.pipe(
+    this.purchaseHistoryCard$.pipe(
       map((buy: BuyProduct) =>
         buy.productData.reduce(
           (total: number, product: any) => total + product.count * product.cost,
           0
         )
       )
-    );
-
-    return console.log(productsBuy);
+    ).subscribe(data => this.totalPrice = data);
   }
 }

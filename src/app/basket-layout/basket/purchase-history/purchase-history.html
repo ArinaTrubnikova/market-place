@@ -1,31 +1,40 @@
 <div class="purchase-history">
   @for(buy of purchaseHistoryCard$ | async; track buy; let index = $index) {
-  <p>Покупка {{ index + 1 }}</p>
-  <p class="purchase-history-container__fio">
-    ФИО: {{ buy.personalData?.lastName }} {{ buy.personalData?.firstName }}
-    {{ buy.personalData?.middleName }}
-  </p>
-  <p class="purchase-history-container__address">
-    Адрес: город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }}, дом
-    {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
-  </p>
-  @for(product of buy.productData; track product.id) {
-  <mat-card class="purchase-history-container">
-    <mat-card-header><mat-card-title class="purchase-history-container__title">{{ product.title
-        }}</mat-card-title>
-      <p class="purchase-history-container__description">{{ product.description }}</p>
-      <p class="purchase-history-container__cost">
-        {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
-      </p>
-    </mat-card-header>
-    <mat-card-content></mat-card-content>
-
-  </mat-card>
-  } @empty {
-  <p>История покупок пуста</p>
-  }
-  <p class="purchase-history-container__total-amount">
-    Общая стоимость покупки: {{ totalPrice }}
-  </p>
+  <div class="purchase-history-container">
+    <p class="purchase-history-container__order">Покупка {{ index + 1 }}</p>
+    <p class="purchase-history-container__fio">
+      ФИО: <span class="data">
+        {{ buy.personalData?.lastName }} {{ buy.personalData?.firstName }}
+        {{ buy.personalData?.middleName }}
+      </span>
+    </p>
+    <p class="purchase-history-container__address">
+      Адрес:<span class="data">
+         город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }},
+        дом {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
+      </span>
+    </p>
+    @for(product of buy.productData; track product.id) {
+    <div class="history-wrapper">
+      <mat-card class="purchase-history-container__card">
+        <mat-card-header
+          ><mat-card-title class="purchase-history-container__title">{{
+            product.title
+          }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+           <p class="purchase-history-container__description">{{ product.description }}</p>
+          <p class="purchase-history-container__cost">
+            {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <img [src]="product.image" [alt]="product.title" class="purchase-history-container__image">
+    </div>
+    } @empty {
+    <p>История покупок пуста</p>
+    }
+    <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ totalPrice | currency : 'RUB' : 'symbol-narrow'}}</p>
+  </div>
   }
 </div>

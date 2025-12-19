@@ -1,6 +1,7 @@
 <form class="personal-data-form" [formGroup]="personalDataForm">
 
   <div class="personal-data-form__fio">
+
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Фамилия</mat-label>
       <div class="input-wrapper">
@@ -59,7 +60,8 @@
   <div class="personal-data-form__birth-date">
     <mat-form-field>
       <mat-label>Дата рождения</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthDate" maxlength="10" (input)="dateFormat($event)"/>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate" maxlength="10"
+        (input)="dateFormat($event)" />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       @if (hasError('birthDate', 'required')) {
@@ -92,14 +94,8 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Телефон</mat-label>
       <div class="input-wrapper">
-        <input
-          matInput
-          formControlName="phone"
-          type="tel"
-          placeholder="+7 (999) 999-99-99"
-          [mask]="'(000) 000-00-00'"
-          [prefix]="'+7'"
-        />
+        <input matInput formControlName="phone" type="tel" placeholder="+7 (999) 999-99-99" [mask]="'(000) 000-00-00'"
+          [prefix]="'+7'" />
         @if (personalDataForm.get('contacts.phone')?.value) {
         <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'phone','contacts')">close</mat-icon>
         }

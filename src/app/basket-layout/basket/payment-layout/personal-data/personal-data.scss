@@ -1,39 +1,44 @@
 .personal-data-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 18px;
+  background-color: rgb(255, 246, 246);
+
+  &__fio {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-    margin-bottom: 18px;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
 
-    &__fio {
-        display: flex;
-        flex-direction: row;
-        gap: 10px
-    }
+  &__birth-date {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
 
-    &__birth-date {
-        display: flex;
-        flex-direction: row;
-        gap: 10px
-    }
-
-    &__contacts {
-        display: flex;
-        flex-direction: row;
-        gap: 10px
-    }
+  &__contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
 }
 
 .input-wrapper {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .flush-value {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #6e6e6e32;
-    border-radius: 5px;
-    padding: 2px
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background-color: rgb(255 159 159 / 58%);
+  color: rgb(146, 0, 0);
+  border-radius: 50%;
 }

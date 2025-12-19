@@ -41,14 +41,11 @@ export class PaymentLayoutComponent implements OnInit {
   cirillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
   minLength = 3;
   private storageService = inject(StorageService);
+  private sentDataService = inject(DataService);
   toPaymentCards$: Observable<AmountCard[]> = this.storageService.products$;
-  destroy$ = new Subject<void>();
+  private destroy$ = new Subject<void>();
 
-  constructor(
-    private fb: FormBuilder,
-    private sentDataService: DataService,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.personalDataForm = this.createPersonalDataForm();

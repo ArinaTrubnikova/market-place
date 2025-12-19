@@ -1,25 +1,20 @@
 <h1 class="bold">Список наших самых лучших товаров</h1>
 
-<show-modal
-  [(isVisible)]="isModalVisible"
-  [selectedCard]="selectedCard"
-  (isProductSelected)="addProduct($event)"
-  (productCountChange)="getCount($event)"
-  [productCount]="selectedCard ? getCount(selectedCard.id) : 0"
-></show-modal>
+<show-modal [(isVisible)]="isModalVisible" [selectedCard]="selectedCard" (isProductSelected)="addProduct($event)"
+  (productCountChange)="getCount($event)" [productCount]="selectedCard ? getCount(selectedCard.id) : 0"></show-modal>
 
 <div class="products">
   @for(product of products; track product.id) {
 
   <mat-card class="products__card-container" appearance="outlined">
     <div class="products__title-wrapper">
-      <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)"/>
+      <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)" />
       <mat-card-header class="kedeberdi">
         <mat-card-title class="products__title" (click)="showModal(product)">{{
           product.title
-        }}</mat-card-title>
+          }}</mat-card-title>
       </mat-card-header>
-      
+
     </div>
 
     <mat-card-content>
@@ -31,14 +26,13 @@
       </div>
     </mat-card-content>
 
-    <button
-      matButton="elevated"
-      class="products__sum-btn kedeberdi"
-      (click)="addProduct(product)"
-    >
+    <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(product)">
       {{ !getCount(product.id) ? 'Добавить в корзину' : getCount(product.id) + ' +' }}
     </button>
   </mat-card>
 
   }
 </div>
+
+
+<product-card></product-card>

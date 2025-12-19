@@ -7,10 +7,11 @@ import { CurrencyPipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { ProductCardComponent } from '../common/product-card/product-card';
 
 @Component({
   selector: 'product-component',
-  imports: [ShowModal, CurrencyPipe, MatCardModule, MatButtonModule],
+  imports: [ShowModal, CurrencyPipe, MatCardModule, MatButtonModule, ProductCardComponent],
   templateUrl: './product.html',
   styleUrl: './product.scss',
   providers: [GetProductService],

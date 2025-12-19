@@ -10,20 +10,19 @@
     </p>
     <p class="purchase-history-container__address">
       Адрес:<span class="data">
-         город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }},
+        город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }},
         дом {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
       </span>
     </p>
     @for(product of buy.productData; track product.id) {
     <div class="history-wrapper">
       <mat-card class="purchase-history-container__card">
-        <mat-card-header
-          ><mat-card-title class="purchase-history-container__title">{{
+        <mat-card-header><mat-card-title class="purchase-history-container__title">{{
             product.title
-          }}</mat-card-title>
+            }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-           <p class="purchase-history-container__description">{{ product.description }}</p>
+          <p class="purchase-history-container__description">{{ product.description }}</p>
           <p class="purchase-history-container__cost">
             {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
           </p>
@@ -34,7 +33,7 @@
     } @empty {
     <p>История покупок пуста</p>
     }
-    <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ totalPrice | currency : 'RUB' : 'symbol-narrow'}}</p>
+    <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ buy.amount }}</p>
   </div>
   }
 </div>

@@ -11,14 +11,12 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'purchase-history',
   imports: [AsyncPipe, CurrencyPipe, MatCardModule],
   templateUrl: './purchase-history.html',
-  providers: [],
   styleUrl: './purchase-history.scss',
 })
 export class PurchaseHistoryComponent {
   private dataService: DataService = inject(DataService);
   private getProductService: GetProductService = inject(GetProductService);
   public purchaseHistoryCard$!: Observable<any>;
-  totalPrice: number = 0;
 
   ngOnInit() {
     this.purchaseHistoryCard$ = combineLatest([
@@ -32,17 +30,12 @@ export class PurchaseHistoryComponent {
           cardsProduct.set(id, { ...card });
         });
 
-        this.totalPrice = productsBuy.reduce(
-          (total, buy) =>
-            total +
-            buy.productData.reduce((sum, product) => {
-              const card = cardsProduct.get(product.id);
-              return sum + product.count * (card?.cost || 0);
-            }, 0),
-          0
-        );
-
         return productsBuy.map((buy) => {
+          const totalPrice = buy.productData.reduce((total, product) => {
+            const card = cardsProduct.get(product.id);
+            return total + product.count * (card?.cost || 0);
+          }, 0);
+
           const products = buy.productData.map((product) => {
             return {
               ...cardsProduct.get(product.id),
@@ -53,23 +46,10 @@ export class PurchaseHistoryComponent {
           return {
             ...buy,
             productData: products,
+            amount: totalPrice,
           };
         });
       })
     );
-    console.log(this.purchaseHistoryCard$);
-
-    this.getTotalPrice();
-  }
-
-  getTotalPrice() {
-    this.purchaseHistoryCard$.pipe(
-      map((buy: BuyProduct) =>
-        buy.productData.reduce(
-          (total: number, product: any) => total + product.count * product.cost,
-          0
-        )
-      )
-    ).subscribe(data => this.totalPrice = data);
   }
 }

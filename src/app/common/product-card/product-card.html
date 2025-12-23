@@ -4,7 +4,7 @@
     @for (product of products; track product.id) {
     <mat-card class="products__card-container" appearance="outlined">
         <div class="products__title-wrapper">
-            <img mat-card-image [src]="product.image" class="products__image" />
+            <img mat-card-image [src]="product.image" class="products__image" (click)="showModal()" />
             <mat-card-header class="kedeberdi">
                 <mat-card-title class="products__title">{{
                     product.title

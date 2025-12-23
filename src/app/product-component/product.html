@@ -3,8 +3,9 @@
 <show-modal [(isVisible)]="isModalVisible" [selectedCard]="selectedCard" (isProductSelected)="addProduct($event)"
   (productCountChange)="getCount($event)" [productCount]="selectedCard ? getCount(selectedCard.id) : 0"></show-modal>
 
-<div class="products">
-  @for(product of products; track product.id) {
+
+<product-card [products]="products"></product-card>
+<!-- @for(product of products; track product.id) {
 
   <mat-card class="products__card-container" appearance="outlined">
     <div class="products__title-wrapper">
@@ -31,8 +32,4 @@
     </button>
   </mat-card>
 
-  }
-</div>
-
-
-<product-card></product-card>
+  } -->

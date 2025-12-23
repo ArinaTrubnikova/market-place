@@ -1,1 +1,31 @@
-<h1>карточка товарчика</h1>
+@if(products) {
+
+<div class="products">
+    @for (product of products; track product.id) {
+    <mat-card class="products__card-container" appearance="outlined">
+        <div class="products__title-wrapper">
+            <img mat-card-image [src]="product.image" class="products__image" />
+            <mat-card-header class="kedeberdi">
+                <mat-card-title class="products__title">{{
+                    product.title
+                    }}</mat-card-title>
+            </mat-card-header>
+
+        </div>
+
+        <mat-card-content>
+            <div class="card-content">
+                <p class="products__description kedeberdi">{{ product.description }}</p>
+                <p class="products__cost kedeberdi">
+                    {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
+                </p>
+            </div>
+        </mat-card-content>
+
+        <button matButton="elevated" class="products__sum-btn kedeberdi">
+            Добавить в корзину
+        </button>
+    </mat-card>
+    }
+</div>
+}

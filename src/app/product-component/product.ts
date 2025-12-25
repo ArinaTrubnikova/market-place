@@ -40,9 +40,10 @@ export class ProductComponent {
   getCount(cardId: number): number {
     const product = this.storageService.productValue.find(
       (product: AmountCard) => product.id === cardId
-    );
+    );    
     return product ? product.count : 0;
   }
+
 
   getProduct() {
     this.productSubscription = this.getProductService.getProduct().subscribe((data: Card[]) => {

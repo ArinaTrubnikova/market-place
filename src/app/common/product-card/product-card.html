@@ -23,7 +23,7 @@
         </mat-card-content>
 
         <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(product)">
-            Добавить в корзину
+            {{ getCountFn(product.id) === 0 ? 'Добавить в корзину' : getCountFn(product.id) + ' +' }}
         </button>
     </mat-card>
     }

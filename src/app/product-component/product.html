@@ -4,8 +4,9 @@
   (productCountChange)="getCount($event)" [productCount]="selectedCard ? getCount(selectedCard.id) : 0"></show-modal>
 
 
-<product-card [products]="products" (isModalShow)="showModal($event)"
-  (isAddedProduct)="addProduct($event)"></product-card>
+<product-card [products]="products" (isModalShow)="showModal($event)" 
+  (isAddedProduct)="addProduct($event)"  [getCountFn]="getCount.bind(this)" ></product-card>
+
 <!-- @for(product of products; track product.id) {
 
   <mat-card class="products__card-container" appearance="outlined">

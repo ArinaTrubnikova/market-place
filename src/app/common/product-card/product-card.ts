@@ -13,11 +13,18 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class ProductCardComponent {
   @Input() products: Card[] = [];
-  isModalShow = output<boolean>();
+  isModalShow = output<Card>();
+  isAddedProduct = output<Card>();
 
   constructor() {}
 
-  showModal(elem: boolean) {
-    this.isModalShow.emit(elem);
+  showModal(product: Card) {
+    this.isModalShow.emit(product);
   }
+
+  addProduct(product: Card) {
+    this.isAddedProduct.emit(product);
+  }
+
+  getButtonText(count: number) {}
 }

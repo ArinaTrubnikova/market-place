@@ -4,9 +4,9 @@
     @for (product of products; track product.id) {
     <mat-card class="products__card-container" appearance="outlined">
         <div class="products__title-wrapper">
-            <img mat-card-image [src]="product.image" class="products__image" (click)="showModal()" />
+            <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)" />
             <mat-card-header class="kedeberdi">
-                <mat-card-title class="products__title">{{
+                <mat-card-title class="products__title" (click)="showModal(product)">{{
                     product.title
                     }}</mat-card-title>
             </mat-card-header>
@@ -22,7 +22,7 @@
             </div>
         </mat-card-content>
 
-        <button matButton="elevated" class="products__sum-btn kedeberdi">
+        <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(product)">
             Добавить в корзину
         </button>
     </mat-card>

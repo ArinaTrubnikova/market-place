@@ -3,7 +3,6 @@ import { GetProductService } from './services/get-product.service';
 import { Card, AmountCard } from './interfaces/product-card.model';
 import { StorageService } from '../services/storage.service';
 import { ShowModal } from './show-modal/show-modal';
-import { CurrencyPipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +10,7 @@ import { ProductCardComponent } from '../common/product-card/product-card';
 
 @Component({
   selector: 'product-component',
-  imports: [ShowModal, CurrencyPipe, MatCardModule, MatButtonModule, ProductCardComponent],
+  imports: [ShowModal, MatCardModule, MatButtonModule, ProductCardComponent],
   templateUrl: './product.html',
   styleUrl: './product.scss',
   providers: [GetProductService],
@@ -36,7 +35,7 @@ export class ProductComponent {
     this.isModalVisible = true;
   }
 
-  hideModal = () => (this.isModalVisible = false);
+  // hideModal = () => (this.isModalVisible = false);
 
   getCount(cardId: number): number {
     const product = this.storageService.productValue.find(

@@ -22,9 +22,28 @@
             </div>
         </mat-card-content>
 
+        @if(showBasketBtns){
+        <div class="basket-card__btn-wrapper">
+            <div class="basket-card__btn-action-wrapper">
+                <button matButton="elevated" class="basket-card__minus-btn" (click)="reduceAmountProduct(product)">
+                    -
+                </button>
+                <p class="basket-card__count">{{ product.count}}</p>
+                <button matButton="elevated" class="basket-card__plus-btn" (click)="addProduct(product)">
+                    +
+                </button>
+            </div>
+
+            <button matButton="elevated" class="basket-card__delete-btn" (click)="deleteCard(product.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        }
+
+        @if (showProductsBtns){
         <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(product)">
             {{ getCountFn(product.id) === 0 ? 'Добавить в корзину' : getCountFn(product.id) + ' +' }}
-        </button>
+        </button>}
     </mat-card>
     }
 </div>

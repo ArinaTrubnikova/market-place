@@ -1,7 +1,11 @@
 @if(!hasItemsInCart) {
 <h1 class="basket-header">Ваша корзина пуста</h1>
 } @else {
-<div class="basket">
+
+<product-card [products]="(cards$ | async)!" [showProductsBtns]="false" [showBasketBtns]="true"
+  (isAddedProduct)="addProduct($event)" (isDeletedCard)="deleteCard($event)"
+  (isReducedAmountProduct)="reduceAmountProduct($event)"></product-card>
+<!-- <div class="basket">
   @for(card of (cards$ | async); track card.id) {
 
   <mat-card class="basket-card__container">
@@ -41,6 +45,6 @@
     </div>
   </mat-card>
   }
-</div>
+</div> -->
 <button matButton="elevated" class="basket__payment-btn" routerLink="/basket/buy">Купить</button>
 }

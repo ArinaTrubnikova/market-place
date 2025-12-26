@@ -1,12 +1,12 @@
 import { Component, Input, output } from '@angular/core';
 import { Card } from '../interfaces/product-card.model';
-import { CurrencyPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { ProductCardComponent } from '../../common/product-card/product-card';
 
 @Component({
   selector: 'show-modal',
-  imports: [CurrencyPipe, MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, ProductCardComponent],
   templateUrl: './show-modal.html',
   styleUrl: './show-modal.scss',
 })

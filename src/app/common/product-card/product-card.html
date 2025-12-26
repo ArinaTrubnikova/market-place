@@ -23,18 +23,18 @@
         </mat-card-content>
 
         @if(showBasketBtns){
-        <div class="basket-card__btn-wrapper">
-            <div class="basket-card__btn-action-wrapper">
-                <button matButton="elevated" class="basket-card__minus-btn" (click)="reduceAmountProduct(product)">
+        <div class="products__btn-wrapper">
+            <div class="products__btn-action-wrapper">
+                <button matButton="elevated" class="products__minus-btn" (click)="reduceAmountProduct(product)">
                     -
                 </button>
-                <p class="basket-card__count">{{ product.count}}</p>
-                <button matButton="elevated" class="basket-card__plus-btn" (click)="addProduct(product)">
+                <p class="products__count">{{ product.count}}</p>
+                <button matButton="elevated" class="products__plus-btn" (click)="addProduct(product)">
                     +
                 </button>
             </div>
 
-            <button matButton="elevated" class="basket-card__delete-btn" (click)="deleteCard(product.id)">
+            <button matButton="elevated" class="products__delete-btn" (click)="deleteCard(product.id)">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>

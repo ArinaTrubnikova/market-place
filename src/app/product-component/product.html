@@ -5,7 +5,8 @@
 
 
 <product-card [products]="products" (isModalShow)="showModal($event)" (isAddedProduct)="addProduct($event)"
-  [getCountFn]="getCount.bind(this)" [showProductsBtns]="true" [showBasketBtns]="false"></product-card>
+  [getCountFn]="getCount.bind(this)" [showProductsBtns]="true" [showBasketBtns]="false"
+  [closeModalBtn]="false"></product-card>
 
 <!-- @for(product of products; track product.id) {
 

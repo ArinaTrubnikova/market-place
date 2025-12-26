@@ -2,8 +2,9 @@
 <div class="modal-product">
 
   @if(selectedCard) {
+  <product-card></product-card>
 
-  <mat-card class="modal-product__card-container">
+  <!-- <mat-card class="modal-product__card-container">
       <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">X</button>   
         <mat-card-header><mat-card-title class="modal-product__title">{{ selectedCard.title
             }}</mat-card-title></mat-card-header>
@@ -19,7 +20,7 @@
         <button matButton="elevated" class="modal_product__sum-btn" (click)="addProduct(selectedCard)">
           {{ !productCount ? 'Добавить в корзину' : productCount + ' +' }}
         </button>
-  </mat-card>
+  </mat-card> -->
   }
 
 </div>

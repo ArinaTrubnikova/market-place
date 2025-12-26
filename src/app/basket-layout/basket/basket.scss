@@ -1,117 +1,16 @@
-.basket {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 20px;
-
-  &-card__container {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    box-shadow: 2px 2px 5px rgba(163, 88, 88, 0.3);
-    border-radius: 5px;
-    gap: 15px;
-    background-color: rgb(255, 230, 230);
-  }
-
-  &-card__title {
-    font-size: 30px;
-    opacity: 0.7;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-
-  &-card__description,
-  &-card__cost {
-    font-size: 16px;
-    text-align: start;
-    margin: 0;
-  }
-
-  &-card__btn-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 5px;
-    align-items: center;
-    padding: 5px;
-    border-radius: 4px;
-  }
-
-  &-card__btn-action-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-  }
-
-  &-card__minus-btn,
-  &-card__plus-btn,
-  &-card__delete-btn {
-    border: none;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-  }
-
-  &-card__count {
-    color: rgb(129, 0, 0);
-    margin: 0;
-    padding: 0 10px;
-    font-size: 18px;
-    min-width: 20px;
-    text-align: center;
-  }
-
-  &__payment-btn {
-    justify-self: center;
-    border: none;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-left: 20px;
-  }
-
-  &-card__title-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    margin-top: 10px;
-  }
-}
-
-
 .basket-header {
   font-size: 16px;
   font-weight: 400;
   opacity: 0.6;
 }
 
-.card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px
-}
-
-.mat-icon {
-  margin: 0;
-  padding: 0;
-}
-
-.products__image {
-  height: 150px;
-    width: 150px;
-    border-radius: 50% !important;
-    box-shadow: 5px 5px 15px 0 rgba(102, 0, 0, 0.3);
+.payment-btn {
+  justify-self: center;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-left: 20px;
 }

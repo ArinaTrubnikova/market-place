@@ -17,6 +17,7 @@ export class ProductCardComponent {
   @Input() showImage: boolean = true;
   @Input() showProductsBtns: boolean = true;
   @Input() showBasketBtns: boolean = true;
+  @Input() closeModalBtn: boolean = true;
   isModalShow = output<Card>();
   isAddedProduct = output<any>();
   isReducedAmountProduct = output<AmountCard>();

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { StorageService } from './../services/storage.service';
+import { Component, inject } from '@angular/core';
 import { GetProductService } from './services/get-product.service';
-import { Card, AmountCard } from './interfaces/product-card.model';
-import { StorageService } from '../services/storage.service';
+import { AmountCard, Card } from './interfaces/product-card.model';
 import { ShowModal } from './show-modal/show-modal';
 import { Subscription } from 'rxjs';
 import { ProductCardComponent } from '../common/product-card/product-card';
@@ -14,15 +14,15 @@ import { ProductCardComponent } from '../common/product-card/product-card';
   providers: [GetProductService],
 })
 export class ProductComponent {
+  private storageService: StorageService = inject(StorageService);
+  private getProductService: GetProductService = inject(GetProductService);
   selectedCard!: Card;
   isModalVisible: boolean = false;
   products: Card[] = [];
+  // countInProducts = this.storageService.getCount.bind(this.storageService);
   private productSubscription?: Subscription;
 
-  constructor(
-    private getProductService: GetProductService,
-    private storageService: StorageService
-  ) {}
+  constructor() { }
 
   ngOnInit() {
     this.getProduct();
@@ -32,8 +32,6 @@ export class ProductComponent {
     this.selectedCard = product;
     this.isModalVisible = true;
   }
-
-  // hideModal = () => (this.isModalVisible = false);
 
   getCount(cardId: number): number {
     const product = this.storageService.productValue.find(

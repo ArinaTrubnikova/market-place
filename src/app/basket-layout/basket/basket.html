@@ -4,7 +4,7 @@
 
 <product-card [products]="(cards$ | async)!" [showProductsBtns]="false" [showBasketBtns]="true"
   (isAddedProduct)="addProduct($event)" (isDeletedCard)="deleteCard($event)"
-  (isReducedAmountProduct)="reduceAmountProduct($event)" [closeModalBtn]="false"></product-card>
+  (isReducedAmountProduct)="reduceAmountProduct($event)" [closeModalBtn]="false" [isModal]="false"></product-card>
 <!-- <div class="basket">
   @for(card of (cards$ | async); track card.id) {
 

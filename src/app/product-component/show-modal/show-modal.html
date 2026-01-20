@@ -1,10 +1,18 @@
 @if (isVisible) {
-<div class="modal-product">
+  <div class="modal-product">
+    @if (selectedCard) {
+      <product-card
+        [products]="[selectedCard]"
+        [closeModalBtn]="true"
+        (isModalClosed)="hideModal()"
+        [showProductsBtns]="true"
+        (isAddedProduct)="addProduct($event)"
+        [getCountFn]="getCount.bind(this)"
+        [showBasketBtns]="false"
+        [isModal]="true"
+      ></product-card>
 
-  @if(selectedCard) {
-  <product-card [products]="[selectedCard]" [closeModalBtn]="true" (isModalClosed)="hideModal()"></product-card>
-
-  <!-- <mat-card class="modal-product__card-container">
+      <!-- <mat-card class="modal-product__card-container">
       <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">X</button>   
         <mat-card-header><mat-card-title class="modal-product__title">{{ selectedCard.title
             }}</mat-card-title></mat-card-header>
@@ -21,7 +29,6 @@
           {{ !productCount ? 'Добавить в корзину' : productCount + ' +' }}
         </button>
   </mat-card> -->
-  }
-
-</div>
+    }
+  </div>
 }

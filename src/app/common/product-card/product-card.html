@@ -1,19 +1,25 @@
 @if (products) {
-  <div class="products">
+  <div [class.modal-product]="isModal" [class.products]="!isModal">
     @for (product of products; track product.id) {
-      <mat-card class="products__card-container" appearance="outlined">
+      <mat-card
+        [class.modal-product__card-container]="isModal"
+        [class.products__card-container]="!isModal"
+        appearance="outlined"
+      >
         @if (closeModalBtn) {
           <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">
             X
           </button>
         }
         <div class="products__title-wrapper">
-          <img
-            mat-card-image
-            [src]="product.image"
-            class="products__image"
-            (click)="showModal(product)"
-          />
+          @if (!isModal) {
+            <img
+              mat-card-image
+              [src]="product.image"
+              class="products__image"
+              (click)="showModal(product)"
+            />
+          }
           <mat-card-header class="kedeberdi">
             <mat-card-title class="products__title" (click)="showModal(product)">{{
               product.title
@@ -24,6 +30,9 @@
         <mat-card-content>
           <div class="card-content">
             <p class="products__description kedeberdi">{{ product.description }}</p>
+            @if (isModal) {
+              <p class="products__description kedeberdi">{{ product.fullDescription }}</p>
+            }
             <p class="products__cost kedeberdi">
               {{ product.cost | currency: 'RUB' : 'symbol-narrow' }}
             </p>

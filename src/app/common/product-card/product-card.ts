@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class ProductCardComponent {
   @Input() products: any[] = [];
   @Input() getCountFn!: (id: number) => number;
-  @Input() showImage: boolean = true;
+  @Input() isModal: boolean = true;
   @Input() showProductsBtns: boolean = true;
   @Input() showBasketBtns: boolean = true;
   @Input() closeModalBtn: boolean = true;

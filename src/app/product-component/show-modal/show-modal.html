@@ -2,7 +2,7 @@
 <div class="modal-product">
 
   @if(selectedCard) {
-  <product-card></product-card>
+  <product-card [products]="[selectedCard]" [closeModalBtn]="true" (isModalClosed)="hideModal()"></product-card>
 
   <!-- <mat-card class="modal-product__card-container">
       <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">X</button>   

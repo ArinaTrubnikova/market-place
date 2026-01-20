@@ -33,8 +33,6 @@ export class ProductComponent {
     this.isModalVisible = true;
   }
 
-  // hideModal = () => (this.isModalVisible = false);
-
   getCount(cardId: number): number {
     const product = this.storageService.productValue.find(
       (product: AmountCard) => product.id === cardId

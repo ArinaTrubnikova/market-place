@@ -18,6 +18,7 @@ export class ProductCardComponent {
   @Input() showProductsBtns: boolean = true;
   @Input() showBasketBtns: boolean = true;
   @Input() closeModalBtn: boolean = true;
+  isModalClosed = output<boolean>();
   isModalShow = output<Card>();
   isAddedProduct = output<any>();
   isReducedAmountProduct = output<AmountCard>();
@@ -27,6 +28,10 @@ export class ProductCardComponent {
 
   showModal(product: Card) {
     this.isModalShow.emit(product);
+  }
+
+  hideModal() {
+    this.isModalClosed.emit(false);
   }
 
   addProduct(product: any) {

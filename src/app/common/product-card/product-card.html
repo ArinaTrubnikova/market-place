@@ -1,50 +1,73 @@
-@if(products) {
-
-<div class="products">
+@if (products) {
+  <div class="products">
     @for (product of products; track product.id) {
-    <mat-card class="products__card-container" appearance="outlined">
+      <mat-card class="products__card-container" appearance="outlined">
+        @if (closeModalBtn) {
+          <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">
+            X
+          </button>
+        }
         <div class="products__title-wrapper">
-            <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)" />
-            <mat-card-header class="kedeberdi">
-                <mat-card-title class="products__title" (click)="showModal(product)">{{
-                    product.title
-                    }}</mat-card-title>
-            </mat-card-header>
-
+          <img
+            mat-card-image
+            [src]="product.image"
+            class="products__image"
+            (click)="showModal(product)"
+          />
+          <mat-card-header class="kedeberdi">
+            <mat-card-title class="products__title" (click)="showModal(product)">{{
+              product.title
+            }}</mat-card-title>
+          </mat-card-header>
         </div>
 
         <mat-card-content>
-            <div class="card-content">
-                <p class="products__description kedeberdi">{{ product.description }}</p>
-                <p class="products__cost kedeberdi">
-                    {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
-                </p>
-            </div>
+          <div class="card-content">
+            <p class="products__description kedeberdi">{{ product.description }}</p>
+            <p class="products__cost kedeberdi">
+              {{ product.cost | currency: 'RUB' : 'symbol-narrow' }}
+            </p>
+          </div>
         </mat-card-content>
 
-        @if(showBasketBtns){
-        <div class="products__btn-wrapper">
+        @if (showBasketBtns) {
+          <div class="products__btn-wrapper">
             <div class="products__btn-action-wrapper">
-                <button matButton="elevated" class="products__minus-btn" (click)="reduceAmountProduct(product)">
-                    -
-                </button>
-                <p class="products__count">{{ product.count}}</p>
-                <button matButton="elevated" class="products__plus-btn" (click)="addProduct(product)">
-                    +
-                </button>
+              <button
+                matButton="elevated"
+                class="products__minus-btn"
+                (click)="reduceAmountProduct(product)"
+              >
+                -
+              </button>
+              <p class="products__count">{{ product.count }}</p>
+              <button matButton="elevated" class="products__plus-btn" (click)="addProduct(product)">
+                +
+              </button>
             </div>
 
-            <button matButton="elevated" class="products__delete-btn" (click)="deleteCard(product.id)">
-                <mat-icon>delete</mat-icon>
+            <button
+              matButton="elevated"
+              class="products__delete-btn"
+              (click)="deleteCard(product.id)"
+            >
+              <mat-icon>delete</mat-icon>
             </button>
-        </div>
+          </div>
         }
 
-        @if (showProductsBtns){
-        <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(product)">
-            {{ getCountFn(product.id) === 0 ? 'Добавить в корзину' : getCountFn(product.id) + ' +' }}
-        </button>}
-    </mat-card>
+        @if (showProductsBtns) {
+          <button
+            matButton="elevated"
+            class="products__sum-btn kedeberdi"
+            (click)="addProduct(product)"
+          >
+            {{
+              getCountFn(product.id) === 0 ? 'Добавить в корзину' : getCountFn(product.id) + ' +'
+            }}
+          </button>
+        }
+      </mat-card>
     }
-</div>
+  </div>
 }

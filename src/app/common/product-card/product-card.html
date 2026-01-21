@@ -1,32 +1,52 @@
 @if(products) {
-
-<div [class.products]="!isModal" [class.modal-product]="isModal">
+<div [class.products]="!isModal && !isForPayment" [class.modal-product]="isModal"
+    [class.payment]="isForPayment">
     @for (product of products; track product.id) {
-    <mat-card  [class.modal-product__card-container]="isModal" [class.products__card-container]="!isModal" appearance="outlined">
+    <mat-card [class.modal-product__card-container]="isModal && !isForPayment"
+        [class.products__card-container]="!isModal && !isForPayment"
+        [class.payment-card__container]="isForPayment && !isModal" appearance="outlined">
         <div class="products__title-wrapper">
-            @if(closeModalBtn){<button matButton="elevated" class="modal-product__close-btn"
-                (click)="closeModal()">X</button> }
-            @if(!isModal) { <img mat-card-image [src]="product.image" class="products__image"
-                (click)="showModal(product)" />}
+            @if(closeModalBtn){
+            <button matButton="elevated" class="modal-product__close-btn" (click)="closeModal()">X</button>
+            }
+            @if(!isModal) {
+            <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)" />
+            }
             <mat-card-header class="kedeberdi">
-                <mat-card-title class="products__title" (click)="showModal(product)">{{
-                    product.title
-                    }}</mat-card-title>
+                <mat-card-title class="products__title" (click)="showModal(product)">
+                    {{ product.title }}
+                </mat-card-title>
             </mat-card-header>
+
+            @if(isForPayment) {
+            <div class="payment-card__total-wrapper">
+                <mat-chip-set>
+                    <mat-chip>
+                        Количество: {{ product.count }}
+                    </mat-chip>
+                    <mat-chip>
+                        Стоимость: {{ product.cost * product.count | currency : 'RUB' : 'symbol-narrow' }}
+                    </mat-chip>
+                </mat-chip-set>
+            </div>
+            }
         </div>
 
+        @if(!isForPayment) {
         <mat-card-content>
             <div class="card-content">
                 <p class="products__description kedeberdi">{{ product.description }}</p>
                 <p class="products__cost kedeberdi">
                     {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
                 </p>
-                @if(isModal) {<p class="products__description kedeberdi">
+                @if(isModal) {
+                <p class="products__description kedeberdi">
                     {{ product.fullDescription }}
                 </p>
                 }
             </div>
         </mat-card-content>
+        }
 
         @if(showBasketBtns){
         <div class="products__btn-wrapper">
@@ -48,8 +68,17 @@
         @if (showProductsBtns){
         <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(product)">
             {{ getCountFn(product.id) === 0 ? 'Добавить в корзину' : getCountFn(product.id) + ' +' }}
-        </button>}
+        </button>
+        }
     </mat-card>
     }
 </div>
+}
+
+@if(isForPayment) {
+<mat-chip-set>
+    <mat-chip class="payment__total-amount">
+        Итого к оплате: {{ getTotalPrice() }}
+    </mat-chip>
+</mat-chip-set>
 }

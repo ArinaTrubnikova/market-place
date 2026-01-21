@@ -1,6 +1,10 @@
 <div class="payment-product">
   <div class="payment">
-    @for(card of (toPaymentCards$ | async); track card.id) {
+
+    <product-card [isForPayment]="true" [products]="(toPaymentCards$ | async)!" [closeModalBtn]="false"
+      [isModal]="false" [showBasketBtns]="false" [showProductsBtns]="false" [getTotalPrice]="getTotalPrice"></product-card>
+
+    <!-- @for(card of (toPaymentCards$ | async); track card.id) {
 
     <mat-card class="payment-card__container">
       <mat-card-header><mat-card-title class="payment-card__title">{{ card.title }}</mat-card-title></mat-card-header>
@@ -22,9 +26,9 @@
       </mat-card-content>
 
     </mat-card>
-    }
+    } -->
   </div>
-  <mat-chip-set><mat-chip class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</mat-chip></mat-chip-set>
+  <!-- <mat-chip-set><mat-chip class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</mat-chip></mat-chip-set> -->
 
 </div>
 

@@ -101,6 +101,89 @@
   }
 }
 
+.modal-product {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__card-container {
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    border: none;
+    background-color: rgb(255, 230, 230);
+  }
+}
+
+.payment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+
+  &-card__container {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    gap: 8px;
+    padding: 15px;
+    background-color: rgb(255, 230, 230);
+    box-shadow: 2px 2px 5px rgba(163, 88, 88, 0.3);
+  }
+
+  &-card__title {
+    font-size: 30px;
+    opacity: 0.7;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-card__total-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 5px;
+    font-size: 18px;
+  }
+
+  &-card__cost {
+    font-size: 18px;
+    margin: 0;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  &__total-amount {
+    font-size: 15px;
+    padding: 5px;
+    width: auto;
+    border-radius: 4px;
+    margin: 0;
+    text-align: start;
+  }
+}
+
 .card-content {
   display: flex;
   flex-direction: column;

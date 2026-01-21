@@ -4,7 +4,7 @@
   @if(selectedCard) {
   <product-card [products]="[selectedCard]" [showProductsBtns]="true"
       [showBasketBtns]="false" [closeModalBtn]="true" (isClosedModal)="hideModal()" [isModal]="true"
-      (isAddedProduct)="addProduct($event)" [getCountFn]="countInModal"></product-card>
+      (isAddedProduct)="addProduct($event)" [getCountFn]="countInModal" [isForPayment]="false"></product-card>
 
   <!-- <mat-card class="modal-product__card-container">
       <button matButton="elevated" class="modal-product__close-btn" (click)="hideModal()">X</button>   

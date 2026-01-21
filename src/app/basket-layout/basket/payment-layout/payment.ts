@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PersonalDataComponent } from './personal-data/personal-data';
 import { PaymentDetailsComponent } from './payment-details/payment-details';
 import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { dateValidator } from '../../../common/date-validator';
+import { dateValidator } from '../../../common/validators/date-validator';
 import { DataService } from '../../../services/sent-data.service';
 import { StorageService } from '../../../services/storage.service';
 import { BuyProduct } from '../interfaces/buy-product.model';
@@ -16,6 +16,7 @@ import { RussianDateAdapter } from '../../../common/date-adapter';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { ProductCardComponent } from '../../../common/product-card/product-card';
 
 @Component({
   selector: 'payment-layout',
@@ -30,6 +31,7 @@ import { MatChipsModule } from '@angular/material/chips';
     CurrencyPipe,
     MatCardModule,
     MatChipsModule,
+    ProductCardComponent
   ],
   providers: [{ provide: DateAdapter, useClass: RussianDateAdapter }],
   templateUrl: './payment.html',
@@ -38,8 +40,8 @@ import { MatChipsModule } from '@angular/material/chips';
 export class PaymentLayoutComponent implements OnInit {
   personalDataForm!: FormGroup;
   paymentDetailsForm!: FormGroup;
-  cirillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
-  minLength = 3;
+  readonly cirillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
+  readonly minLength = 3;
   private storageService = inject(StorageService);
   private sentDataService = inject(DataService);
   toPaymentCards$: Observable<AmountCard[]> = this.storageService.products$;

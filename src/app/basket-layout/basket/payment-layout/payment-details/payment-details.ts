@@ -5,9 +5,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule, MatSelectChange } from "@angular/material/select";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
-import { flushValue } from "../../../../common/flush-value";
+import { flushValue } from "../../../../common/utils/flush-value";
 import { MatIconModule } from "@angular/material/icon";
-import { UpperCaseFormatDirective } from "../../../../common/fio-format";
+import { UpperCaseFormatDirective } from "../../../../common/directives/fio-format.directive";
 
 @Component({
   selector: 'payment-details',

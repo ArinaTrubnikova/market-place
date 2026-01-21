@@ -6,10 +6,10 @@ import { MatFormField, MatInputModule } from '@angular/material/input';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { UpperCaseFormatDirective } from '../../../../common/fio-format';
-import { flushValue } from '../../../../common/flush-value';
+import { UpperCaseFormatDirective } from '../../../../common/directives/fio-format.directive';
+import { flushValue } from '../../../../common/utils/flush-value';
 import { MatIconModule } from '@angular/material/icon';
-import { autoFormatDate } from '../../../../common/date-format-function';
+import { autoFormatDate } from '../../../../common/utils/date-format-function';
 
 @Component({
   selector: 'personal-data',

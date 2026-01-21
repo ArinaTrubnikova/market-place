@@ -4,12 +4,18 @@ import { AmountCard, Card } from '../../product-component/interfaces/product-car
 import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'product-card',
   templateUrl: 'product-card.html',
   styleUrl: 'product-card.scss',
-  imports: [MatCardModule, CurrencyPipe, MatButtonModule, MatIconModule],
+  imports: [
+    MatCardModule, 
+    CurrencyPipe, 
+    MatButtonModule, 
+    MatIconModule, 
+    MatChipsModule],
 })
 export class ProductCardComponent {
   @Input() products: any[] = [];
@@ -18,6 +24,8 @@ export class ProductCardComponent {
   @Input() showProductsBtns: boolean = true;
   @Input() showBasketBtns: boolean = true;
   @Input() closeModalBtn: boolean = true;
+  @Input() isForPayment: boolean = true;
+  @Input() getTotalPrice!: () => {};
   isModalShow = output<Card>();
   isAddedProduct = output<any>();
   isReducedAmountProduct = output<AmountCard>();

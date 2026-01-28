@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormGroupDirective, FormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormGroupDirective, FormsModule, ControlContainer } from '@angular/forms';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
@@ -29,9 +29,13 @@ import { autoFormatDate } from '../../../../common/utils/date-format-function';
   standalone: true,
   templateUrl: './personal-data.html',
   providers: [provideNgxMask()],
+  viewProviders: [
+    { provide: ControlContainer, useExisting: FormGroupDirective }
+  ],
   styleUrl: './personal-data.scss',
 })
 export class PersonalDataComponent {
+
   personalDataForm!: FormGroup;
   flushValue = flushValue;
   dateFormat = autoFormatDate;

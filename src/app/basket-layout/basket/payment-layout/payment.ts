@@ -15,7 +15,6 @@ import { RussianDateAdapter } from '../../../common/date-adapter';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { ProductCardComponent } from '../../../common/product-card/product-card';
 import { CardSale } from '../interfaces/card-sale.model';
 
 @Component({
@@ -30,8 +29,7 @@ import { CardSale } from '../interfaces/card-sale.model';
     AsyncPipe,
     CurrencyPipe,
     MatCardModule,
-    MatChipsModule,
-    ProductCardComponent
+    MatChipsModule
   ],
   providers: [{ provide: DateAdapter, useClass: RussianDateAdapter }],
   templateUrl: './payment.html',

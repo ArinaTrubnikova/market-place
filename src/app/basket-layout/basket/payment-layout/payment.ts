@@ -10,7 +10,7 @@ import { StorageService } from '../../../services/storage.service';
 import { BuyProduct } from '../interfaces/buy-product.model';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { AmountCard } from '../../../product-component/interfaces/product-card.model';
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { DateAdapter } from '@angular/material/core';
 import { RussianDateAdapter } from '../../../common/date-adapter';
 import { Router } from '@angular/router';
@@ -28,7 +28,6 @@ import { ProductCardComponent } from '../../../common/product-card/product-card'
     PersonalDataComponent,
     PaymentDetailsComponent,
     AsyncPipe,
-    CurrencyPipe,
     MatCardModule,
     MatChipsModule,
     ProductCardComponent
@@ -40,10 +39,13 @@ import { ProductCardComponent } from '../../../common/product-card/product-card'
 export class PaymentLayoutComponent implements OnInit {
   personalDataForm!: FormGroup;
   paymentDetailsForm!: FormGroup;
-  readonly cirillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
+
+  readonly cyrillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
   readonly minLength = 3;
+
   private storageService = inject(StorageService);
   private sentDataService = inject(DataService);
+  
   toPaymentCards$: Observable<AmountCard[]> = this.storageService.products$;
   private destroy$ = new Subject<void>();
 
@@ -61,7 +63,7 @@ export class PaymentLayoutComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(this.minLength),
-          Validators.pattern(this.cirillicPattern),
+          Validators.pattern(this.cyrillicPattern),
         ],
       ],
       firstName: [
@@ -69,7 +71,7 @@ export class PaymentLayoutComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(this.minLength),
-          Validators.pattern(this.cirillicPattern),
+          Validators.pattern(this.cyrillicPattern),
         ],
       ],
       noMiddleName: [false],
@@ -78,7 +80,7 @@ export class PaymentLayoutComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(this.minLength),
-          Validators.pattern(this.cirillicPattern),
+          Validators.pattern(this.cyrillicPattern),
         ],
       ],
       birthDate: ['', [Validators.required, dateValidator()]],
@@ -145,7 +147,7 @@ export class PaymentLayoutComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  getTotalPrice() {
+  getTotalPrice = () => {
     return this.storageService.productValue.reduce(
       (total, product) => total + product.cost * product.count,
       0

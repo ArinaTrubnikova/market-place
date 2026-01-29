@@ -1,17 +1,18 @@
 @if(!hasItemsInCart) {
-<h1 class="basket-header">Ваша корзина пуста</h1>
+  <h1 class="basket-header">Ваша корзина пуста</h1>
 } @else {
-
-<product-card 
-[products]="(cards$ | async)!" 
-[showProductsBtns]="false" 
-[showBasketBtns]="true"
-(isAddedProduct)="addProduct($event)" 
-(isDeletedCard)="deleteCard($event)"
-(isReducedAmountProduct)="reduceAmountProduct($event)" 
-[closeModalBtn]="false" 
-[isModal]="false"
-[isForPayment]="false"></product-card>
+  <product-card 
+    [products]="(cards$ | async)!" 
+    [showProductsBtns]="false" 
+    [showBasketBtns]="true"
+    (isAddedProduct)="addProduct($event)" 
+    (isDeletedCard)="deleteCard($event)"
+    (isReducedAmountProduct)="reduceAmountProduct($event)" 
+    [closeModalBtn]="false" 
+    [isModal]="false"
+    [isForPayment]="false"></product-card>
+  <button matButton="elevated" class="payment-btn" routerLink="/basket/buy">Купить</button> 
+}
 <!-- <div class="basket">
   @for(card of (cards$ | async); track card.id) {
 
@@ -53,5 +54,3 @@
   </mat-card>
   }
 </div> -->
-<button matButton="elevated" class="payment-btn" routerLink="/basket/buy">Купить</button>
-}

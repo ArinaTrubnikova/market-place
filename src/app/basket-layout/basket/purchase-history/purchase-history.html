@@ -16,28 +16,33 @@
           </span>
       </p>
 
-      <product-card [products]="buy.productData" [isForPayment]="false" [isModal]="false" [showBasketBtns]="false"
-        [showProductsBtns]="false" [closeModalBtn]="false"></product-card>
+      <product-card 
+        [products]="buy.productData" 
+        [isForPayment]="false" 
+        [isModal]="false" 
+        [showBasketBtns]="false"
+        [showProductsBtns]="false" 
+        [closeModalBtn]="false"></product-card>
 
-      <!-- @for(product of buy.productData; track product.id) {
-          <div class="history-wrapper">
-            <mat-card class="purchase-history-container__card">
-              <mat-card-header><mat-card-title class="purchase-history-container__title">{{
-                  product.title
-                  }}</mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                <p class="purchase-history-container__description">{{ product.description }}</p>
-                <p class="purchase-history-container__cost">
-                  {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
-                </p>
-              </mat-card-content>
-            </mat-card>
-            <img [src]="product.image" [alt]="product.title" class="purchase-history-container__image">
-          </div>
-      } @empty {
-        <p>История покупок пуста</p>
-      } -->
+        <!-- @for(product of buy.productData; track product.id) {
+            <div class="history-wrapper">
+              <mat-card class="purchase-history-container__card">
+                <mat-card-header><mat-card-title class="purchase-history-container__title">{{
+                    product.title
+                    }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p class="purchase-history-container__description">{{ product.description }}</p>
+                  <p class="purchase-history-container__cost">
+                    {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
+                  </p>
+                </mat-card-content>
+              </mat-card>
+              <img [src]="product.image" [alt]="product.title" class="purchase-history-container__image">
+            </div>
+        } @empty {
+          <p>История покупок пуста</p>
+        } -->
       <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ buy.amount }}</p>
     </div>
   }

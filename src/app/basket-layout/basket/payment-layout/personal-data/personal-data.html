@@ -18,6 +18,7 @@
       <mat-error class="errors">Минимальное количество символов: 3</mat-error>
       }
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Имя</mat-label>
       <div class="input-wrapper">
@@ -34,22 +35,26 @@
       <mat-error class="errors">Минимальное количество символов: 3</mat-error>
       }
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Отчество</mat-label>
       <div class="input-wrapper">
         <input matInput formControlName="middleName" placeholder="Введите отчество" upperCaseFormat />
-        @if (personalDataForm.get('middleName')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'middleName')">close</mat-icon>
-        }
+          @if (personalDataForm.get('middleName')?.value) {
+            <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'middleName')">close</mat-icon>
+          }
       </div>
-      @if (hasError('middleName', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
-      } @if (hasError('middleName', 'pattern')) {
-      <mat-error class="errors">Недопустимые символы</mat-error>
-      } @if (hasError('middleName', 'minlength')) {
-      <mat-error class="errors">Минимальное количество символов: 3</mat-error>
-      }
+        @if (hasError('middleName', 'required')) {
+          <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        } 
+        @if (hasError('middleName', 'pattern')) {
+          <mat-error class="errors">Недопустимые символы</mat-error>
+        } 
+        @if (hasError('middleName', 'minlength')) {
+          <mat-error class="errors">Минимальное количество символов: 3</mat-error>
+        }
     </mat-form-field>
+
     <div class="checkbox-section">
       <mat-checkbox formControlName="noMiddleName" (change)="checkBoxChange($event)">
         Отчество отсутствует
@@ -65,13 +70,13 @@
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       @if (hasError('birthDate', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       } @if (hasError('birthDate', 'futureDate') && !hasError('birthDate', 'required')) {
-      <mat-error class="errors">Дата не может быть в будущем</mat-error>
+        <mat-error class="errors">Дата не может быть в будущем</mat-error>
       } @if (hasError('birthDate', 'minAge')) {
-      <mat-error class="errors"> Минимальный возраст: 18 лет</mat-error>
+        <mat-error class="errors"> Минимальный возраст: 18 лет</mat-error>
       } @if (hasError('birthDate', 'maxAge')) {
-      <mat-error class="errors"> Максимальный возраст: 75 лет</mat-error>
+        <mat-error class="errors"> Максимальный возраст: 75 лет</mat-error>
       }
     </mat-form-field>
   </div>
@@ -82,13 +87,13 @@
       <div class="input-wrapper">
         <input matInput formControlName="email" type="email" placeholder="example@mail.com" />
         @if (personalDataForm.get('contacts.email')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'email', 'contacts')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'email', 'contacts')">close</mat-icon>
         }
       </div>
       @if (hasError('contacts.email', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       } @if (hasError('contacts.email', 'email')) {
-      <mat-error class="errors">Недопустимые символы</mat-error>
+        <mat-error class="errors">Недопустимые символы</mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
@@ -97,11 +102,11 @@
         <input matInput formControlName="phone" type="tel" placeholder="+7 (999) 999-99-99" [mask]="'(000) 000-00-00'"
           [prefix]="'+7'" />
         @if (personalDataForm.get('contacts.phone')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'phone','contacts')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(personalDataForm,'phone','contacts')">close</mat-icon>
         }
       </div>
       @if (hasError('contacts.phone', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
   </div>

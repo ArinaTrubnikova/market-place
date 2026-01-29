@@ -6,11 +6,11 @@
       <mat-label>Способ оплаты</mat-label>
       <mat-select formControlName="wayToPay" (selectionChange)="wayToPayChange($event)">
         @for (case of paymentCases; track $index) {
-        <mat-option [value]="case.sysName"> {{ case.description }}</mat-option>
+          <mat-option [value]="case.sysName"> {{ case.description }}</mat-option>
         }
       </mat-select>
       @if (hasError('wayToPay', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
 
@@ -25,13 +25,13 @@
           mask="0000-0000-0000-0000"
         />
         @if (paymentDetailsForm.get('cardNumber')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'cardNumber')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'cardNumber')">close</mat-icon>
         }
       </div>
       @if (hasError('cardNumber', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       } @if (hasError('cardNumber', 'minlength')) {
-      <mat-error class="errors"> Минимальное количество символов: 16</mat-error>
+        <mat-error class="errors"> Минимальное количество символов: 16</mat-error>
       }</mat-form-field
     >
     }
@@ -44,13 +44,13 @@
       <div class="input-wrapper">
         <input matInput formControlName="city" upperCaseFormat/>
         @if (paymentDetailsForm.get('address.city')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'city', 'address')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'city', 'address')">close</mat-icon>
         }
       </div>
       @if (hasError('address.city', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }@if (hasError('address.city', 'maxlength')) {
-      <mat-error class="errors"> Максимальное количество символов: 100</mat-error>
+        <mat-error class="errors"> Максимальное количество символов: 100</mat-error>
       }
     </mat-form-field>
 
@@ -59,13 +59,13 @@
       <div class="input-wrapper">
         <input matInput formControlName="street" upperCaseFormat/>
         @if (paymentDetailsForm.get('address.street')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'street', 'address')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'street', 'address')">close</mat-icon>
         }
       </div>
       @if (hasError('address.street', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }@if (hasError('address.street', 'maxlength')) {
-      <mat-error class="errors"> Максимальное количество символов: 100</mat-error>
+        <mat-error class="errors"> Максимальное количество символов: 100</mat-error>
       }
     </mat-form-field>
 
@@ -74,11 +74,11 @@
       <div class="input-wrapper">
         <input matInput formControlName="house" />
         @if (paymentDetailsForm.get('address.house')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'house', 'address')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'house', 'address')">close</mat-icon>
         }
       </div>
       @if (hasError('address.house', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
     
@@ -87,18 +87,18 @@
       <div class="input-wrapper">
         <input matInput formControlName="flat" />
         @if (paymentDetailsForm.get('address.flat')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'flat', 'address')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(paymentDetailsForm, 'flat', 'address')">close</mat-icon>
         }
       </div>
       @if (hasError('address.house', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
       }
     </mat-form-field>
   </div>
 
   @if(paymentDetailsForm.get('wayToPay')?.value !== paymentCases[1].sysName) {
-  <div class="checkbox-section">
-    <mat-checkbox formControlName="leaveDoor"> Оставить у двери </mat-checkbox>
-  </div>
+    <div class="checkbox-section">
+      <mat-checkbox formControlName="leaveDoor"> Оставить у двери </mat-checkbox>
+    </div>
   }
 </form>

@@ -52,10 +52,10 @@ export class PersonalDataComponent {
   }
 
   checkBoxChange(event: MatCheckboxChange) {
-    const isCheked = event.checked;
+    const isChecked = event.checked;
     const middleNameControl = this.personalDataForm.get('middleName');
 
-    if (isCheked) {
+    if (isChecked) {
       middleNameControl?.disable();
       middleNameControl?.reset();
     } else {

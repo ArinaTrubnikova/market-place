@@ -7,7 +7,6 @@ import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angula
 import { dateValidator } from '../../../common/validators/date-validator';
 import { DataService } from '../../../services/sent-data.service';
 import { StorageService } from '../../../services/storage.service';
-import { BuyProduct } from '../interfaces/buy-product.model';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { AmountCard } from '../../../product-component/interfaces/product-card.model';
 import { AsyncPipe } from '@angular/common';
@@ -17,6 +16,7 @@ import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductCardComponent } from '../../../common/product-card/product-card';
+import { BuyProduct } from '../interfaces/buy-product.model';
 
 @Component({
   selector: 'payment-layout',
@@ -37,73 +37,130 @@ import { ProductCardComponent } from '../../../common/product-card/product-card'
   styleUrl: './payment.scss',
 })
 export class PaymentLayoutComponent implements OnInit {
-  personalDataForm!: FormGroup;
-  paymentDetailsForm!: FormGroup;
+
+  paymentProductsForm!: FormGroup;
+  // personalDataForm!: FormGroup;
+  // paymentDetailsForm!: FormGroup;
 
   readonly cyrillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
   readonly minLength = 3;
 
   private storageService = inject(StorageService);
   private sentDataService = inject(DataService);
-  
+
   toPaymentCards$: Observable<AmountCard[]> = this.storageService.products$;
   private destroy$ = new Subject<void>();
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-    this.personalDataForm = this.createPersonalDataForm();
-    this.paymentDetailsForm = this.createPaymentDetailsForm();
+    this.paymentProductsForm = this.createForm();
+    // this.personalDataForm = this.createPersonalDataForm();
+    // this.paymentDetailsForm = this.createPaymentDetailsForm();
   }
 
-  createPersonalDataForm(): FormGroup {
+
+  private createForm(): FormGroup {
     return this.fb.group({
-      lastName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(this.minLength),
-          Validators.pattern(this.cyrillicPattern),
+      personalDataForm: this.fb.group({
+        lastName: ['',
+          [
+            Validators.required,
+            Validators.minLength(this.minLength),
+            Validators.pattern(this.cyrillicPattern),
+          ],
         ],
-      ],
-      firstName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(this.minLength),
-          Validators.pattern(this.cyrillicPattern),
+        firstName: ['',
+          [
+            Validators.required,
+            Validators.minLength(this.minLength),
+            Validators.pattern(this.cyrillicPattern),
+          ],
         ],
-      ],
-      noMiddleName: [false],
-      middleName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(this.minLength),
-          Validators.pattern(this.cyrillicPattern),
+        noMiddleName: [false],
+        middleName: ['',
+          [
+            Validators.required,
+            Validators.minLength(this.minLength),
+            Validators.pattern(this.cyrillicPattern),
+          ],
         ],
-      ],
-      birthDate: ['', [Validators.required, dateValidator()]],
-      contacts: this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
-        phone: ['', [Validators.required]],
+        birthDate: ['', [Validators.required, dateValidator()]],
+        contacts: this.fb.group({
+          email: ['', [Validators.required, Validators.email]],
+          phone: ['', [Validators.required]],
+        }),
       }),
-    });
+      paymentDetailsForm: this.fb.group({
+        wayToPay: ['', [Validators.required]],
+        cardNumber: ['', [Validators.required, Validators.minLength(16)]],
+        leaveDoor: [false],
+        address: this.fb.group({
+          city: ['', [Validators.required, Validators.maxLength(100)]],
+          street: ['', [Validators.required, Validators.maxLength(100)]],
+          house: ['', [Validators.required]],
+          flat: ['', [Validators.required]],
+        }),
+      })
+    })
   }
 
-  createPaymentDetailsForm(): FormGroup {
-    return this.fb.group({
-      wayToPay: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required, Validators.minLength(16)]],
-      leaveDoor: [false],
-      address: this.fb.group({
-        city: ['', [Validators.required, Validators.maxLength(100)]],
-        street: ['', [Validators.required, Validators.maxLength(100)]],
-        house: ['', [Validators.required]],
-        flat: ['', [Validators.required]],
-      }),
-    });
+  get personalDataForm() {
+    return this.paymentProductsForm.get('personalDataForm') as FormGroup;
   }
+
+   get paymentDetailsForm() {
+    return this.paymentProductsForm.get('paymentDetailsForm') as FormGroup;
+  }
+
+  // createPersonalDataForm(): FormGroup {
+  //   return this.fb.group({
+  //     lastName: [
+  //       '',
+  //       [
+  //         Validators.required,
+  //         Validators.minLength(this.minLength),
+  //         Validators.pattern(this.cyrillicPattern),
+  //       ],
+  //     ],
+  //     firstName: [
+  //       '',
+  //       [
+  //         Validators.required,
+  //         Validators.minLength(this.minLength),
+  //         Validators.pattern(this.cyrillicPattern),
+  //       ],
+  //     ],
+  //     noMiddleName: [false],
+  //     middleName: [
+  //       '',
+  //       [
+  //         Validators.required,
+  //         Validators.minLength(this.minLength),
+  //         Validators.pattern(this.cyrillicPattern),
+  //       ],
+  //     ],
+  //     birthDate: ['', [Validators.required, dateValidator()]],
+  //     contacts: this.fb.group({
+  //       email: ['', [Validators.required, Validators.email]],
+  //       phone: ['', [Validators.required]],
+  //     }),
+  //   });
+  // }
+
+  // createPaymentDetailsForm(): FormGroup {
+  //   return this.fb.group({
+  //     wayToPay: ['', [Validators.required]],
+  //     cardNumber: ['', [Validators.required, Validators.minLength(16)]],
+  //     leaveDoor: [false],
+  //     address: this.fb.group({
+  //       city: ['', [Validators.required, Validators.maxLength(100)]],
+  //       street: ['', [Validators.required, Validators.maxLength(100)]],
+  //       house: ['', [Validators.required]],
+  //       flat: ['', [Validators.required]],
+  //     }),
+  //   });
+  // }
 
   onSubmit() {
     if (this.personalDataForm.valid && this.paymentDetailsForm.valid) {

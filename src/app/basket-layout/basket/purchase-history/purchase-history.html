@@ -43,7 +43,7 @@
         } @empty {
           <p>История покупок пуста</p>
         } -->
-      <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ buy.amount }}</p>
+      <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ buy.amount | currency : 'RUB' : 'symbol-narrow'  }}</p>
     </div>
   }
 </div>

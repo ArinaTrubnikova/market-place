@@ -42,14 +42,14 @@
 
     <mat-step label="Персональные данные" [stepControl]="personalDataForm">
         <personal-data [formGroup]="personalDataForm"></personal-data>
-      <button matButton="tonal" matStepperNext [disabled]="!personalDataForm.valid" class="btn">Далее</button>
+      <button matButton="tonal" matStepperNext [disabled]="personalDataForm.invalid" class="btn">Далее</button>
     </mat-step>
 
     <mat-step label="Данные для оплаты" [stepControl]="paymentDetailsForm" [editable]="personalDataForm.valid">
         <payment-details [formGroup]="paymentDetailsForm"></payment-details>
       <div class="action-btns">
         <button matButton="tonal" matStepperPrevious class="btn">Назад</button>
-        <button matButton="tonal" [disabled]="!paymentDetailsForm.valid" (click)="onSubmit()" class="btn">
+        <button matButton="tonal" [disabled]="paymentDetailsForm.invalid" (click)="onSubmit()" class="btn">
           Подтвердить
         </button>
       </div>

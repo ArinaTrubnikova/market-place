@@ -19,7 +19,7 @@ export class DataService {
         const buyProducts = this.requestBuyProducts$.value;
         buyProducts.push(products);
         this.requestBuyProducts$.next(buyProducts);
-        return timer(3000);
+        return timer(2000);
     }
 
     getHistoryBuyProducts(): Observable<BuyProduct[]> {

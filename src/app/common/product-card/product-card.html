@@ -78,7 +78,7 @@
 @if(isForPayment) {
     <mat-chip-set>
         <mat-chip class="payment__total-amount">
-            Итого к оплате: {{ getTotalPrice() }}
+            Итого к оплате: {{ getTotalPrice() | currency : 'RUB' : 'symbol-narrow'  }}
         </mat-chip>
     </mat-chip-set>
 }

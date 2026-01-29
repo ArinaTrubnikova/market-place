@@ -41,7 +41,7 @@ export class PaymentLayoutComponent implements OnInit {
   paymentProductsForm!: FormGroup;
   // personalDataForm!: FormGroup;
   // paymentDetailsForm!: FormGroup;
-
+  
   readonly cyrillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
   readonly minLength = 3;
 
@@ -50,6 +50,7 @@ export class PaymentLayoutComponent implements OnInit {
 
   toPaymentCards$: Observable<AmountCard[]> = this.storageService.products$;
   private destroy$ = new Subject<void>();
+  getTotalPrice = this.storageService.getTotalPrice.bind(this.storageService);
 
   constructor(private fb: FormBuilder, private router: Router) { }
 
@@ -204,10 +205,10 @@ export class PaymentLayoutComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  getTotalPrice() {
-    return this.storageService.productValue.reduce(
-      (total, product) => total + product.cost * product.count,
-      0
-    );
-  }
+  // getTotalPrice() {
+  //   return this.storageService.productValue.reduce(
+  //     (total, product) => total + product.cost * product.count,
+  //     0
+  //   );
+  // }
 }

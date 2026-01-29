@@ -50,6 +50,13 @@ export class StorageService {
     return product ? product.count : 0;
   }
 
+  getTotalPrice() {
+    return this.productValue.reduce(
+      (total, product) => total + product.cost * product.count,
+      0
+    );
+  }
+
   clearBasket() {
     this._productsBasket$.next([]);
   }

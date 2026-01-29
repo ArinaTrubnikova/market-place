@@ -3,7 +3,7 @@
 
     <product-card [isForPayment]="true" [products]="(toPaymentCards$ | async)!" [closeModalBtn]="false"
       [isModal]="false" [showBasketBtns]="false" [showProductsBtns]="false"
-      [getTotalPrice]="getTotalPrice"></product-card>
+      [getTotalPrice]="getTotalPrice.bind(this)"></product-card>
 
     <!-- @for(card of (toPaymentCards$ | async); track card.id) {
 
@@ -20,7 +20,6 @@
             </mat-chip>
             <mat-chip>
               Стоимость: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
-              
             </mat-chip>
           </mat-chip-set>
 

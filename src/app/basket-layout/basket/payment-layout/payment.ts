@@ -147,7 +147,7 @@ export class PaymentLayoutComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  getTotalPrice = () => {
+  getTotalPrice() {
     return this.storageService.productValue.reduce(
       (total, product) => total + product.cost * product.count,
       0

@@ -19,6 +19,7 @@ export class ShowModal {
   isVisibleChange = output<boolean>();
   isProductSelected = output<Card>();
   productCountChange = output<number>();
+  
   countInModal = this.storageService.getCount.bind(this.storageService);
 
   hideModal = () => this.isVisibleChange.emit(false);

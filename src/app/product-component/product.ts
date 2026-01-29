@@ -1,7 +1,7 @@
 import { StorageService } from './../services/storage.service';
 import { Component, inject } from '@angular/core';
 import { GetProductService } from './services/get-product.service';
-import { AmountCard, Card } from './interfaces/product-card.model';
+import { Card } from './interfaces/product-card.model';
 import { ShowModal } from './show-modal/show-modal';
 import { Subscription } from 'rxjs';
 import { ProductCardComponent } from '../common/product-card/product-card';
@@ -16,10 +16,12 @@ import { ProductCardComponent } from '../common/product-card/product-card';
 export class ProductComponent {
   private storageService: StorageService = inject(StorageService);
   private getProductService: GetProductService = inject(GetProductService);
+
   selectedCard!: Card;
   isModalVisible: boolean = false;
   products: Card[] = [];
-  // countInProducts = this.storageService.getCount.bind(this.storageService);
+  countInProducts = this.storageService.getCount.bind(this.storageService);
+
   private productSubscription?: Subscription;
 
   constructor() { }
@@ -33,12 +35,12 @@ export class ProductComponent {
     this.isModalVisible = true;
   }
 
-  getCount(cardId: number): number {
-    const product = this.storageService.productValue.find(
-      (product: AmountCard) => product.id === cardId
-    );
-    return product ? product.count : 0;
-  }
+  // getCount(cardId: number): number {
+  //   const product = this.storageService.productValue.find(
+  //     (product: AmountCard) => product.id === cardId
+  //   );
+  //   return product ? product.count : 0;
+  // }
 
   getProduct() {
     this.productSubscription = this.getProductService.getProduct().subscribe((data: Card[]) => {

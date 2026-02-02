@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { BasketLayoutComponent } from './basket-layout/basket-layout';
-import { DataService } from './services/sent-data.service';
 
 export const routes: Routes = [
     {

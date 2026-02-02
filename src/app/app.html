@@ -1,7 +1,12 @@
 <header>
   <nav>
-    <a routerLink="/basket">Корзина</a>
-    <a routerLink="/products">Товары</a>
+    @if(router.url.startsWith('/basket')) {
+      <div>
+        <a routerLink="/" matButton="elevated">Вернуться к продуктам</a>
+      </div>
+    }
+    <div class="main"><a routerLink="/basket">Корзина</a>
+    <a routerLink="/products">Товары</a></div>
   </nav>
 </header>
 

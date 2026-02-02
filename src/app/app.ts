@@ -11,7 +11,7 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
 })
 export class App {
 
-  protected readonly title = signal('markeplace');
+  protected readonly title = signal('marketplace');
 
   constructor(public router: Router) { }
 }

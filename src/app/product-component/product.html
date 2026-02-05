@@ -5,7 +5,8 @@
   [selectedCard]="selectedCard" 
   (isProductSelected)="addProduct($event)"
   (productCountChange)="countInProducts($event)" 
-  [productCount]="selectedCard ? countInProducts(selectedCard.id) : 0"></show-modal>
+  [productCount]="selectedCard ? countInProducts(selectedCard.id) : 0"
+></show-modal>
 
 
 <product-card 
@@ -17,7 +18,8 @@
   [showBasketBtns]="false"
   [closeModalBtn]="false" 
   [isModal]="false" 
-  [isForPayment]="false"></product-card>
+  [isForPayment]="false"
+></product-card>
 
 <!-- @for(product of products; track product.id) {
 

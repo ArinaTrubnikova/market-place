@@ -25,11 +25,4 @@ export class ShowModal {
   hideModal = () => this.isVisibleChange.emit(false);
 
   addProduct = (product: Card): void => this.isProductSelected.emit(product);
-
-  // getCount(cardId: number): number {
-  //   const product = this.storageService.productValue.find(
-  //     (product: AmountCard) => product.id === cardId
-  //   );
-  //   return product ? product.count : 0;
-  // }
 }

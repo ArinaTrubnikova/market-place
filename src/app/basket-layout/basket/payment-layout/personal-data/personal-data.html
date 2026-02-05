@@ -7,15 +7,17 @@
       <div class="input-wrapper">
         <input matInput formControlName="lastName" placeholder="Введите фамилию" upperCaseFormat />
         @if (personalDataForm.get('lastName')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'lastName')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'lastName')">close</mat-icon>
         }
       </div>
       @if (hasError('lastName', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
-      } @if (hasError('lastName', 'pattern')) {
-      <mat-error class="errors">Недопустимые символы</mat-error>
-      } @if (hasError('lastName', 'minlength')) {
-      <mat-error class="errors">Минимальное количество символов: 3</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } 
+      @if (hasError('lastName', 'pattern')) {
+        <mat-error class="errors">Недопустимые символы</mat-error>
+      } 
+      @if (hasError('lastName', 'minlength')) {
+        <mat-error class="errors">Минимальное количество символов: 3</mat-error>
       }
     </mat-form-field>
 
@@ -24,15 +26,17 @@
       <div class="input-wrapper">
         <input matInput formControlName="firstName" placeholder="Введите имя" upperCaseFormat />
         @if (personalDataForm.get('firstName')?.value) {
-        <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'firstName')">close</mat-icon>
+          <mat-icon class="flush-value" (click)="flushValue(personalDataForm, 'firstName')">close</mat-icon>
         }
       </div>
       @if (hasError('firstName', 'required')) {
-      <mat-error class="errors">Поле обязательно для заполнения</mat-error>
-      } @if (hasError('firstName', 'pattern')) {
-      <mat-error class="errors">Недопустимые символы</mat-error>
-      } @if (hasError('firstName', 'minlength')) {
-      <mat-error class="errors">Минимальное количество символов: 3</mat-error>
+        <mat-error class="errors">Поле обязательно для заполнения</mat-error>
+      } 
+      @if (hasError('firstName', 'pattern')) {
+        <mat-error class="errors">Недопустимые символы</mat-error>
+      }
+      @if (hasError('firstName', 'minlength')) {
+        <mat-error class="errors">Минимальное количество символов: 3</mat-error>
       }
     </mat-form-field>
 

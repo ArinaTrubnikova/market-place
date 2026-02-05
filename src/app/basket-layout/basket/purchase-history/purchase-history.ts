@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { DataService } from '../../../services/sent-data.service';
+import { DataService } from '../../../services/data.service';
 import { BuyProduct } from '../interfaces/buy-product.model';
 import { combineLatest, map, Observable } from 'rxjs';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { GetProductService } from '../../../product-component/services/get-product.service';
 import { Card } from '../../../product-component/interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from '../../../common/product-card/product-card';
@@ -16,13 +15,12 @@ import { ProductCardComponent } from '../../../common/product-card/product-card'
 })
 export class PurchaseHistoryComponent {
   private dataService: DataService = inject(DataService);
-  private getProductService: GetProductService = inject(GetProductService);
   public purchaseHistoryCard$!: Observable<any>;
 
   ngOnInit() {
     this.purchaseHistoryCard$ = combineLatest([
       this.dataService.historyPurchase$,
-      this.getProductService.getProduct(),
+      this.dataService.getProduct(),
     ]).pipe(
       map(([productsBuy, productsCard]: [BuyProduct[], Card[]]) => {
         const cardsProduct = new Map();

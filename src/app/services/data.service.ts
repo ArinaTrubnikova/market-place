@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BuyProduct } from "../basket-layout/basket/interfaces/buy-product.model";
-import { BehaviorSubject, Observable, of, switchMap, timer } from "rxjs";
+import { BehaviorSubject, Observable, timer } from "rxjs";
+import { Card } from "../product-component/interfaces/product-card.model";
 
 @Injectable({
     providedIn: 'root'
@@ -9,11 +10,14 @@ import { BehaviorSubject, Observable, of, switchMap, timer } from "rxjs";
 
 export class DataService {
 
+    private apiUrl = 'data/products.json';
     private sentUrl = '';
     private requestBuyProducts$ = new BehaviorSubject<BuyProduct[]>([]);
     public historyPurchase$ = this.requestBuyProducts$.asObservable();
 
     constructor(private http: HttpClient) { }
+
+    getProduct = () => this.http.get<Card[]>(this.apiUrl);
 
     sentData(products: BuyProduct): Observable<any> {
         const buyProducts = this.requestBuyProducts$.value;

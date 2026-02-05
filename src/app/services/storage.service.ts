@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class StorageService {
+
   private _productsBasket$ = new BehaviorSubject<AmountCard[]>([]);
   public products$ = this._productsBasket$.asObservable();
 
@@ -64,7 +65,6 @@ export class StorageService {
   deleteProduct(id: number) {
     if (this.productValue.find((card: AmountCard) => card.id === id)) {
       const deletedCard = this.productValue.filter((card: AmountCard) => card.id !== id);
-
       return this._productsBasket$.next(deletedCard);
     } else {
       return this.productValue;

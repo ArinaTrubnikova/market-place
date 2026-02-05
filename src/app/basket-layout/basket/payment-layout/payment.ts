@@ -5,7 +5,7 @@ import { PersonalDataComponent } from './personal-data/personal-data';
 import { PaymentDetailsComponent } from './payment-details/payment-details';
 import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { dateValidator } from '../../../common/validators/date-validator';
-import { DataService } from '../../../services/sent-data.service';
+import { DataService } from '../../../services/data.service';
 import { StorageService } from '../../../services/storage.service';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { AmountCard } from '../../../product-component/interfaces/product-card.model';
@@ -204,11 +204,4 @@ export class PaymentLayoutComponent implements OnInit {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  // getTotalPrice() {
-  //   return this.storageService.productValue.reduce(
-  //     (total, product) => total + product.cost * product.count,
-  //     0
-  //   );
-  // }
 }

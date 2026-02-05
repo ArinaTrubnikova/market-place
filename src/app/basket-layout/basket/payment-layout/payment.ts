@@ -15,7 +15,7 @@ import { RussianDateAdapter } from '../../../common/date-adapter';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { ProductCardComponent } from '../../../common/product-card/product-card';
+import { ProductCardComponent } from '../../../common/components/product-card/product-card';
 import { BuyProduct } from '../interfaces/buy-product.model';
 
 @Component({

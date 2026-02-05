@@ -5,7 +5,7 @@ import { AmountCard } from '../../product-component/interfaces/product-card.mode
 import { Observable } from 'rxjs/internal/Observable';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { ProductCardComponent } from '../../common/product-card/product-card';
+import { ProductCardComponent } from '../../common/components/product-card/product-card';
 
 @Component({
   selector: 'basket-component',

@@ -3,7 +3,7 @@ import { Component, inject, Input, output } from '@angular/core';
 import { AmountCard, Card } from '../interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { ProductCardComponent } from '../../common/product-card/product-card';
+import { ProductCardComponent } from '../../common/components/product-card/product-card';
 
 @Component({
   selector: 'show-modal',

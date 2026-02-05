@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Card } from './interfaces/product-card.model';
 import { ShowModal } from './show-modal/show-modal';
 import { Subscription } from 'rxjs';
-import { ProductCardComponent } from '../common/product-card/product-card';
+import { ProductCardComponent } from '../common/components/product-card/product-card';
 import { DataService } from '../services/data.service';
 
 @Component({

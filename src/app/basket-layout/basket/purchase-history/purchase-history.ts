@@ -5,7 +5,7 @@ import { combineLatest, map, Observable } from 'rxjs';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Card } from '../../../product-component/interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
-import { ProductCardComponent } from '../../../common/product-card/product-card';
+import { ProductCardComponent } from '../../../common/components/product-card/product-card';
 
 @Component({
   selector: 'purchase-history',

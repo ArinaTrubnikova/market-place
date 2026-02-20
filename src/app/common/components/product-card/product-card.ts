@@ -1,6 +1,6 @@
 import { Component, Input, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { AmountCard, Card } from '../../product-component/interfaces/product-card.model';
+import { AmountCard, Card } from '../../../product-component/interfaces/product-card.model';
 import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';

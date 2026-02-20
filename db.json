@@ -1,0 +1,73 @@
+{
+  "products": [
+    {
+      "id": "1ad8",
+      "personalData": {
+        "lastName": "Трубникова",
+        "firstName": "Арина",
+        "noMiddleName": false,
+        "middleName": "Николаевна",
+        "birthDate": "1997-09-25T20:00:00.000Z",
+        "contacts": {
+          "email": "qwerty@mail.ru",
+          "phone": "79895583457"
+        }
+      },
+      "paymentData": {
+        "wayToPay": "online",
+        "cardNumber": "4732398478327483",
+        "leaveDoor": false,
+        "address": {
+          "city": "Санкт-Петербург",
+          "street": "Яхтенная",
+          "house": "1",
+          "flat": "134"
+        }
+      },
+      "productData": [
+        {
+          "id": 3,
+          "count": 2
+        },
+        {
+          "id": 2,
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "2b19",
+      "personalData": {
+        "lastName": "Савков",
+        "firstName": "Илья",
+        "noMiddleName": false,
+        "middleName": "Андреевич",
+        "birthDate": "2003-04-23T20:00:00.000Z",
+        "contacts": {
+          "email": "qqweerty@mail.ru",
+          "phone": "79482348324"
+        }
+      },
+      "paymentData": {
+        "wayToPay": "byCard",
+        "leaveDoor": false,
+        "address": {
+          "city": "Санкт-Петербург",
+          "street": "Яхтенная",
+          "house": "1",
+          "flat": "134"
+        }
+      },
+      "productData": [
+        {
+          "id": 7,
+          "count": 2
+        },
+        {
+          "id": 6,
+          "count": 3
+        }
+      ]
+    }
+  ]
+}

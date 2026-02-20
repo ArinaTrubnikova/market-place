@@ -1,7 +1,6 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BuyProduct } from "../basket-layout/basket/interfaces/buy-product.model";
-import { BehaviorSubject, Observable, timer } from "rxjs";
 import { Card } from "../product-component/interfaces/product-card.model";
 
 @Injectable({
@@ -9,27 +8,19 @@ import { Card } from "../product-component/interfaces/product-card.model";
 })
 
 export class DataService {
+    private http = inject(HttpClient);
 
     private apiUrl = 'data/products.json';
-    private sentUrl = '';
-    private requestBuyProducts$ = new BehaviorSubject<BuyProduct[]>([]);
-    public historyPurchase$ = this.requestBuyProducts$.asObservable();
 
-    constructor(private http: HttpClient) { }
+    constructor() { }
 
     getProduct = () => this.http.get<Card[]>(this.apiUrl);
 
-    sentData(products: BuyProduct): Observable<any> {
-        const buyProducts = this.requestBuyProducts$.value;
-        buyProducts.push(products);
-        this.requestBuyProducts$.next(buyProducts);
-        return timer(2000);
+    saveData(products: BuyProduct) {
+        return this.http.post('http://localhost:3000/products', products);
     }
 
-    getHistoryBuyProducts(): Observable<BuyProduct[]> {
-        console.log(this.requestBuyProducts$);
-        return this.requestBuyProducts$;
-    }
+    getHistoryBuyProducts = () => this.http.get<BuyProduct[]>('http://localhost:3000/products');
 
 }
 

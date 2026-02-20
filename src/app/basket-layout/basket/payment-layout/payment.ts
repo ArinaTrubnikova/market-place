@@ -188,7 +188,7 @@ export class PaymentLayoutComponent implements OnInit {
         productData: productArray,
       };
       this.sentDataService
-        .sentData(unionData)
+        .saveData(unionData)
         .pipe(
           tap(() => {
             this.storageService.clearBasket();

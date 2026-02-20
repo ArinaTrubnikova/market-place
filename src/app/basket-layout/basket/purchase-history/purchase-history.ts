@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { BuyProduct } from '../interfaces/buy-product.model';
-import { combineLatest, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, type Subscription } from 'rxjs';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Card } from '../../../product-component/interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
@@ -15,11 +15,20 @@ import { ProductCardComponent } from '../../../common/components/product-card/pr
 })
 export class PurchaseHistoryComponent {
   private dataService: DataService = inject(DataService);
+
   public purchaseHistoryCard$!: Observable<any>;
 
+  private requestBuyProducts$ = new BehaviorSubject<BuyProduct[]>([]);
+  public historyPurchase$ = this.requestBuyProducts$.asObservable();
+
   ngOnInit() {
+
+    this.dataService.getHistoryBuyProducts().subscribe((data: BuyProduct[]) => {
+      this.requestBuyProducts$.next(data);
+    });
+
     this.purchaseHistoryCard$ = combineLatest([
-      this.dataService.historyPurchase$,
+      this.historyPurchase$,
       this.dataService.getProduct(),
     ]).pipe(
       map(([productsBuy, productsCard]: [BuyProduct[], Card[]]) => {

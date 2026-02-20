@@ -1,31 +1,31 @@
 <div class="purchase-history">
-
-  @for(buy of purchaseHistoryCard$ | async; track buy; let index = $index) {
+  @for (buy of purchaseHistoryCard$ | async; track buy; let index = $index) {
     <div class="purchase-history-container">
       <p class="purchase-history-container__order">Покупка {{ index + 1 }}</p>
       <p class="purchase-history-container__fio">
-          ФИО: <span class="data">
-            {{ buy.personalData?.lastName }} {{ buy.personalData?.firstName }}
-            {{ buy.personalData?.middleName }}
-          </span>
+        ФИО:
+        <span class="data">
+          {{ buy.personalData?.lastName }} {{ buy.personalData?.firstName }}
+          {{ buy.personalData?.middleName }}
+        </span>
       </p>
       <p class="purchase-history-container__address">
-          Адрес:<span class="data">
-            город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }},
-            дом {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
-          </span>
+        Адрес:<span class="data">
+          город {{ buy.paymentData?.address.city }}, улица {{ buy.paymentData?.address.street }},
+          дом {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
+        </span>
       </p>
 
-      <product-card 
-        [products]="buy.productData" 
-        [isForPayment]="false" 
-        [isModal]="false" 
+      <product-card
+        [products]="buy.productData"
+        [isForPayment]="false"
+        [isModal]="false"
         [showBasketBtns]="false"
-        [showProductsBtns]="false" 
+        [showProductsBtns]="false"
         [closeModalBtn]="false"
       ></product-card>
 
-        <!-- @for(product of buy.productData; track product.id) {
+      <!-- @for(product of buy.productData; track product.id) {
             <div class="history-wrapper">
               <mat-card class="purchase-history-container__card">
                 <mat-card-header><mat-card-title class="purchase-history-container__title">{{
@@ -44,7 +44,9 @@
         } @empty {
           <p>История покупок пуста</p>
         } -->
-      <p class="purchase-history-container__total-amount">Общая стоимость покупки: {{ buy.amount | currency : 'RUB' : 'symbol-narrow'  }}</p>
+      <p class="purchase-history-container__total-amount">
+        Общая стоимость покупки: {{ buy.amount | currency: 'RUB' : 'symbol-narrow' }}
+      </p>
     </div>
   }
 </div>

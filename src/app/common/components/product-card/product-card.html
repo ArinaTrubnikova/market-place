@@ -1,15 +1,17 @@
 @if(products) {
     <div [class.products]="!isModal && !isForPayment" [class.modal-product]="isModal"
-        [class.payment]="isForPayment">
+        [class.payment-card]="isForPayment"
+        [class.purchase-history]="isHistory">
         @for (product of products; track product.id) {
         <mat-card [class.modal-product__card-container]="isModal && !isForPayment"
             [class.products__card-container]="!isModal && !isForPayment"
             [class.payment-card__container]="isForPayment && !isModal" appearance="outlined">
-            <div class="products__title-wrapper">
+            <div [class.products__title-wrapper]="!isModal && ! isForPayment" 
+            class="products__title-wrapper">
                 @if(closeModalBtn){
                 <button matButton="elevated" class="modal-product__close-btn" (click)="closeModal()">X</button>
                 }
-                @if(!isModal) {
+                @if(!isModal && !isHistory) {
                 <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)" />
                 }
                 <mat-card-header class="kedeberdi">
@@ -36,14 +38,16 @@
             <mat-card-content>
                 <div class="card-content">
                     <p class="products__description kedeberdi">{{ product.description }}</p>
-                    <p class="products__cost kedeberdi">
-                        {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
-                    </p>
-                    @if(isModal) {
-                    <p class="products__description kedeberdi">
+                     @if(isModal) {
+                    <p class="modal-product__description kedeberdi">
                         {{ product.fullDescription }}
                     </p>
                     }
+                    <mat-chip-set>
+                        <mat-chip class="products__cost kedeberdi">
+                            {{ product.cost | currency : 'RUB' : 'symbol-narrow' }}
+                        </mat-chip>
+                    </mat-chip-set>
                 </div>
             </mat-card-content>
             }

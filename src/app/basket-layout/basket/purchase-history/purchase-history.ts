@@ -22,7 +22,6 @@ export class PurchaseHistoryComponent {
   public historyPurchase$ = this.requestBuyProducts$.asObservable();
 
   ngOnInit() {
-
     this.dataService.getHistoryBuyProducts().subscribe((data: BuyProduct[]) => {
       this.requestBuyProducts$.next(data);
     });

@@ -25,6 +25,7 @@ export class ProductCardComponent {
   @Input() showBasketBtns: boolean = true;
   @Input() closeModalBtn: boolean = true;
   @Input() isForPayment: boolean = true;
+  @Input() isHistory: boolean = false;
   @Input() getTotalPrice!: () => number;
   isModalShow = output<Card>();
   isAddedProduct = output<any>();

@@ -24,9 +24,6 @@ body {
   padding: 0px;
   font-family: Kedebideri-Regular, sans-serif;
   background-color: rgb(255, 246, 246);
-  // background-image: url('../public/liniya-neon.jpg');
-  // background-repeat: no-repeat;
-  // background-size: cover;
 }
 
 app-root {
@@ -60,4 +57,8 @@ h1 {
 mat-error {
   color: #cf1c1c !important;
   font-size: 12px !important;
+}
+
+p {
+  margin: 0;
 }

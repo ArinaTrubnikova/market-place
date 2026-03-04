@@ -5,10 +5,11 @@ import { ShowModal } from './show-modal/show-modal';
 import { Subscription } from 'rxjs';
 import { ProductCardComponent } from '../common/components/product-card/product-card';
 import { DataService } from '../services/data.service';
+import { SearchBarComponent } from "../common/components/search-bar/search-bar";
 
 @Component({
   selector: 'product-component',
-  imports: [ShowModal, ProductCardComponent],
+  imports: [ShowModal, ProductCardComponent, SearchBarComponent],
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
@@ -19,6 +20,8 @@ export class ProductComponent {
   selectedCard!: Card;
   isModalVisible: boolean = false;
   products: Card[] = [];
+  filteredCards: Card[] = [...this.products];
+
   countInProducts = this.storageService.getCount.bind(this.storageService);
 
   private productSubscription?: Subscription;
@@ -26,7 +29,10 @@ export class ProductComponent {
   constructor() { }
 
   ngOnInit() {
-    this.getProduct();
+    this.productSubscription = this.dataService.getProduct().subscribe((data: Card[]) => {
+      this.products = data;
+      this.filteredCards = [...data];
+    });
   }
 
   showModal(product: Card) {
@@ -34,14 +40,20 @@ export class ProductComponent {
     this.isModalVisible = true;
   }
 
-  getProduct() {
-    this.productSubscription = this.dataService.getProduct().subscribe((data: Card[]) => {
-      this.products = data;
-    });
-  }
-
   addProduct(product: Card): void {
     this.storageService.addProduct(product);
+  }
+
+  onFiltered(value: string) {
+    this.dataService.getFilteredProduct(value.toLowerCase()).subscribe(
+      res => {
+        if (!res) {
+          this.filteredCards = [...this.products];
+          return;
+        }
+        this.filteredCards = res;
+      }
+    )
   }
 
   ngOnDestroy() {

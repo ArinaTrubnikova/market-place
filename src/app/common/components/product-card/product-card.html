@@ -1,4 +1,4 @@
-@if(products) {
+@if (products) {
     <div [class.products]="!isModal && !isForPayment" [class.modal-product]="isModal"
         [class.payment-card]="isForPayment"
         [class.purchase-history]="isHistory">
@@ -8,10 +8,10 @@
             [class.payment-card__container]="isForPayment && !isModal" appearance="outlined">
             <div [class.products__title-wrapper]="!isModal && ! isForPayment" 
             class="products__title-wrapper">
-                @if(closeModalBtn){
+                @if (closeModalBtn){
                 <button matButton="elevated" class="modal-product__close-btn" (click)="closeModal()">X</button>
                 }
-                @if(!isModal && !isHistory) {
+                @if (!isModal && !isHistory) {
                 <img mat-card-image [src]="product.image" class="products__image" (click)="showModal(product)" />
                 }
                 <mat-card-header class="kedeberdi">
@@ -20,7 +20,7 @@
                     </mat-card-title>
                 </mat-card-header>
 
-                @if(isForPayment) {
+                @if (isForPayment) {
                 <div class="payment-card__total-wrapper">
                     <mat-chip-set>
                         <mat-chip>
@@ -34,11 +34,11 @@
                 }
             </div>
 
-            @if(!isForPayment) {
+            @if (!isForPayment) {
             <mat-card-content>
                 <div class="card-content">
                     <p class="products__description kedeberdi">{{ product.description }}</p>
-                     @if(isModal) {
+                     @if (isModal) {
                     <p class="modal-product__description kedeberdi">
                         {{ product.fullDescription }}
                     </p>
@@ -52,7 +52,7 @@
             </mat-card-content>
             }
 
-            @if(showBasketBtns){
+            @if (showBasketBtns){
             <div class="products__btn-wrapper">
                 <div class="products__btn-action-wrapper">
                     <button matButton="elevated" class="products__minus-btn" (click)="reduceAmountProduct(product)">
@@ -79,7 +79,7 @@
     </div>
 }
 
-@if(isForPayment) {
+@if (isForPayment) {
     <mat-chip-set>
         <mat-chip class="payment__total-amount">
             Итого к оплате: {{ getTotalPrice() | currency : 'RUB' : 'symbol-narrow'  }}

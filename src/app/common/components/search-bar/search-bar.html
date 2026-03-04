@@ -1,1 +1,10 @@
-<div class="search-form">gb=-kfmvjlkmaflfj</div>
+<div class="search-form">
+  <input
+    type="text"
+    placeholder="Введите название товара"
+    [formControl]="form.controls.inputSearch"
+  />
+  @if (form.controls.inputSearch.value) {
+    <button type="button" class="clear-btn" (click)="clearInput()">×</button>
+  }
+</div>

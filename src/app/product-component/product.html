@@ -1,25 +1,30 @@
 <h1 class="bold">Список наших самых лучших товаров</h1>
 
-<show-modal 
-  [(isVisible)]="isModalVisible" 
-  [selectedCard]="selectedCard" 
+<search-bar (searchChange)="onFiltered($event)"></search-bar>
+
+<show-modal
+  [(isVisible)]="isModalVisible"
+  [selectedCard]="selectedCard"
   (isProductSelected)="addProduct($event)"
-  (productCountChange)="countInProducts($event)" 
+  (productCountChange)="countInProducts($event)"
   [productCount]="selectedCard ? countInProducts(selectedCard.id) : 0"
 ></show-modal>
 
-
-<product-card 
-  [products]="products" 
-  (isModalShow)="showModal($event)" 
-  (isAddedProduct)="addProduct($event)"
-  [getCountFn]="countInProducts.bind(this)" 
-  [showProductsBtns]="true" 
-  [showBasketBtns]="false"
-  [closeModalBtn]="false" 
-  [isModal]="false" 
-  [isForPayment]="false"
-></product-card>
+@if (filteredCards.length) {
+  <product-card
+    [products]="filteredCards"
+    (isModalShow)="showModal($event)"
+    (isAddedProduct)="addProduct($event)"
+    [getCountFn]="countInProducts.bind(this)"
+    [showProductsBtns]="true"
+    [showBasketBtns]="false"
+    [closeModalBtn]="false"
+    [isModal]="false"
+    [isForPayment]="false"
+  ></product-card>
+} @else {
+  <h3 class="text">Товар не найден, измените поиск</h3>
+}
 
 <!-- @for(product of products; track product.id) {
 

@@ -1,0 +1,40 @@
+.search-form {
+    position: relative;
+    display: inline-block;
+}
+
+input {
+    width: 1050px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #fca7a7;
+    padding-right: 24px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #ff8d8d;
+}
+
+input::placeholder {
+    color: #ffa4a4;
+    opacity: 1;
+    font-size: 14px;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    color: #ff8d8d;
+}
+
+.clear-btn:hover {
+    color: #ff4848;
+}

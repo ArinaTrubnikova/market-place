@@ -1,17 +1,10 @@
 <div class="payment-product">
   <div class="payment">
+    @for (card of toPaymentCards$ | async; track card.id) {
+      <product-card [card]="card" [cardTypes]="cardTypes.PAYMENT"></product-card>
+    }
 
-    <product-card 
-      [isForPayment]="true" 
-      [products]="(toPaymentCards$ | async)!" 
-      [closeModalBtn]="false"
-      [isModal]="false" 
-      [showBasketBtns]="false" 
-      [showProductsBtns]="false"
-      [getTotalPrice]="getTotalPrice.bind(this)"
-    ></product-card>
-
-      <!-- @for(card of (toPaymentCards$ | async); track card.id) {
+    <!-- @for(card of (toPaymentCards$ | async); track card.id) {
 
       <mat-card class="payment-card__container">
         <mat-card-header><mat-card-title class="payment-card__title">{{ card.title }}</mat-card-title></mat-card-header>
@@ -35,26 +28,39 @@
       </mat-card>
       } -->
   </div>
-  <!-- <mat-chip-set><mat-chip class="payment__total-amount">Итого к оплате: {{ getTotalPrice() }}</mat-chip></mat-chip-set> -->
+  <mat-chip-set
+    ><mat-chip class="payment__total-amount"
+      >Итого к оплате: {{ getTotalPrice() }}</mat-chip
+    ></mat-chip-set
+  >
 </div>
 
 <div class="form-wrapper">
   <mat-stepper [linear]="true" #stepper>
-
     <mat-step label="Персональные данные" [stepControl]="personalDataForm">
-        <personal-data [formGroup]="personalDataForm"></personal-data>
-      <button matButton="tonal" matStepperNext [disabled]="personalDataForm.invalid" class="btn">Далее</button>
+      <personal-data [formGroup]="personalDataForm"></personal-data>
+      <button matButton="tonal" matStepperNext [disabled]="personalDataForm.invalid" class="btn">
+        Далее
+      </button>
     </mat-step>
 
-    <mat-step label="Данные для оплаты" [stepControl]="paymentDetailsForm" [editable]="personalDataForm.valid">
-        <payment-details [formGroup]="paymentDetailsForm"></payment-details>
+    <mat-step
+      label="Данные для оплаты"
+      [stepControl]="paymentDetailsForm"
+      [editable]="personalDataForm.valid"
+    >
+      <payment-details [formGroup]="paymentDetailsForm"></payment-details>
       <div class="action-btns">
         <button matButton="tonal" matStepperPrevious class="btn">Назад</button>
-        <button matButton="tonal" [disabled]="paymentDetailsForm.invalid" (click)="onSubmit()" class="btn">
+        <button
+          matButton="tonal"
+          [disabled]="paymentDetailsForm.invalid"
+          (click)="onSubmit()"
+          class="btn"
+        >
           Подтвердить
         </button>
       </div>
     </mat-step>
-
   </mat-stepper>
 </div>

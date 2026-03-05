@@ -121,6 +121,44 @@
           "count": 2
         }
       ]
+    },
+    {
+      "id": "e4a8",
+      "personalData": {
+        "lastName": "Арина",
+        "firstName": "Арина",
+        "noMiddleName": false,
+        "middleName": "Арина",
+        "birthDate": "2000-01-19T21:00:00.000Z",
+        "contacts": {
+          "email": "qwerty@mail.ru",
+          "phone": "79843853857"
+        }
+      },
+      "paymentData": {
+        "wayToPay": "byCard",
+        "leaveDoor": false,
+        "address": {
+          "city": "Москва",
+          "street": "Победы",
+          "house": "12",
+          "flat": "444"
+        }
+      },
+      "productData": [
+        {
+          "id": 1,
+          "count": 2
+        },
+        {
+          "id": 3,
+          "count": 1
+        },
+        {
+          "id": 7,
+          "count": 1
+        }
+      ]
     }
   ]
 }

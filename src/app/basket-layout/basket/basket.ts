@@ -6,11 +6,11 @@ import { Observable } from 'rxjs/internal/Observable';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductCardComponent } from '../../common/components/product-card/product-card';
+import { CardTypes } from '../../common/enum/card-types.enum';
 
 @Component({
   selector: 'basket-component',
   imports: [AsyncPipe, RouterLink, ProductCardComponent, MatButtonModule],
-  providers: [],
   templateUrl: './basket.html',
   styleUrl: './basket.scss',
 })
@@ -18,19 +18,9 @@ export class BasketComponent {
   private storageService = inject(StorageService);
   cards$: Observable<AmountCard[]> = this.storageService.products$;
 
+  cardTypes = CardTypes;
+
   get hasItemsInCart(): boolean {
     return this.storageService.productValue.length > 0;
-  }
-
-  addProduct(product: AmountCard): void {
-    this.storageService.addProduct(product);
-  }
-
-  reduceAmountProduct(product: AmountCard): void {
-    this.storageService.reduceAmountProduct(product);
-  }
-
-  deleteCard(id: number) {
-    this.storageService.deleteProduct(id);
   }
 }

@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductCardComponent } from '../../../common/components/product-card/product-card';
 import { BuyProduct } from '../interfaces/buy-product.model';
+import { CardTypes } from '../../../common/enum/card-types.enum';
 
 @Component({
   selector: 'payment-layout',
@@ -27,10 +28,10 @@ import { BuyProduct } from '../interfaces/buy-product.model';
     MatStepperModule,
     PersonalDataComponent,
     PaymentDetailsComponent,
-    AsyncPipe,
     MatCardModule,
     MatChipsModule,
-    ProductCardComponent
+    ProductCardComponent,
+    AsyncPipe
   ],
   providers: [{ provide: DateAdapter, useClass: RussianDateAdapter }],
   templateUrl: './payment.html',
@@ -39,9 +40,8 @@ import { BuyProduct } from '../interfaces/buy-product.model';
 export class PaymentLayoutComponent implements OnInit {
 
   paymentProductsForm!: FormGroup;
-  // personalDataForm!: FormGroup;
-  // paymentDetailsForm!: FormGroup;
-  
+  cardTypes = CardTypes;
+
   readonly cyrillicPattern = /^[а-яёА-ЯЁ\s\-]+$/;
   readonly minLength = 3;
 
@@ -50,14 +50,11 @@ export class PaymentLayoutComponent implements OnInit {
 
   toPaymentCards$: Observable<AmountCard[]> = this.storageService.products$;
   private destroy$ = new Subject<void>();
-  getTotalPrice = this.storageService.getTotalPrice.bind(this.storageService);
 
   constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.paymentProductsForm = this.createForm();
-    // this.personalDataForm = this.createPersonalDataForm();
-    // this.paymentDetailsForm = this.createPaymentDetailsForm();
   }
 
 
@@ -110,58 +107,9 @@ export class PaymentLayoutComponent implements OnInit {
     return this.paymentProductsForm.get('personalDataForm') as FormGroup;
   }
 
-   get paymentDetailsForm() {
+  get paymentDetailsForm() {
     return this.paymentProductsForm.get('paymentDetailsForm') as FormGroup;
   }
-
-  // createPersonalDataForm(): FormGroup {
-  //   return this.fb.group({
-  //     lastName: [
-  //       '',
-  //       [
-  //         Validators.required,
-  //         Validators.minLength(this.minLength),
-  //         Validators.pattern(this.cyrillicPattern),
-  //       ],
-  //     ],
-  //     firstName: [
-  //       '',
-  //       [
-  //         Validators.required,
-  //         Validators.minLength(this.minLength),
-  //         Validators.pattern(this.cyrillicPattern),
-  //       ],
-  //     ],
-  //     noMiddleName: [false],
-  //     middleName: [
-  //       '',
-  //       [
-  //         Validators.required,
-  //         Validators.minLength(this.minLength),
-  //         Validators.pattern(this.cyrillicPattern),
-  //       ],
-  //     ],
-  //     birthDate: ['', [Validators.required, dateValidator()]],
-  //     contacts: this.fb.group({
-  //       email: ['', [Validators.required, Validators.email]],
-  //       phone: ['', [Validators.required]],
-  //     }),
-  //   });
-  // }
-
-  // createPaymentDetailsForm(): FormGroup {
-  //   return this.fb.group({
-  //     wayToPay: ['', [Validators.required]],
-  //     cardNumber: ['', [Validators.required, Validators.minLength(16)]],
-  //     leaveDoor: [false],
-  //     address: this.fb.group({
-  //       city: ['', [Validators.required, Validators.maxLength(100)]],
-  //       street: ['', [Validators.required, Validators.maxLength(100)]],
-  //       house: ['', [Validators.required]],
-  //       flat: ['', [Validators.required]],
-  //     }),
-  //   });
-  // }
 
   onSubmit() {
     if (this.personalDataForm.valid && this.paymentDetailsForm.valid) {
@@ -198,6 +146,13 @@ export class PaymentLayoutComponent implements OnInit {
         )
         .subscribe();
     }
+  }
+
+  getTotalPrice() {
+    return this.storageService.productValue.reduce(
+      (total, product) => total + product.cost * product.count,
+      0
+    );
   }
 
   ngOnDestroy() {

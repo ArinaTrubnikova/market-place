@@ -15,16 +15,9 @@
           дом {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
         </span>
       </p>
-
-      <product-card
-        [products]="buy.productData"
-        [isForPayment]="false"
-        [isModal]="false"
-        [showBasketBtns]="false"
-        [showProductsBtns]="false"
-        [closeModalBtn]="false"
-        [isHistory]="true"
-      ></product-card>
+      @for (product of buy.productData; track product.id) {
+        <product-card [card]="product" [cardTypes]="cardTypes.HISTORY"></product-card>
+      }
 
       <!-- @for(product of buy.productData; track product.id) {
             <div class="history-wrapper">

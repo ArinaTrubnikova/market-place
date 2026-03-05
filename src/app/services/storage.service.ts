@@ -44,20 +44,6 @@ export class StorageService {
     return this._productsBasket$.getValue();
   }
 
-  getCount(cardId: number): number {
-    const product = this.productValue.find(
-      (product: AmountCard) => product.id === cardId
-    );
-    return product ? product.count : 0;
-  }
-
-  getTotalPrice() {
-    return this.productValue.reduce(
-      (total, product) => total + product.cost * product.count,
-      0
-    );
-  }
-
   clearBasket() {
     this._productsBasket$.next([]);
   }

@@ -1,17 +1,10 @@
 @if (isVisible) {
   <div class="modal-product">
-
-    @if(selectedCard) {
-      <product-card 
-        [products]="[selectedCard]" 
-        [showProductsBtns]="true"
-        [showBasketBtns]="false" 
-        [closeModalBtn]="true" 
-        (isClosedModal)="hideModal()" 
-        [isModal]="true"
-        (isAddedProduct)="addProduct($event)" 
-        [getCountFn]="countInModal" 
-        [isForPayment]="false"
+    @if (selectedCard) {
+      <product-card
+        [card]="selectedCard"
+        [cardTypes]="cardTypes.MODAL"
+        (isClosedModal)="hideModal()"
       ></product-card>
 
       <!-- <mat-card class="modal-product__card-container">
@@ -32,6 +25,5 @@
             </button>
       </mat-card> -->
     }
-
   </div>
 }

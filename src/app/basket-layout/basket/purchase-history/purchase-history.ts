@@ -6,6 +6,7 @@ import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Card } from '../../../product-component/interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from '../../../common/components/product-card/product-card';
+import { CardTypes } from '../../../common/enum/card-types.enum';
 
 @Component({
   selector: 'purchase-history',
@@ -17,6 +18,7 @@ export class PurchaseHistoryComponent {
   private dataService: DataService = inject(DataService);
 
   public purchaseHistoryCard$!: Observable<any>;
+  cardTypes = CardTypes;
 
   private requestBuyProducts$ = new BehaviorSubject<BuyProduct[]>([]);
   public historyPurchase$ = this.requestBuyProducts$.asObservable();

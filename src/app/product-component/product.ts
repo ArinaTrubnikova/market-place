@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { ProductCardComponent } from '../common/components/product-card/product-card';
 import { DataService } from '../services/data.service';
 import { SearchBarComponent } from "../common/components/search-bar/search-bar";
+import { CardTypes } from '../common/enum/card-types.enum';
 
 @Component({
   selector: 'product-component',
@@ -14,15 +15,13 @@ import { SearchBarComponent } from "../common/components/search-bar/search-bar";
   styleUrl: './product.scss',
 })
 export class ProductComponent {
-  private storageService: StorageService = inject(StorageService);
   private dataService: DataService = inject(DataService);
 
   selectedCard!: Card;
   isModalVisible: boolean = false;
   products: Card[] = [];
   filteredCards: Card[] = [...this.products];
-
-  countInProducts = this.storageService.getCount.bind(this.storageService);
+  cardTypes = CardTypes;
 
   private productSubscription?: Subscription;
 
@@ -38,10 +37,6 @@ export class ProductComponent {
   showModal(product: Card) {
     this.selectedCard = product;
     this.isModalVisible = true;
-  }
-
-  addProduct(product: Card): void {
-    this.storageService.addProduct(product);
   }
 
   onFiltered(value: string) {

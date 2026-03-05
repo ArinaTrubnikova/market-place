@@ -4,6 +4,7 @@ import { AmountCard, Card } from '../interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductCardComponent } from '../../common/components/product-card/product-card';
+import { CardTypes } from '../../common/enum/card-types.enum';
 
 @Component({
   selector: 'show-modal',
@@ -12,17 +13,12 @@ import { ProductCardComponent } from '../../common/components/product-card/produ
   styleUrl: './show-modal.scss',
 })
 export class ShowModal {
-  private storageService: StorageService = inject(StorageService);
   @Input() isVisible: boolean = false;
   @Input() selectedCard!: Card;
-  @Input() productCount!: number;
+
   isVisibleChange = output<boolean>();
   isProductSelected = output<Card>();
-  productCountChange = output<number>();
-  
-  countInModal = this.storageService.getCount.bind(this.storageService);
+  cardTypes = CardTypes;
 
   hideModal = () => this.isVisibleChange.emit(false);
-
-  addProduct = (product: Card): void => this.isProductSelected.emit(product);
 }

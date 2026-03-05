@@ -2,15 +2,23 @@
 
 <search-bar (searchChange)="onFiltered($event)"></search-bar>
 
-<show-modal
-  [(isVisible)]="isModalVisible"
-  [selectedCard]="selectedCard"
-  (isProductSelected)="addProduct($event)"
-  (productCountChange)="countInProducts($event)"
-  [productCount]="selectedCard ? countInProducts(selectedCard.id) : 0"
-></show-modal>
+<show-modal [(isVisible)]="isModalVisible" [selectedCard]="selectedCard"></show-modal>
 
-@if (filteredCards.length) {
+<div class="product">
+  @if (filteredCards.length) {
+    @for (product of filteredCards; track product.id) {
+      <product-card
+        [card]="product"
+        (isModalShow)="showModal($event)"
+        [cardTypes]="cardTypes.PRODUCT"
+      ></product-card>
+    }
+  } @else {
+    <h3 class="text">Товар не найден, измените поиск</h3>
+  }
+</div>
+
+<!-- @if (filteredCards.length) {
   <product-card
     [products]="filteredCards"
     (isModalShow)="showModal($event)"
@@ -24,7 +32,7 @@
   ></product-card>
 } @else {
   <h3 class="text">Товар не найден, измените поиск</h3>
-}
+} -->
 
 <!-- @for(product of products; track product.id) {
 

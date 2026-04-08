@@ -1,7 +1,7 @@
 import { Component, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { debounceTime, Subject, takeUntil } from "rxjs";
-import { SearchForm } from "../../../basket-layout/basket/interfaces/search.model";
+import { SearchForm } from "../../interfaces/search.model";
 
 @Component({
     selector: 'search-bar',
@@ -26,9 +26,9 @@ export class SearchBarComponent {
             debounceTime(500),
             takeUntil(this.destroy$)
         )
-        .subscribe(value => {
-            this.searchChange.emit(value);
-        })
+            .subscribe(value => {
+                this.searchChange.emit(value);
+            })
     }
 
     clearInput() {

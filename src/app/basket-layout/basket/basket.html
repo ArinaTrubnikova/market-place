@@ -1,9 +1,11 @@
 @if (!hasItemsInCart) {
-  <h1 class="basket-header">Ваша корзина пуста</h1>
+  <h1 class="basket__header">Ваша корзина пуста</h1>
 } @else {
-  @for (card of cards$ | async; track card.id) {
-    <product-card [card]="card" [cardTypes]="cardTypes.BASKET"></product-card>
-  }
+  <div class="basket">
+    @for (card of cards$ | async; track card.id) {
+      <product-card [card]="card" [cardTypes]="cardTypes.BASKET"></product-card>
+    }
+  </div>
   <button matButton="elevated" class="payment-btn" routerLink="/basket/buy">Купить</button>
 }
 <!-- <div class="basket">

@@ -15,6 +15,7 @@
           дом {{ buy.paymentData?.address.house }}, квартира {{ buy.paymentData?.address.flat }}
         </span>
       </p>
+
       @for (product of buy.productData; track product.id) {
         <product-card [card]="product" [cardTypes]="cardTypes.HISTORY"></product-card>
       }

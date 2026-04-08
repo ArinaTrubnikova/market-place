@@ -1,17 +1,41 @@
-.payment-product {
+.payment {
   max-width: 1200px;
   margin: 40px auto;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+
+  &__product {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+  }
+
 }
 
-.form-wrapper {
+.form {
   max-width: 1200px;
   margin: 40px auto;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  &__back-btn,
+  &__submit-btn {
+    color: rgb(131, 0, 0) !important;
+    font-size: 17px;
+    border-radius: 4px;
+  }
 }
 
 ::ng-deep .mat-stepper-horizontal {
@@ -34,81 +58,6 @@
   background: #f8f9fa;
   border-radius: 8px;
   border: 1px solid #e9ecef;
-}
-
-.step-actions {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #dee2e6;
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-}
-
-// .payment {
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   gap: 20px;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 20px 0px;
-
-//   &-card__container {
-//     width: auto;
-//     height: auto;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     border-radius: 5px;
-//     gap: 8px;
-//     padding: 15px;
-//     background-color: rgb(255, 230, 230);
-//     box-shadow: 2px 2px 5px rgba(163, 88, 88, 0.3);
-//   }
-
-//   &-card__title {
-//     font-size: 30px;
-//     opacity: 0.7;
-//     margin: 0;
-//     padding: 0;
-//   }
-
-//   &-card__total-wrapper {
-//     display: flex;
-//     flex-direction: row;
-//     gap: 8px;
-//     padding: 5px;
-//     font-size: 18px;
-//   }
-
-//   &-card__cost {
-//     font-size: 18px;
-//     margin: 0;
-//     text-align: center;
-//     opacity: 0.7;
-//   }
-
-//   &__total-amount {
-//     font-size: 15px;
-//     padding: 5px;
-//     width: auto;
-//     border-radius: 4px;
-//     margin: 0;
-//     text-align: start;
-//   }
-// }
-
-.btn {
-  color: rgb(131, 0, 0) !important;
-  font-size: 17px;
-  border-radius: 4px;
-}
-
-.action-btns {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
 }
 
 mat-stepper {

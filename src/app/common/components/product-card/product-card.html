@@ -1,32 +1,29 @@
 @if (card) {
   <mat-card
-    [class.modal-product__card-container]="cardTypes === CARD_TYPES.MODAL"
-    [class.products__card-container]="cardTypes === CARD_TYPES.PRODUCT"
-    [class.payment-card__container]="cardTypes === CARD_TYPES.PAYMENT"
+    [class.card--modal]="cardTypes === CARD_TYPES.MODAL"
+    [class.card--product]="cardTypes === CARD_TYPES.PRODUCT || cardTypes === CARD_TYPES.BASKET"
+    [class.card--payment]="cardTypes === CARD_TYPES.PAYMENT"
     appearance="outlined"
   >
     <div
-      [class.products__title-wrapper]="
+      [class.card__title-wrapper]="
         cardTypes !== CARD_TYPES.MODAL && cardTypes !== CARD_TYPES.PAYMENT
       "
-      class="products__title-wrapper"
     >
       @if (cardTypes === CARD_TYPES.MODAL) {
-        <button matButton="elevated" class="modal-product__close-btn" (click)="closeModal()">
-          X
-        </button>
+        <button matButton="elevated" class="card__close-btn" (click)="closeModal()">X</button>
       }
       @if (cardTypes !== CARD_TYPES.MODAL && cardTypes !== CARD_TYPES.HISTORY) {
-        <img mat-card-image [src]="card.image" class="products__image" (click)="showModal(card)" />
+        <img mat-card-image [src]="card.image" class="card__image" (click)="showModal(card)" />
       }
       <mat-card-header class="kedeberdi">
-        <mat-card-title class="products__title" (click)="showModal(card)">
+        <mat-card-title class="card__title" (click)="showModal(card)">
           {{ card.title }}
         </mat-card-title>
       </mat-card-header>
 
       @if (cardTypes === CARD_TYPES.PAYMENT) {
-        <div class="payment-card__total-wrapper">
+        <div class="card__total-wrapper">
           <mat-chip-set>
             <mat-chip> Количество: {{ getCount(card.id) }} </mat-chip>
             <mat-chip>
@@ -40,14 +37,14 @@
     @if (cardTypes !== CARD_TYPES.PAYMENT) {
       <mat-card-content>
         <div class="card-content">
-          <p class="products__description kedeberdi">{{ card.description }}</p>
+          <p class="card__description kedeberdi">{{ card.description }}</p>
           @if (cardTypes === CARD_TYPES.MODAL) {
-            <p class="modal-product__description kedeberdi">
+            <p class="card__description kedeberdi">
               {{ card.fullDescription }}
             </p>
           }
           <mat-chip-set>
-            <mat-chip class="products__cost kedeberdi">
+            <mat-chip class="card__cost kedeberdi">
               {{ card.cost | currency: 'RUB' : 'symbol-narrow' }}
             </mat-chip>
           </mat-chip-set>
@@ -56,28 +53,22 @@
     }
 
     @if (cardTypes === CARD_TYPES.BASKET) {
-      <div class="products__btn-wrapper">
-        <div class="products__btn-action-wrapper">
-          <button
-            matButton="elevated"
-            class="products__minus-btn"
-            (click)="reduceAmountProduct(card)"
-          >
+      <div class="card__btn-wrapper">
+        <div class="card__btn-action-wrapper">
+          <button matButton="elevated" class="card__minus-btn" (click)="reduceAmountProduct(card)">
             -
           </button>
-          <p class="products__count">{{ getCount(card.id) }}</p>
-          <button matButton="elevated" class="products__plus-btn" (click)="addProduct(card)">
-            +
-          </button>
+          <p class="card__count">{{ getCount(card.id) }}</p>
+          <button matButton="elevated" class="card__plus-btn" (click)="addProduct(card)">+</button>
         </div>
-        <button matButton="elevated" class="products__delete-btn" (click)="deleteCard(card.id)">
+        <button matButton="elevated" class="card__delete-btn" (click)="deleteCard(card.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
     }
 
     @if (cardTypes === CARD_TYPES.PRODUCT || cardTypes === CARD_TYPES.MODAL) {
-      <button matButton="elevated" class="products__sum-btn kedeberdi" (click)="addProduct(card)">
+      <button matButton="elevated" class="card__sum-btn kedeberdi" (click)="addProduct(card)">
         {{ getCount(card.id) === 0 ? 'Добавить в корзину' : getCount(card.id) + ' +' }}
       </button>
     }

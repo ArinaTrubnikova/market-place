@@ -1,32 +1,8 @@
-<div class="payment-product">
-  <div class="payment">
+<div class="payment">
+  <div class="payment__product">
     @for (card of toPaymentCards$ | async; track card.id) {
       <product-card [card]="card" [cardTypes]="cardTypes.PAYMENT"></product-card>
     }
-
-    <!-- @for(card of (toPaymentCards$ | async); track card.id) {
-
-      <mat-card class="payment-card__container">
-        <mat-card-header><mat-card-title class="payment-card__title">{{ card.title }}</mat-card-title></mat-card-header>
-
-        <mat-card-content>
-          <mat-card-header><mat-card-title class="payment-card__cost">Цена: {{ card.cost | currency : 'RUB' :
-              'symbol-narrow' }}</mat-card-title></mat-card-header>
-          <div class="payment-card__total-wrapper">
-            <mat-chip-set>
-              <mat-chip>
-                Количество: {{ card.count }}
-              </mat-chip>
-              <mat-chip>
-                Стоимость: {{ card.cost * card.count | currency : 'RUB' : 'symbol-narrow' }}
-              </mat-chip>
-            </mat-chip-set>
-
-          </div>
-        </mat-card-content>
-
-      </mat-card>
-      } -->
   </div>
   <mat-chip-set
     ><mat-chip class="payment__total-amount"
@@ -35,7 +11,7 @@
   >
 </div>
 
-<div class="form-wrapper">
+<div class="form">
   <mat-stepper [linear]="true" #stepper>
     <mat-step label="Персональные данные" [stepControl]="personalDataForm">
       <personal-data [formGroup]="personalDataForm"></personal-data>
@@ -50,13 +26,13 @@
       [editable]="personalDataForm.valid"
     >
       <payment-details [formGroup]="paymentDetailsForm"></payment-details>
-      <div class="action-btns">
-        <button matButton="tonal" matStepperPrevious class="btn">Назад</button>
+      <div class="form__actions">
+        <button matButton="tonal" matStepperPrevious class="form__back-btn">Назад</button>
         <button
           matButton="tonal"
           [disabled]="paymentDetailsForm.invalid"
           (click)="onSubmit()"
-          class="btn"
+          class="form__submit-btn"
         >
           Подтвердить
         </button>

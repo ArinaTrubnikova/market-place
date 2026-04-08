@@ -1,4 +1,4 @@
-import { Component, inject, Input, output } from '@angular/core';
+import { Component, inject, input, Input, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { AmountCard, Card } from '../../../product-component/interfaces/product-card.model';
 import { CurrencyPipe } from '@angular/common';
@@ -22,8 +22,8 @@ import { CardTypes } from '../../enum/card-types.enum';
 export class ProductCardComponent {
   private readonly storageService = inject(StorageService);
 
-  @Input() card!: Card | AmountCard;
-  @Input() cardTypes!: CardTypes;
+  @Input({ required: true }) card!: Card | AmountCard;
+  @Input({ required: true }) cardTypes!: CardTypes;
   CARD_TYPES = CardTypes;
   isModalShow = output<Card>();
   isClosedModal = output<void>();

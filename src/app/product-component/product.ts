@@ -1,5 +1,4 @@
-import { StorageService } from './../services/storage.service';
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { Card } from './interfaces/product-card.model';
 import { ShowModal } from './show-modal/show-modal';
 import { Subscription } from 'rxjs';
@@ -7,6 +6,7 @@ import { ProductCardComponent } from '../common/components/product-card/product-
 import { DataService } from '../services/data.service';
 import { SearchBarComponent } from "../common/components/search-bar/search-bar";
 import { CardTypes } from '../common/enum/card-types.enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'product-component',
@@ -24,6 +24,8 @@ export class ProductComponent {
   cardTypes = CardTypes;
 
   private productSubscription?: Subscription;
+  private destroyRef = inject(DestroyRef);
+
 
   constructor() { }
 
@@ -40,7 +42,9 @@ export class ProductComponent {
   }
 
   onFiltered(value: string) {
-    this.dataService.getFilteredProduct(value.toLowerCase()).subscribe(
+    this.dataService.getFilteredProduct(value.toLowerCase()).pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe(
       res => {
         if (!res) {
           this.filteredCards = [...this.products];

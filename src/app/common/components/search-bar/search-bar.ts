@@ -1,7 +1,8 @@
-import { Component, output } from "@angular/core";
+import { Component, DestroyRef, inject, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { debounceTime, Subject, takeUntil } from "rxjs";
+import { debounceTime } from "rxjs";
 import { SearchForm } from "../../interfaces/search.model";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'search-bar',
@@ -15,7 +16,7 @@ export class SearchBarComponent {
     form!: FormGroup<SearchForm>;
 
     searchChange = output<string>();
-    private destroy$ = new Subject<void>();
+    private destroyRef = inject(DestroyRef);
 
     ngOnInit() {
         this.form = new FormGroup<SearchForm>({
@@ -24,19 +25,15 @@ export class SearchBarComponent {
 
         this.form.controls.inputSearch.valueChanges.pipe(
             debounceTime(500),
-            takeUntil(this.destroy$)
+            takeUntilDestroyed(this.destroyRef)
         )
             .subscribe(value => {
+                console.log(value)
                 this.searchChange.emit(value);
             })
     }
 
     clearInput() {
         this.form.controls.inputSearch.setValue('');
-    }
-
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }

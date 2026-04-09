@@ -23,7 +23,7 @@ export class DataService {
 
     getFilteredProduct(title: string) {
         return this.http.post<Card[]>(this.apiUrl, title).pipe(
-            map(cards => title ? cards.filter(card => card.title.toLowerCase() === title) : cards)
+            map(cards => title ? cards.filter(card => card.title.toLowerCase().includes(title)) : cards)
         )
     }
 

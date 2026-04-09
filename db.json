@@ -159,6 +159,40 @@
           "count": 1
         }
       ]
+    },
+    {
+      "id": "0e06",
+      "personalData": {
+        "lastName": "Трубникова",
+        "firstName": "Арина",
+        "noMiddleName": false,
+        "middleName": "Николаевна",
+        "birthDate": "1997-09-25T20:00:00.000Z",
+        "contacts": {
+          "email": "qwerty@mail.ru",
+          "phone": "79835878758"
+        }
+      },
+      "paymentData": {
+        "wayToPay": "byCard",
+        "leaveDoor": false,
+        "address": {
+          "city": "Череповец",
+          "street": "Победы",
+          "house": "12",
+          "flat": "234"
+        }
+      },
+      "productData": [
+        {
+          "id": 2,
+          "count": 2
+        },
+        {
+          "id": 3,
+          "count": 5
+        }
+      ]
     }
   ]
 }

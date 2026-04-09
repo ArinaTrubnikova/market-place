@@ -7,10 +7,11 @@ import { DataService } from '../services/data.service';
 import { SearchBarComponent } from "../common/components/search-bar/search-bar";
 import { CardTypes } from '../common/enum/card-types.enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PaginatorComponent } from '../common/components/paginator/paginator';
 
 @Component({
   selector: 'product-component',
-  imports: [ShowModal, ProductCardComponent, SearchBarComponent],
+  imports: [ShowModal, ProductCardComponent, SearchBarComponent, PaginatorComponent],
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
@@ -19,9 +20,14 @@ export class ProductComponent {
 
   selectedCard!: Card;
   isModalVisible: boolean = false;
+
   products: Card[] = [];
   filteredCards: Card[] = [...this.products];
+
   cardTypes = CardTypes;
+  currentPage = 1;
+  itemsPerPage = 3;
+  paginatedCards: Card[] = [];
 
   private productSubscription?: Subscription;
   private destroyRef = inject(DestroyRef);
@@ -33,6 +39,7 @@ export class ProductComponent {
     this.productSubscription = this.dataService.getProduct().subscribe((data: Card[]) => {
       this.products = data;
       this.filteredCards = [...data];
+      this.updatePagination();
     });
   }
 
@@ -51,8 +58,15 @@ export class ProductComponent {
           return;
         }
         this.filteredCards = res;
+        this.updatePagination();
       }
     )
+  }
+
+  updatePagination() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    this.paginatedCards = this.filteredCards.slice(start, end);
   }
 
   ngOnDestroy() {

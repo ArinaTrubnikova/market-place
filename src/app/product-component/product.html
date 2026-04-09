@@ -6,7 +6,7 @@
 
 <div class="product">
   @if (filteredCards.length) {
-    @for (product of filteredCards; track product.id) {
+    @for (product of paginatedCards; track product.id) {
       <product-card
         [card]="product"
         (isModalShow)="showModal($event)"
@@ -17,3 +17,11 @@
     <h3 class="product__not-found-text">Товар не найден, измените поиск</h3>
   }
 </div>
+
+<app-paginator
+  [totalItems]="filteredCards.length"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage"
+  (pageChange)="currentPage = $event; updatePagination()"
+>
+</app-paginator>

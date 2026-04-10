@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import { RouterOutlet, Router } from "@angular/router";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component({
@@ -10,4 +10,6 @@ import { MatButtonModule } from "@angular/material/button";
     styleUrl: './basket-layout.scss'
 })
 
-export class BasketLayoutComponent { }
+export class BasketLayoutComponent {
+    constructor(public router: Router) { }
+}

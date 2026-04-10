@@ -1,10 +1,5 @@
 @if (card) {
-  <mat-card
-    [class.card--modal]="cardTypes === CARD_TYPES.MODAL"
-    [class.card--product]="cardTypes === CARD_TYPES.PRODUCT || cardTypes === CARD_TYPES.BASKET"
-    [class.card--payment]="cardTypes === CARD_TYPES.PAYMENT"
-    appearance="outlined"
-  >
+  <mat-card [ngClass]="cardClasses" appearance="outlined">
     <div
       [class.card__title-wrapper]="
         cardTypes !== CARD_TYPES.MODAL && cardTypes !== CARD_TYPES.PAYMENT
@@ -36,10 +31,10 @@
 
     @if (cardTypes !== CARD_TYPES.PAYMENT) {
       <mat-card-content>
-        <div class="card-content">
+        <div class="card__content">
           <p class="card__description kedeberdi">{{ card.description }}</p>
           @if (cardTypes === CARD_TYPES.MODAL) {
-            <p class="card__description kedeberdi">
+            <p class="card__full-description kedeberdi">
               {{ card.fullDescription }}
             </p>
           }

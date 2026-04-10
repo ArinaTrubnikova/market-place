@@ -8,7 +8,7 @@
         cursor: pointer;
 
         &.active {
-            background-color: #1976d2;
+            background-color: #d2193e;
             color: white;
         }
 
@@ -17,4 +17,8 @@
             cursor: not-allowed;
         }
     }
+}
+
+mat-icon {
+    padding-left: 6px;
 }

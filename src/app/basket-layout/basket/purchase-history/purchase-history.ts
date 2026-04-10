@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { BuyProduct } from '../interfaces/buy-product.model';
-import { BehaviorSubject, combineLatest, map, Observable, type Subscription } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Card } from '../../../product-component/interfaces/product-card.model';
 import { MatCardModule } from '@angular/material/card';
@@ -18,10 +18,14 @@ export class PurchaseHistoryComponent {
   private dataService: DataService = inject(DataService);
 
   public purchaseHistoryCard$!: Observable<any>;
+  public paginatedHistory$!: Observable<any>;
   cardTypes = CardTypes;
 
   private requestBuyProducts$ = new BehaviorSubject<BuyProduct[]>([]);
   public historyPurchase$ = this.requestBuyProducts$.asObservable();
+
+  currentPage$ = new BehaviorSubject<number>(1);
+  itemsPerPage = 3;
 
   ngOnInit() {
     this.dataService.getHistoryBuyProducts().subscribe((data: BuyProduct[]) => {
@@ -60,5 +64,15 @@ export class PurchaseHistoryComponent {
         });
       })
     );
+
+    this.paginatedHistory$ = combineLatest([this.purchaseHistoryCard$, this.currentPage$]).pipe(
+      map(([allCards, page]) => {
+        const start = (page - 1) * this.itemsPerPage;
+        const end = start + this.itemsPerPage;
+        return allCards.slice(start, end);
+      })
+    );
   }
+
+
 }

@@ -57,35 +57,6 @@
     border: none;
   }
 
-  .card__btn-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 5px;
-    align-items: center;
-    padding: 5px;
-    border-radius: 4px;
-  }
-
-  .card__btn-action-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .card__minus-btn,
-  .card__plus-btn,
-  .card__delete-btn {
-    border: none;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-  }
-
   .card__count {
     color: rgb(129, 0, 0);
     margin: 0;
@@ -94,6 +65,16 @@
     min-width: 20px;
     text-align: center;
   }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+mat-card-content {
+  width: 100%;
 }
 
 .card--modal {
@@ -120,6 +101,33 @@
 
   .card__description {
     margin: 2px;
+    font-weight: 600;
+    opacity: 70%;
+  }
+
+  .card__full-description {
+    margin: 2px;
+    font-weight: normal;
+    font-style: italic;
+    opacity: 70%;
+  }
+
+  .card__title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .card__close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-weight: 600;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
@@ -178,9 +186,113 @@
   }
 }
 
-.purchase-history {
+.card--basket {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-top: 20px
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(163, 88, 88, 0.3);
+  border-radius: 5px;
+  background-color: rgb(255, 230, 230);
+
+  .card__title-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 10px;
+  }
+
+  .card__title {
+    font-size: 30px;
+    opacity: 0.7;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .card__image {
+    height: 150px;
+    width: 150px;
+    border-radius: 50% !important;
+    box-shadow: 5px 5px 15px 0 rgba(102, 0, 0, 0.3);
+  }
+
+  .card__btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 45px;
+    margin-bottom: 5px;
+    align-items: center;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  .card__btn-action-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .card__minus-btn,
+  .card__plus-btn,
+  .card__delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+
+  .card__title-wrapper {
+    padding-left: 10px;
+  }
+}
+
+.mat-mdc-raised-button>.mat-icon {
+  margin-right: var(--mat-button-protected-icon-spacing, 0px);
+  margin-left: var(--mat-button-protected-icon-offset, 0px);
+}
+
+.card--history {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 200px;
+  height: 85px;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(163, 88, 88, 0.3);
+  border-radius: 5px;
+  background-color: rgb(255, 230, 230);
+
+  .card__title {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .card__description {
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .mat-mdc-standard-chip {
+    height: var(--mat-chip-container-height, 20px);
+  }
+}
+
+:host ::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label {
+  font-size: 12px;
+  line-height: 12px;
+  padding: 0px;
+  font-weight: 600;
 }

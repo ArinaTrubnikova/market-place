@@ -1,7 +1,7 @@
-import { Component, inject, input, Input, output } from '@angular/core';
+import { Component, inject, Input, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { AmountCard, Card } from '../../../product-component/interfaces/product-card.model';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
@@ -17,7 +17,8 @@ import { CardTypes } from '../../enum/card-types.enum';
     CurrencyPipe,
     MatButtonModule,
     MatIconModule,
-    MatChipsModule],
+    MatChipsModule,
+    CommonModule],
 })
 export class ProductCardComponent {
   private readonly storageService = inject(StorageService);
@@ -27,6 +28,17 @@ export class ProductCardComponent {
   CARD_TYPES = CardTypes;
   isModalShow = output<Card>();
   isClosedModal = output<void>();
+
+  get cardClasses(): Record<string, boolean> {
+    return {
+      'card--modal': this.cardTypes === this.CARD_TYPES.MODAL,
+      'card--product':
+        this.cardTypes === this.CARD_TYPES.PRODUCT,
+      'card--payment': this.cardTypes === this.CARD_TYPES.PAYMENT,
+      'card--basket': this.cardTypes === this.CARD_TYPES.BASKET,
+      'card--history': this.cardTypes === this.CARD_TYPES.HISTORY,
+    };
+  }
 
   addProduct(product: Card): void {
     this.storageService.addProduct(product);

@@ -1,6 +1,8 @@
 <div class="pagination">
   @if (totalPages > 1) {
-    <button matButton="elevated" (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    <button matButton="elevated" (click)="prevPage()" [disabled]="currentPage === 1">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
 
     @for (page of pages; track page) {
       <button matButton="elevated" (click)="goToPage(page)" [class.active]="currentPage === page">
@@ -9,7 +11,7 @@
     }
 
     <button matButton="elevated" (click)="nextPage()" [disabled]="currentPage === totalPages">
-      Next
+      <mat-icon>chevron_right</mat-icon>
     </button>
   }
 </div>

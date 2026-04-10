@@ -1,7 +1,9 @@
 .purchase-history {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
+  justify-content: start;
+  align-items: start;
   margin-top: 20px;
   padding: 10px;
 }
@@ -34,18 +36,18 @@
     padding: 0;
   }
 
-  &__card {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    border: none;
-    box-shadow: 1px 1px 5px rgba(102, 0, 0, 0.3);
-    border-radius: 5px;
-    gap: 10px;
-    background-color: rgb(255, 219, 219);
-  }
+  // &__card {
+  //   height: auto;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: start;
+  //   align-items: start;
+  //   border: none;
+  //   box-shadow: 1px 1px 5px rgba(102, 0, 0, 0.3);
+  //   border-radius: 5px;
+  //   gap: 10px;
+  //   background-color: rgb(255, 219, 219);
+  // }
 
   &__image {
     height: 100px;

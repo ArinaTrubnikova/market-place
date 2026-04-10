@@ -1,10 +1,11 @@
-import { Component, Input, output, type SimpleChanges } from "@angular/core";
+import { Component, Input, output, SimpleChanges } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
     selector: 'app-paginator',
     standalone: true,
-    imports: [MatButtonModule],
+    imports: [MatButtonModule, MatIconModule],
     templateUrl: './paginator.html',
     styleUrl: './paginator.scss'
 })
